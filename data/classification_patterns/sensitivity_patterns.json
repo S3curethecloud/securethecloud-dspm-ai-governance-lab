@@ -1,0 +1,83 @@
+[
+  {
+    "pattern_id": "PAT-PII-EMAIL-001",
+    "name": "Synthetic corporate email",
+    "sensitivity_type": "pii",
+    "inferred_label": "internal",
+    "regex": "[A-Za-z0-9._%+-]+@example\\.com",
+    "risk_points": 10,
+    "confidence": 0.75
+  },
+  {
+    "pattern_id": "PAT-PII-SSN-001",
+    "name": "Synthetic SSN token",
+    "sensitivity_type": "pii",
+    "inferred_label": "regulated",
+    "regex": "SYNTHETIC-SSN-[0-9]{3}-[0-9]{2}-[0-9]{4}",
+    "risk_points": 35,
+    "confidence": 0.95
+  },
+  {
+    "pattern_id": "PAT-PHI-MRN-001",
+    "name": "Synthetic medical record number",
+    "sensitivity_type": "phi",
+    "inferred_label": "regulated",
+    "regex": "MRN-SYN-[0-9]{6,10}",
+    "risk_points": 35,
+    "confidence": 0.95
+  },
+  {
+    "pattern_id": "PAT-PCI-CARD-001",
+    "name": "Synthetic payment card token",
+    "sensitivity_type": "pci",
+    "inferred_label": "regulated",
+    "regex": "SYNTHETIC-CARD-[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}",
+    "risk_points": 35,
+    "confidence": 0.95
+  },
+  {
+    "pattern_id": "PAT-PAYROLL-001",
+    "name": "Payroll and compensation terms",
+    "sensitivity_type": "payroll",
+    "inferred_label": "highly_confidential",
+    "regex": "\\b(payroll|salary|bonus|compensation|executive adjustment)\\b",
+    "risk_points": 25,
+    "confidence": 0.85
+  },
+  {
+    "pattern_id": "PAT-LEGAL-MNA-001",
+    "name": "Legal and acquisition terms",
+    "sensitivity_type": "legal",
+    "inferred_label": "confidential",
+    "regex": "\\b(acquisition|merger|term sheet|legal hold|privileged|confidential transaction)\\b",
+    "risk_points": 20,
+    "confidence": 0.8
+  },
+  {
+    "pattern_id": "PAT-CREDENTIAL-001",
+    "name": "Synthetic API key token",
+    "sensitivity_type": "credential",
+    "inferred_label": "highly_confidential",
+    "regex": "SYNTHETIC-API-KEY-[A-Z0-9]{8,32}",
+    "risk_points": 40,
+    "confidence": 0.98
+  },
+  {
+    "pattern_id": "PAT-CUSTOMER-RECORD-001",
+    "name": "Customer record marker",
+    "sensitivity_type": "customer_record",
+    "inferred_label": "regulated",
+    "regex": "\\b(customer_id|customer record|support export|account history)\\b",
+    "risk_points": 25,
+    "confidence": 0.85
+  },
+  {
+    "pattern_id": "PAT-FINANCIAL-001",
+    "name": "Financial planning terms",
+    "sensitivity_type": "financial",
+    "inferred_label": "confidential",
+    "regex": "\\b(revenue forecast|margin plan|forecast variance|financial model)\\b",
+    "risk_points": 20,
+    "confidence": 0.8
+  }
+]
