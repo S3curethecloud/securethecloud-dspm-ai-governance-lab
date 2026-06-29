@@ -1,0 +1,252 @@
+{
+  "authority": "advisory_only",
+  "decision_counts": {
+    "approval_required": 8,
+    "monitor": 1
+  },
+  "high_priority_assets": [
+    {
+      "asset_id": "hr-payroll-001",
+      "authority": "advisory_only",
+      "classification_score": 100,
+      "confidence": 0.8,
+      "decision": "approval_required",
+      "detected_types": [
+        "payroll",
+        "pii"
+      ],
+      "inferred_label": "highly_confidential",
+      "matched_patterns": [
+        {
+          "confidence": 0.75,
+          "inferred_label": "internal",
+          "match_count": 1,
+          "name": "Synthetic corporate email",
+          "pattern_id": "PAT-PII-EMAIL-001",
+          "risk_points": 10,
+          "sensitivity_type": "pii"
+        },
+        {
+          "confidence": 0.85,
+          "inferred_label": "highly_confidential",
+          "match_count": 5,
+          "name": "Payroll and compensation terms",
+          "pattern_id": "PAT-PAYROLL-001",
+          "risk_points": 25,
+          "sensitivity_type": "payroll"
+        }
+      ]
+    },
+    {
+      "asset_id": "legal-mna-002",
+      "authority": "advisory_only",
+      "classification_score": 100,
+      "confidence": 0.8,
+      "decision": "approval_required",
+      "detected_types": [
+        "financial",
+        "legal"
+      ],
+      "inferred_label": "confidential",
+      "matched_patterns": [
+        {
+          "confidence": 0.8,
+          "inferred_label": "confidential",
+          "match_count": 6,
+          "name": "Legal and acquisition terms",
+          "pattern_id": "PAT-LEGAL-MNA-001",
+          "risk_points": 20,
+          "sensitivity_type": "legal"
+        },
+        {
+          "confidence": 0.8,
+          "inferred_label": "confidential",
+          "match_count": 1,
+          "name": "Financial planning terms",
+          "pattern_id": "PAT-FINANCIAL-001",
+          "risk_points": 20,
+          "sensitivity_type": "financial"
+        }
+      ]
+    },
+    {
+      "asset_id": "customer-records-003",
+      "authority": "advisory_only",
+      "classification_score": 100,
+      "confidence": 0.8,
+      "decision": "approval_required",
+      "detected_types": [
+        "customer_record",
+        "pii"
+      ],
+      "inferred_label": "regulated",
+      "matched_patterns": [
+        {
+          "confidence": 0.75,
+          "inferred_label": "internal",
+          "match_count": 1,
+          "name": "Synthetic corporate email",
+          "pattern_id": "PAT-PII-EMAIL-001",
+          "risk_points": 10,
+          "sensitivity_type": "pii"
+        },
+        {
+          "confidence": 0.85,
+          "inferred_label": "regulated",
+          "match_count": 4,
+          "name": "Customer record marker",
+          "pattern_id": "PAT-CUSTOMER-RECORD-001",
+          "risk_points": 25,
+          "sensitivity_type": "customer_record"
+        }
+      ]
+    },
+    {
+      "asset_id": "sales-forecast-008",
+      "authority": "advisory_only",
+      "classification_score": 80,
+      "confidence": 0.8,
+      "decision": "approval_required",
+      "detected_types": [
+        "financial"
+      ],
+      "inferred_label": "confidential",
+      "matched_patterns": [
+        {
+          "confidence": 0.8,
+          "inferred_label": "confidential",
+          "match_count": 4,
+          "name": "Financial planning terms",
+          "pattern_id": "PAT-FINANCIAL-001",
+          "risk_points": 20,
+          "sensitivity_type": "financial"
+        }
+      ]
+    },
+    {
+      "asset_id": "payment-disputes-007",
+      "authority": "advisory_only",
+      "classification_score": 60,
+      "confidence": 0.9,
+      "decision": "approval_required",
+      "detected_types": [
+        "customer_record",
+        "pci"
+      ],
+      "inferred_label": "regulated",
+      "matched_patterns": [
+        {
+          "confidence": 0.95,
+          "inferred_label": "regulated",
+          "match_count": 1,
+          "name": "Synthetic payment card token",
+          "pattern_id": "PAT-PCI-CARD-001",
+          "risk_points": 35,
+          "sensitivity_type": "pci"
+        },
+        {
+          "confidence": 0.85,
+          "inferred_label": "regulated",
+          "match_count": 1,
+          "name": "Customer record marker",
+          "pattern_id": "PAT-CUSTOMER-RECORD-001",
+          "risk_points": 25,
+          "sensitivity_type": "customer_record"
+        }
+      ]
+    },
+    {
+      "asset_id": "clinical-intake-006",
+      "authority": "advisory_only",
+      "classification_score": 45,
+      "confidence": 0.85,
+      "decision": "approval_required",
+      "detected_types": [
+        "phi",
+        "pii"
+      ],
+      "inferred_label": "regulated",
+      "matched_patterns": [
+        {
+          "confidence": 0.75,
+          "inferred_label": "internal",
+          "match_count": 1,
+          "name": "Synthetic corporate email",
+          "pattern_id": "PAT-PII-EMAIL-001",
+          "risk_points": 10,
+          "sensitivity_type": "pii"
+        },
+        {
+          "confidence": 0.95,
+          "inferred_label": "regulated",
+          "match_count": 1,
+          "name": "Synthetic medical record number",
+          "pattern_id": "PAT-PHI-MRN-001",
+          "risk_points": 35,
+          "sensitivity_type": "phi"
+        }
+      ]
+    },
+    {
+      "asset_id": "secrets-runbook-005",
+      "authority": "advisory_only",
+      "classification_score": 40,
+      "confidence": 0.98,
+      "decision": "approval_required",
+      "detected_types": [
+        "credential"
+      ],
+      "inferred_label": "highly_confidential",
+      "matched_patterns": [
+        {
+          "confidence": 0.98,
+          "inferred_label": "highly_confidential",
+          "match_count": 1,
+          "name": "Synthetic API key token",
+          "pattern_id": "PAT-CREDENTIAL-001",
+          "risk_points": 40,
+          "sensitivity_type": "credential"
+        }
+      ]
+    },
+    {
+      "asset_id": "devops-token-notes-009",
+      "authority": "advisory_only",
+      "classification_score": 40,
+      "confidence": 0.98,
+      "decision": "approval_required",
+      "detected_types": [
+        "credential"
+      ],
+      "inferred_label": "highly_confidential",
+      "matched_patterns": [
+        {
+          "confidence": 0.98,
+          "inferred_label": "highly_confidential",
+          "match_count": 1,
+          "name": "Synthetic API key token",
+          "pattern_id": "PAT-CREDENTIAL-001",
+          "risk_points": 40,
+          "sensitivity_type": "credential"
+        }
+      ]
+    }
+  ],
+  "label_counts": {
+    "confidential": 2,
+    "highly_confidential": 3,
+    "public": 1,
+    "regulated": 3
+  },
+  "total_documents": 9,
+  "type_counts": {
+    "credential": 2,
+    "customer_record": 2,
+    "financial": 2,
+    "legal": 1,
+    "payroll": 1,
+    "pci": 1,
+    "phi": 1,
+    "pii": 3
+  }
+}

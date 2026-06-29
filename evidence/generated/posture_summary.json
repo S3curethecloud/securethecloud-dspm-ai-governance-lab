@@ -2,7 +2,7 @@
   "authority": "advisory_only",
   "average_risk_score": 78.75,
   "evidence_mode": "synthetic",
-  "generated_at": "2026-06-29T17:59:39+00:00",
+  "generated_at": "2026-06-29T18:54:55+00:00",
   "posture_score": 21.25,
   "risk_counts": {
     "critical": 4,

@@ -117,5 +117,61 @@
     "recommendation": "Inspect prompt, retrieved content, and response handling",
     "risk_level": "medium",
     "subject_id": "ai-event-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+    "risk_level": "highly_confidential",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+    "risk_level": "confidential",
+    "subject_id": "legal-mna-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+    "risk_level": "regulated",
+    "subject_id": "customer-records-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+    "risk_level": "highly_confidential",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+    "risk_level": "regulated",
+    "subject_id": "clinical-intake-006"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+    "risk_level": "regulated",
+    "subject_id": "payment-disputes-007"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+    "risk_level": "confidential",
+    "subject_id": "sales-forecast-008"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+    "risk_level": "highly_confidential",
+    "subject_id": "devops-token-notes-009"
   }
 ]

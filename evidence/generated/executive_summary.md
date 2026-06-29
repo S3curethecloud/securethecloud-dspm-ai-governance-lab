@@ -1,6 +1,6 @@
 # DSPM Synthetic Evidence Summary
 
-Generated at: `2026-06-29T17:59:39+00:00`
+Generated at: `2026-06-29T18:54:55+00:00`
 
 ## Posture Overview
 
@@ -8,6 +8,13 @@ Generated at: `2026-06-29T17:59:39+00:00`
 - Average risk score: **78.75**
 - Total assets: **5**
 - Total AI interactions: **3**
+
+## Classification Overview
+
+- Total classified documents: **9**
+- Label counts: `{'highly_confidential': 3, 'confidential': 2, 'regulated': 3, 'public': 1}`
+- Type counts: `{'payroll': 1, 'pii': 3, 'financial': 2, 'legal': 1, 'customer_record': 2, 'credential': 2, 'phi': 1, 'pci': 1}`
+- Decision counts: `{'approval_required': 8, 'monitor': 1}`
 
 ## Risk Counts
 
