@@ -1,0 +1,121 @@
+[
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Run access review and remove broad group access",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require AI access policy review before retrieval or summarization",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Create or update DLP policy for detected sensitivity types",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Map asset to Insider Risk review workflow",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Block external sharing for sensitive assets or require approval",
+    "risk_level": "critical",
+    "subject_id": "legal-mna-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Map asset to Insider Risk review workflow",
+    "risk_level": "critical",
+    "subject_id": "legal-mna-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require AI access policy review before retrieval or summarization",
+    "risk_level": "critical",
+    "subject_id": "customer-records-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Create or update DLP policy for detected sensitivity types",
+    "risk_level": "critical",
+    "subject_id": "customer-records-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Require AI access policy review before retrieval or summarization",
+    "risk_level": "low",
+    "subject_id": "eng-prompts-004"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Run access review and remove broad group access",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require AI access policy review before retrieval or summarization",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Create or update DLP policy for detected sensitivity types",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Map asset to Insider Risk review workflow",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Inspect prompt, retrieved content, and response handling",
+    "risk_level": "medium",
+    "subject_id": "ai-event-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Inspect prompt, retrieved content, and response handling",
+    "risk_level": "high",
+    "subject_id": "ai-event-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Apply DLP control for risky destination",
+    "risk_level": "high",
+    "subject_id": "ai-event-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Inspect prompt, retrieved content, and response handling",
+    "risk_level": "medium",
+    "subject_id": "ai-event-003"
+  }
+]

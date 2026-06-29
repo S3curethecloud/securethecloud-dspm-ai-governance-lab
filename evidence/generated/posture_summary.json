@@ -1,0 +1,123 @@
+{
+  "authority": "advisory_only",
+  "average_risk_score": 78.75,
+  "evidence_mode": "synthetic",
+  "generated_at": "2026-06-29T17:59:39+00:00",
+  "posture_score": 21.25,
+  "risk_counts": {
+    "critical": 4,
+    "high": 1,
+    "low": 1,
+    "medium": 2
+  },
+  "top_risks": [
+    {
+      "decision": "deny",
+      "reasons": [
+        "sensitivity label is highly_confidential",
+        "sensitive data types detected: financial, payroll, pii",
+        "asset is broadly shared",
+        "AI access is allowed for this asset",
+        "DLP policy coverage is missing",
+        "Insider Risk policy coverage is missing"
+      ],
+      "recommendations": [
+        "Run access review and remove broad group access",
+        "Require AI access policy review before retrieval or summarization",
+        "Create or update DLP policy for detected sensitivity types",
+        "Map asset to Insider Risk review workflow"
+      ],
+      "risk_level": "critical",
+      "score": 100,
+      "subject_id": "hr-payroll-001"
+    },
+    {
+      "decision": "deny",
+      "reasons": [
+        "sensitivity label is confidential",
+        "sensitive data types detected: financial, legal",
+        "external sharing is enabled",
+        "Insider Risk policy coverage is missing"
+      ],
+      "recommendations": [
+        "Block external sharing for sensitive assets or require approval",
+        "Map asset to Insider Risk review workflow"
+      ],
+      "risk_level": "critical",
+      "score": 100,
+      "subject_id": "legal-mna-002"
+    },
+    {
+      "decision": "deny",
+      "reasons": [
+        "sensitivity label is regulated",
+        "sensitive data types detected: customer_record, pii",
+        "AI access is allowed for this asset",
+        "DLP policy coverage is missing"
+      ],
+      "recommendations": [
+        "Require AI access policy review before retrieval or summarization",
+        "Create or update DLP policy for detected sensitivity types"
+      ],
+      "risk_level": "critical",
+      "score": 100,
+      "subject_id": "customer-records-003"
+    },
+    {
+      "decision": "deny",
+      "reasons": [
+        "sensitivity label is highly_confidential",
+        "sensitive data types detected: credential",
+        "asset is broadly shared",
+        "AI access is allowed for this asset",
+        "DLP policy coverage is missing",
+        "Insider Risk policy coverage is missing"
+      ],
+      "recommendations": [
+        "Run access review and remove broad group access",
+        "Require AI access policy review before retrieval or summarization",
+        "Create or update DLP policy for detected sensitivity types",
+        "Map asset to Insider Risk review workflow"
+      ],
+      "risk_level": "critical",
+      "score": 100,
+      "subject_id": "secrets-runbook-005"
+    },
+    {
+      "decision": "approval_required",
+      "linked_asset_results": [
+        {
+          "decision": "deny",
+          "reasons": [
+            "sensitivity label is confidential",
+            "sensitive data types detected: financial, legal",
+            "external sharing is enabled",
+            "Insider Risk policy coverage is missing"
+          ],
+          "recommendations": [
+            "Block external sharing for sensitive assets or require approval",
+            "Map asset to Insider Risk review workflow"
+          ],
+          "risk_level": "critical",
+          "score": 100,
+          "subject_id": "legal-mna-002"
+        }
+      ],
+      "reasons": [
+        "AI interaction observed",
+        "prompt or response path includes sensitive data",
+        "AI interaction targets a non-internal destination",
+        "retrieved high-risk asset legal-mna-002"
+      ],
+      "recommendations": [
+        "Inspect prompt, retrieved content, and response handling",
+        "Apply DLP control for risky destination"
+      ],
+      "risk_level": "high",
+      "score": 85,
+      "subject_id": "ai-event-002"
+    }
+  ],
+  "total_ai_interactions": 3,
+  "total_assets": 5
+}
