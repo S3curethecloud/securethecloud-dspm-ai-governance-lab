@@ -7,22 +7,33 @@ from pathlib import Path
 
 from fastapi import FastAPI
 
+from backend.app.classifier import classify_documents, summarize_classification_results
 from backend.app.scoring import score_ai_interaction, score_asset, summarize_posture
 
 ROOT = Path(__file__).resolve().parents[2]
 ASSETS_PATH = ROOT / "data" / "assets" / "sample_assets.json"
+ADDITIONAL_ASSETS_PATH = ROOT / "data" / "assets" / "phase2_additional_assets.json"
 EVENTS_PATH = ROOT / "data" / "events" / "ai_interactions.json"
+PATTERNS_PATH = ROOT / "data" / "classification_patterns" / "sensitivity_patterns.json"
+DOCUMENTS_PATH = ROOT / "data" / "content_samples" / "synthetic_documents.json"
 
 app = FastAPI(
     title="SecureTheCloud DSPM AI Governance Lab",
-    version="0.1.0",
-    description="Synthetic DSPM posture scoring and AI data interaction governance API.",
+    version="0.2.0",
+    description="Synthetic DSPM posture scoring, classification, and AI data interaction governance API.",
 )
 
 
 def load_json(path: Path) -> list[dict]:
     with path.open("r", encoding="utf-8") as handle:
         return json.load(handle)
+
+
+def load_all_assets() -> list[dict]:
+    assets = load_json(ASSETS_PATH)
+    if ADDITIONAL_ASSETS_PATH.exists():
+        assets.extend(load_json(ADDITIONAL_ASSETS_PATH))
+    return assets
 
 
 @app.get("/health")
@@ -37,12 +48,28 @@ def health() -> dict[str, str]:
 
 @app.get("/assets")
 def list_assets() -> list[dict]:
-    return load_json(ASSETS_PATH)
+    return load_all_assets()
 
 
 @app.get("/ai-interactions")
 def list_ai_interactions() -> list[dict]:
     return load_json(EVENTS_PATH)
+
+
+@app.get("/classification/patterns")
+def classification_patterns() -> list[dict]:
+    return load_json(PATTERNS_PATH)
+
+
+@app.get("/classification/assets")
+def classify_assets() -> dict:
+    documents = load_json(DOCUMENTS_PATH)
+    patterns = load_json(PATTERNS_PATH)
+    results = classify_documents(documents, patterns)
+    return {
+        "summary": summarize_classification_results(results),
+        "results": results,
+    }
 
 
 @app.get("/risk/assets")
