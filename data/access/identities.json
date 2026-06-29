@@ -1,0 +1,56 @@
+[
+  {
+    "identity_id": "user-finance-analyst-001",
+    "display_name": "Synthetic Finance Analyst",
+    "identity_type": "user",
+    "department": "finance",
+    "risk_tier": "medium",
+    "privileged": false,
+    "external": false
+  },
+  {
+    "identity_id": "user-hr-partner-001",
+    "display_name": "Synthetic HR Partner",
+    "identity_type": "user",
+    "department": "human_resources",
+    "risk_tier": "medium",
+    "privileged": false,
+    "external": false
+  },
+  {
+    "identity_id": "user-platform-admin-001",
+    "display_name": "Synthetic Platform Admin",
+    "identity_type": "user",
+    "department": "platform_engineering",
+    "risk_tier": "high",
+    "privileged": true,
+    "external": false
+  },
+  {
+    "identity_id": "user-legal-counsel-001",
+    "display_name": "Synthetic Legal Counsel",
+    "identity_type": "user",
+    "department": "legal",
+    "risk_tier": "medium",
+    "privileged": false,
+    "external": false
+  },
+  {
+    "identity_id": "ext-partner-reviewer-001",
+    "display_name": "Synthetic External Partner Reviewer",
+    "identity_type": "guest",
+    "department": "external_partner",
+    "risk_tier": "high",
+    "privileged": false,
+    "external": true
+  },
+  {
+    "identity_id": "svc-ai-retrieval-001",
+    "display_name": "Synthetic AI Retrieval Service Principal",
+    "identity_type": "service_principal",
+    "department": "ai_platform",
+    "risk_tier": "high",
+    "privileged": true,
+    "external": false
+  }
+]
