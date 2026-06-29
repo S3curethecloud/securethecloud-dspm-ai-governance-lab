@@ -7,13 +7,17 @@ reviewable evidence outputs for architecture walkthroughs and phase closure.
 from __future__ import annotations
 
 import json
+import sys
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from backend.app.scoring import score_ai_interaction, score_asset, summarize_posture
 
-ROOT = Path(__file__).resolve().parents[1]
 ASSETS_PATH = ROOT / "data" / "assets" / "sample_assets.json"
 EVENTS_PATH = ROOT / "data" / "events" / "ai_interactions.json"
 OUTPUT_DIR = ROOT / "evidence" / "generated"
@@ -117,6 +121,7 @@ def build_evidence() -> dict[str, Any]:
             "asset_risk_results.json",
             "ai_interaction_risk_results.json",
             "recommendation_register.json",
+            "evidence_manifest.json",
             "executive_summary.md",
         ],
     }
