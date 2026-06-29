@@ -1,0 +1,59 @@
+version: 0.1.0
+mode: synthetic_only
+authority: advisory_only
+
+rules:
+  - id: DSPM-DATA-001
+    name: Broad access to highly sensitive data
+    condition:
+      sensitivity_labels:
+        - highly_confidential
+        - regulated
+      shared_with_any:
+        - all_employees
+        - everyone
+        - company_all
+        - domain_users
+    decision: approval_required
+    recommendations:
+      - Run access review.
+      - Remove broad group access.
+      - Require business owner approval for exception.
+
+  - id: DSPM-AI-001
+    name: AI access to sensitive data without policy coverage
+    condition:
+      ai_access_allowed: true
+      dlp_policy_present: false
+      minimum_sensitivity_label: confidential
+    decision: approval_required
+    recommendations:
+      - Require AI access review before retrieval.
+      - Create DLP policy for detected sensitive data types.
+      - Store evidence of retrieved assets and prompt category.
+
+  - id: DSPM-EXT-001
+    name: External sharing of confidential data
+    condition:
+      external_sharing: true
+      minimum_sensitivity_label: confidential
+    decision: deny
+    recommendations:
+      - Disable external sharing.
+      - Require legal or data owner exception workflow.
+      - Add destination-aware DLP monitoring.
+
+  - id: DSPM-SECRET-001
+    name: Credential-like data exposed to broad access or AI retrieval
+    condition:
+      sensitivity_types_any:
+        - credential
+      shared_with_any:
+        - all_employees
+        - domain_users
+      ai_access_allowed: true
+    decision: deny
+    recommendations:
+      - Remove credential content from collaboration workspace.
+      - Rotate exposed synthetic secret equivalent in real environments.
+      - Block AI retrieval until remediation evidence exists.
