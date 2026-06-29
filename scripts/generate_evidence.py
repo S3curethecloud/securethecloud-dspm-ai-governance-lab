@@ -1,7 +1,7 @@
 """Generate synthetic DSPM posture evidence artifacts.
 
-This script converts the lab's synthetic asset, AI interaction, and classification
-fixtures into reviewable evidence outputs for architecture walkthroughs and phase closure.
+This script converts the lab's synthetic asset, AI interaction, classification,
+and access fixtures into reviewable evidence outputs for architecture walkthroughs and phase closure.
 """
 
 from __future__ import annotations
@@ -16,19 +16,31 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from backend.app.access_analyzer import analyze_access_exposure
 from backend.app.classifier import classify_documents, summarize_classification_results
 from backend.app.scoring import score_ai_interaction, score_asset, summarize_posture
 
 ASSETS_PATH = ROOT / "data" / "assets" / "sample_assets.json"
+ADDITIONAL_ASSETS_PATH = ROOT / "data" / "assets" / "phase2_additional_assets.json"
 EVENTS_PATH = ROOT / "data" / "events" / "ai_interactions.json"
 PATTERNS_PATH = ROOT / "data" / "classification_patterns" / "sensitivity_patterns.json"
 DOCUMENTS_PATH = ROOT / "data" / "content_samples" / "synthetic_documents.json"
+IDENTITIES_PATH = ROOT / "data" / "access" / "identities.json"
+GROUPS_PATH = ROOT / "data" / "access" / "groups.json"
+PERMISSIONS_PATH = ROOT / "data" / "access" / "permissions.json"
 OUTPUT_DIR = ROOT / "evidence" / "generated"
 
 
 def load_json(path: Path) -> list[dict[str, Any]]:
     with path.open("r", encoding="utf-8") as handle:
         return json.load(handle)
+
+
+def load_all_assets() -> list[dict[str, Any]]:
+    assets = load_json(ASSETS_PATH)
+    if ADDITIONAL_ASSETS_PATH.exists():
+        assets.extend(load_json(ADDITIONAL_ASSETS_PATH))
+    return assets
 
 
 def write_json(path: Path, payload: Any) -> None:
@@ -38,7 +50,12 @@ def write_json(path: Path, payload: Any) -> None:
         handle.write("\n")
 
 
-def write_markdown(path: Path, summary: dict[str, Any], classification_summary: dict[str, Any]) -> None:
+def write_markdown(
+    path: Path,
+    summary: dict[str, Any],
+    classification_summary: dict[str, Any],
+    access_summary: dict[str, Any],
+) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     top_risks = summary.get("top_risks", [])
     lines = [
@@ -59,6 +76,15 @@ def write_markdown(path: Path, summary: dict[str, Any], classification_summary: 
         f"- Label counts: `{classification_summary['label_counts']}`",
         f"- Type counts: `{classification_summary['type_counts']}`",
         f"- Decision counts: `{classification_summary['decision_counts']}`",
+        "",
+        "## Access Exposure Overview",
+        "",
+        f"- Total permissions: **{access_summary['total_permissions']}**",
+        f"- Exposure level counts: `{access_summary['level_counts']}`",
+        f"- Decision counts: `{access_summary['decision_counts']}`",
+        f"- External exposures: **{access_summary['external_exposures']}**",
+        f"- Broad group exposures: **{access_summary['broad_group_exposures']}**",
+        f"- AI access exposures: **{access_summary['ai_access_exposures']}**",
         "",
         "## Risk Counts",
         "",
@@ -96,15 +122,20 @@ def write_markdown(path: Path, summary: dict[str, Any], classification_summary: 
 
 def build_evidence() -> dict[str, Any]:
     assets = load_json(ASSETS_PATH)
+    all_assets = load_all_assets()
     events = load_json(EVENTS_PATH)
     patterns = load_json(PATTERNS_PATH)
     documents = load_json(DOCUMENTS_PATH)
+    identities = load_json(IDENTITIES_PATH)
+    groups = load_json(GROUPS_PATH)
+    permissions = load_json(PERMISSIONS_PATH)
     asset_index = {asset["asset_id"]: asset for asset in assets}
 
     asset_results = [score_asset(asset) for asset in assets]
     event_results = [score_ai_interaction(event, asset_index) for event in events]
     classification_results = classify_documents(documents, patterns)
     classification_summary = summarize_classification_results(classification_results)
+    access_exposure = analyze_access_exposure(all_assets, permissions, identities, groups)
     posture_summary = summarize_posture(assets, events)
 
     generated_at = datetime.now(UTC).replace(microsecond=0).isoformat()
@@ -137,6 +168,18 @@ def build_evidence() -> dict[str, Any]:
                 }
             )
 
+    for result in access_exposure["results"]:
+        for recommendation in result.get("recommendations", []):
+            recommendation_register.append(
+                {
+                    "subject_id": result["asset_id"],
+                    "risk_level": result["exposure_level"],
+                    "decision": result["decision"],
+                    "recommendation": recommendation,
+                    "authority": "advisory_only",
+                }
+            )
+
     manifest = {
         "generated_at": generated_at,
         "lab": "securethecloud-dspm-ai-governance-lab",
@@ -148,6 +191,8 @@ def build_evidence() -> dict[str, Any]:
             "ai_interaction_risk_results.json",
             "classification_results.json",
             "classification_summary.json",
+            "access_exposure_results.json",
+            "access_exposure_summary.json",
             "recommendation_register.json",
             "evidence_manifest.json",
             "executive_summary.md",
@@ -160,6 +205,8 @@ def build_evidence() -> dict[str, Any]:
         "ai_interaction_risk_results": event_results,
         "classification_results": classification_results,
         "classification_summary": classification_summary,
+        "access_exposure_results": access_exposure["results"],
+        "access_exposure_summary": access_exposure["summary"],
         "recommendation_register": recommendation_register,
         "manifest": manifest,
     }
@@ -173,12 +220,15 @@ def main() -> int:
     write_json(OUTPUT_DIR / "ai_interaction_risk_results.json", evidence["ai_interaction_risk_results"])
     write_json(OUTPUT_DIR / "classification_results.json", evidence["classification_results"])
     write_json(OUTPUT_DIR / "classification_summary.json", evidence["classification_summary"])
+    write_json(OUTPUT_DIR / "access_exposure_results.json", evidence["access_exposure_results"])
+    write_json(OUTPUT_DIR / "access_exposure_summary.json", evidence["access_exposure_summary"])
     write_json(OUTPUT_DIR / "recommendation_register.json", evidence["recommendation_register"])
     write_json(OUTPUT_DIR / "evidence_manifest.json", evidence["manifest"])
     write_markdown(
         OUTPUT_DIR / "executive_summary.md",
         evidence["posture_summary"],
         evidence["classification_summary"],
+        evidence["access_exposure_summary"],
     )
 
     print(f"Generated synthetic DSPM evidence in {OUTPUT_DIR.relative_to(ROOT)}")
