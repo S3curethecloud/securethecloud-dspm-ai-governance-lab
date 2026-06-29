@@ -1,0 +1,74 @@
+[
+  {
+    "asset_id": "clinical-intake-006",
+    "name": "Synthetic Clinical Intake Export",
+    "location": "sharepoint/clinical/intake/synthetic-intake-export.csv",
+    "owner": "clinical_operations",
+    "business_domain": "healthcare",
+    "sensitivity_label": "unlabeled",
+    "sensitivity_types": [],
+    "shared_with": ["care_team", "analytics_team"],
+    "external_sharing": false,
+    "dlp_policy_present": false,
+    "insider_risk_policy_present": false,
+    "ai_access_allowed": true,
+    "metadata": {
+      "source_system": "sharepoint_like",
+      "phase": "phase_2_classifier_expansion"
+    }
+  },
+  {
+    "asset_id": "payment-disputes-007",
+    "name": "Synthetic Payment Disputes Export",
+    "location": "blob/finance/payment-disputes/synthetic-disputes.csv",
+    "owner": "finance",
+    "business_domain": "finance",
+    "sensitivity_label": "unlabeled",
+    "sensitivity_types": [],
+    "shared_with": ["finance_ops"],
+    "external_sharing": false,
+    "dlp_policy_present": false,
+    "insider_risk_policy_present": false,
+    "ai_access_allowed": true,
+    "metadata": {
+      "source_system": "blob_like",
+      "phase": "phase_2_classifier_expansion"
+    }
+  },
+  {
+    "asset_id": "sales-forecast-008",
+    "name": "Synthetic Revenue Forecast Workbook",
+    "location": "sharepoint/sales/forecast/synthetic-revenue-forecast.xlsx",
+    "owner": "sales_operations",
+    "business_domain": "sales",
+    "sensitivity_label": "unlabeled",
+    "sensitivity_types": [],
+    "shared_with": ["company_all"],
+    "external_sharing": false,
+    "dlp_policy_present": false,
+    "insider_risk_policy_present": false,
+    "ai_access_allowed": true,
+    "metadata": {
+      "source_system": "sharepoint_like",
+      "phase": "phase_2_classifier_expansion"
+    }
+  },
+  {
+    "asset_id": "devops-token-notes-009",
+    "name": "Synthetic DevOps Token Notes",
+    "location": "github/runbooks/synthetic-devops-token-notes.md",
+    "owner": "platform_engineering",
+    "business_domain": "engineering",
+    "sensitivity_label": "unlabeled",
+    "sensitivity_types": [],
+    "shared_with": ["domain_users"],
+    "external_sharing": false,
+    "dlp_policy_present": false,
+    "insider_risk_policy_present": false,
+    "ai_access_allowed": true,
+    "metadata": {
+      "source_system": "github_like",
+      "phase": "phase_2_classifier_expansion"
+    }
+  }
+]
