@@ -16,8 +16,13 @@ REQUIRED_PATHS = [
     "backend/app/main.py",
     "backend/app/models.py",
     "backend/app/scoring.py",
+    "backend/app/classifier.py",
     "backend/tests/test_scoring.py",
+    "backend/tests/test_classifier.py",
     "data/assets/sample_assets.json",
+    "data/assets/phase2_additional_assets.json",
+    "data/content_samples/synthetic_documents.json",
+    "data/classification_patterns/sensitivity_patterns.json",
     "data/events/ai_interactions.json",
     "policies/dspm_policy_rules.yaml",
     "docs/sot/PROJECT_SOURCE_OF_TRUTH.md",
@@ -59,6 +64,32 @@ def validate_json(relative_path: str) -> list[str]:
     return []
 
 
+def validate_classifier_fixture_contract() -> list[str]:
+    errors = []
+    patterns = json.loads(read_text("data/classification_patterns/sensitivity_patterns.json"))
+    documents = json.loads(read_text("data/content_samples/synthetic_documents.json"))
+
+    required_pattern_keys = {
+        "pattern_id",
+        "name",
+        "sensitivity_type",
+        "inferred_label",
+        "regex",
+        "risk_points",
+        "confidence",
+    }
+    for pattern in patterns:
+        missing = required_pattern_keys - set(pattern)
+        if missing:
+            errors.append(f"classification pattern {pattern.get('pattern_id', '<unknown>')} missing keys: {sorted(missing)}")
+
+    for document in documents:
+        if not document.get("asset_id") or not document.get("content"):
+            errors.append("classification document fixture requires asset_id and content")
+
+    return errors
+
+
 def validate_boundary_claims() -> list[str]:
     errors = []
     markdown_content = "\n".join(
@@ -80,7 +111,11 @@ def main() -> int:
     errors = []
     errors.extend(validate_required_paths())
     errors.extend(validate_json("data/assets/sample_assets.json"))
+    errors.extend(validate_json("data/assets/phase2_additional_assets.json"))
+    errors.extend(validate_json("data/content_samples/synthetic_documents.json"))
+    errors.extend(validate_json("data/classification_patterns/sensitivity_patterns.json"))
     errors.extend(validate_json("data/events/ai_interactions.json"))
+    errors.extend(validate_classifier_fixture_contract())
     errors.extend(validate_boundary_claims())
 
     if errors:
