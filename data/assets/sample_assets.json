@@ -1,0 +1,93 @@
+[
+  {
+    "asset_id": "hr-payroll-001",
+    "name": "Executive Payroll Adjustments",
+    "location": "sharepoint/hr/payroll/executive-payroll-adjustments.xlsx",
+    "owner": "hr",
+    "business_domain": "human_resources",
+    "sensitivity_label": "highly_confidential",
+    "sensitivity_types": ["pii", "payroll", "financial"],
+    "shared_with": ["all_employees"],
+    "external_sharing": false,
+    "dlp_policy_present": false,
+    "insider_risk_policy_present": false,
+    "ai_access_allowed": true,
+    "metadata": {
+      "source_system": "sharepoint_like",
+      "records": 250,
+      "retention": "7_years"
+    }
+  },
+  {
+    "asset_id": "legal-mna-002",
+    "name": "Confidential Acquisition Notes",
+    "location": "sharepoint/legal/mna/acquisition-notes.docx",
+    "owner": "legal",
+    "business_domain": "legal",
+    "sensitivity_label": "confidential",
+    "sensitivity_types": ["legal", "financial"],
+    "shared_with": ["legal_team"],
+    "external_sharing": true,
+    "dlp_policy_present": true,
+    "insider_risk_policy_present": false,
+    "ai_access_allowed": false,
+    "metadata": {
+      "source_system": "sharepoint_like",
+      "matter": "synthetic_mna_review"
+    }
+  },
+  {
+    "asset_id": "customer-records-003",
+    "name": "Customer Support Export",
+    "location": "blob/customer-data/support-export.json",
+    "owner": "customer_success",
+    "business_domain": "customer_operations",
+    "sensitivity_label": "regulated",
+    "sensitivity_types": ["pii", "customer_record"],
+    "shared_with": ["support_team", "analytics_team"],
+    "external_sharing": false,
+    "dlp_policy_present": false,
+    "insider_risk_policy_present": true,
+    "ai_access_allowed": true,
+    "metadata": {
+      "source_system": "blob_like",
+      "records": 1000
+    }
+  },
+  {
+    "asset_id": "eng-prompts-004",
+    "name": "Internal Prompt Library",
+    "location": "github/prompts/internal-agent-prompts.md",
+    "owner": "engineering",
+    "business_domain": "engineering",
+    "sensitivity_label": "internal",
+    "sensitivity_types": [],
+    "shared_with": ["engineering_team"],
+    "external_sharing": false,
+    "dlp_policy_present": false,
+    "insider_risk_policy_present": false,
+    "ai_access_allowed": true,
+    "metadata": {
+      "source_system": "github_like",
+      "repo": "synthetic-agent-prompts"
+    }
+  },
+  {
+    "asset_id": "secrets-runbook-005",
+    "name": "Legacy Integration Secret Notes",
+    "location": "sharepoint/engineering/legacy/runbook-secret-notes.txt",
+    "owner": "platform_security",
+    "business_domain": "security",
+    "sensitivity_label": "highly_confidential",
+    "sensitivity_types": ["credential"],
+    "shared_with": ["domain_users"],
+    "external_sharing": false,
+    "dlp_policy_present": false,
+    "insider_risk_policy_present": false,
+    "ai_access_allowed": true,
+    "metadata": {
+      "source_system": "sharepoint_like",
+      "finding_type": "synthetic_secret_exposure"
+    }
+  }
+]
