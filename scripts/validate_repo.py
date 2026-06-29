@@ -11,6 +11,8 @@ REQUIRED_PATHS = [
     "README.md",
     "AGENTS.md",
     "GOVERNANCE.md",
+    "backend/__init__.py",
+    "backend/app/__init__.py",
     "backend/app/main.py",
     "backend/app/models.py",
     "backend/app/scoring.py",
@@ -22,10 +24,18 @@ REQUIRED_PATHS = [
     "docs/architecture/DSPM_AI_GOVERNANCE_ARCHITECTURE.md",
 ]
 
-BLOCKED_TERMS = [
-    "real customer data",
+REQUIRED_BOUNDARY_PHRASES = [
+    "synthetic",
+    "advisory",
+    "no live",
+    "no production enforcement",
+]
+
+BLOCKED_AFFIRMATIVE_CLAIMS = [
     "production enforcement enabled",
     "live tenant mutation enabled",
+    "autonomous approval enabled",
+    "real tenant write access enabled",
 ]
 
 
@@ -49,13 +59,20 @@ def validate_json(relative_path: str) -> list[str]:
     return []
 
 
-def validate_boundary_language() -> list[str]:
+def validate_boundary_claims() -> list[str]:
     errors = []
-    for path in ROOT.rglob("*.md"):
-        content = path.read_text(encoding="utf-8").lower()
-        for term in BLOCKED_TERMS:
-            if term in content:
-                errors.append(f"blocked boundary language in {path.relative_to(ROOT)}: {term}")
+    markdown_content = "\n".join(
+        path.read_text(encoding="utf-8").lower() for path in ROOT.rglob("*.md")
+    )
+
+    for phrase in REQUIRED_BOUNDARY_PHRASES:
+        if phrase not in markdown_content:
+            errors.append(f"missing required boundary phrase: {phrase}")
+
+    for claim in BLOCKED_AFFIRMATIVE_CLAIMS:
+        if claim in markdown_content:
+            errors.append(f"blocked affirmative boundary claim found: {claim}")
+
     return errors
 
 
@@ -64,7 +81,7 @@ def main() -> int:
     errors.extend(validate_required_paths())
     errors.extend(validate_json("data/assets/sample_assets.json"))
     errors.extend(validate_json("data/events/ai_interactions.json"))
-    errors.extend(validate_boundary_language())
+    errors.extend(validate_boundary_claims())
 
     if errors:
         print("VALIDATION FAILED")
