@@ -1,0 +1,77 @@
+[
+  {
+    "group_id": "group-all-employees",
+    "display_name": "All Employees",
+    "group_type": "security_group",
+    "is_broad": true,
+    "is_external": false,
+    "privileged": false,
+    "members": [
+      "user-finance-analyst-001",
+      "user-hr-partner-001",
+      "user-platform-admin-001",
+      "user-legal-counsel-001"
+    ]
+  },
+  {
+    "group_id": "group-domain-users",
+    "display_name": "Domain Users",
+    "group_type": "security_group",
+    "is_broad": true,
+    "is_external": false,
+    "privileged": false,
+    "members": [
+      "user-finance-analyst-001",
+      "user-hr-partner-001",
+      "user-platform-admin-001",
+      "user-legal-counsel-001",
+      "svc-ai-retrieval-001"
+    ]
+  },
+  {
+    "group_id": "group-finance-ops",
+    "display_name": "Finance Operations",
+    "group_type": "security_group",
+    "is_broad": false,
+    "is_external": false,
+    "privileged": false,
+    "members": [
+      "user-finance-analyst-001"
+    ]
+  },
+  {
+    "group_id": "group-legal-review",
+    "display_name": "Legal Review Team",
+    "group_type": "m365_group",
+    "is_broad": false,
+    "is_external": false,
+    "privileged": false,
+    "members": [
+      "user-legal-counsel-001",
+      "ext-partner-reviewer-001"
+    ]
+  },
+  {
+    "group_id": "group-external-partners",
+    "display_name": "External Partner Reviewers",
+    "group_type": "m365_group",
+    "is_broad": false,
+    "is_external": true,
+    "privileged": false,
+    "members": [
+      "ext-partner-reviewer-001"
+    ]
+  },
+  {
+    "group_id": "group-platform-admins",
+    "display_name": "Platform Administrators",
+    "group_type": "security_group",
+    "is_broad": false,
+    "is_external": false,
+    "privileged": true,
+    "members": [
+      "user-platform-admin-001",
+      "svc-ai-retrieval-001"
+    ]
+  }
+]
