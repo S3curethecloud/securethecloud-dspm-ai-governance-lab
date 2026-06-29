@@ -1,0 +1,38 @@
+[
+  {
+    "asset_id": "hr-payroll-001",
+    "content": "Executive adjustment memo for payroll and bonus review. Employee contact: finance.analyst@example.com. Salary and compensation details are restricted to HR leadership."
+  },
+  {
+    "asset_id": "legal-mna-002",
+    "content": "Privileged acquisition term sheet for confidential transaction review. Legal hold applies to merger analysis and financial model assumptions."
+  },
+  {
+    "asset_id": "customer-records-003",
+    "content": "Customer support export containing customer_id values, account history notes, and support export metadata for analytics review. Contact owner: support.lead@example.com."
+  },
+  {
+    "asset_id": "eng-prompts-004",
+    "content": "Internal prompt library for developer assistant workflows. Contains routing examples and standard support instructions with no sensitive tokens."
+  },
+  {
+    "asset_id": "secrets-runbook-005",
+    "content": "Legacy integration notes include synthetic credential marker SYNTHETIC-API-KEY-ABCD1234EFGH5678. This is test-only content and must not be used as a real secret."
+  },
+  {
+    "asset_id": "clinical-intake-006",
+    "content": "Synthetic clinical intake row: patient reference MRN-SYN-12345678, care note, and contact nurse@example.com. This row is synthetic and used for PHI classification testing only."
+  },
+  {
+    "asset_id": "payment-disputes-007",
+    "content": "Synthetic payment dispute record includes customer_id CUST-SYN-4421 and SYNTHETIC-CARD-4111-1111-1111-1111 for PCI classification testing."
+  },
+  {
+    "asset_id": "sales-forecast-008",
+    "content": "Revenue forecast and margin plan for Q4 includes forecast variance commentary and financial model assumptions. Shared broadly for simulation."
+  },
+  {
+    "asset_id": "devops-token-notes-009",
+    "content": "Synthetic DevOps runbook contains SYNTHETIC-API-KEY-ZYXW9876TOKEN4321 and deployment notes. This is lab-only credential-like content."
+  }
+]
