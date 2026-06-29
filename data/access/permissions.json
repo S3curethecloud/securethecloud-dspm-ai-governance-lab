@@ -1,0 +1,98 @@
+[
+  {
+    "permission_id": "perm-hr-payroll-all-employees-read",
+    "asset_id": "hr-payroll-001",
+    "principal_id": "group-all-employees",
+    "principal_type": "group",
+    "access_level": "read",
+    "roles": ["viewer"],
+    "inherited": true,
+    "external": false,
+    "ai_tool_access_allowed": true,
+    "source": "sharepoint_like_acl"
+  },
+  {
+    "permission_id": "perm-hr-payroll-hr-partner-owner",
+    "asset_id": "hr-payroll-001",
+    "principal_id": "user-hr-partner-001",
+    "principal_type": "user",
+    "access_level": "owner",
+    "roles": ["owner"],
+    "inherited": false,
+    "external": false,
+    "ai_tool_access_allowed": false,
+    "source": "direct_acl"
+  },
+  {
+    "permission_id": "perm-legal-external-review-edit",
+    "asset_id": "legal-mna-002",
+    "principal_id": "group-external-partners",
+    "principal_type": "group",
+    "access_level": "edit",
+    "roles": ["editor"],
+    "inherited": false,
+    "external": true,
+    "ai_tool_access_allowed": false,
+    "source": "external_workspace_share"
+  },
+  {
+    "permission_id": "perm-customer-records-ai-service-read",
+    "asset_id": "customer-records-003",
+    "principal_id": "svc-ai-retrieval-001",
+    "principal_type": "service_principal",
+    "access_level": "read",
+    "roles": ["reader"],
+    "inherited": false,
+    "external": false,
+    "ai_tool_access_allowed": true,
+    "source": "ai_retrieval_acl"
+  },
+  {
+    "permission_id": "perm-secrets-domain-users-read",
+    "asset_id": "secrets-runbook-005",
+    "principal_id": "group-domain-users",
+    "principal_type": "group",
+    "access_level": "read",
+    "roles": ["viewer"],
+    "inherited": true,
+    "external": false,
+    "ai_tool_access_allowed": true,
+    "source": "repository_inherited_acl"
+  },
+  {
+    "permission_id": "perm-devops-token-admins-owner",
+    "asset_id": "devops-token-notes-009",
+    "principal_id": "group-platform-admins",
+    "principal_type": "group",
+    "access_level": "owner",
+    "roles": ["owner", "admin"],
+    "inherited": false,
+    "external": false,
+    "ai_tool_access_allowed": true,
+    "source": "repository_admin_acl"
+  },
+  {
+    "permission_id": "perm-clinical-intake-analytics-read",
+    "asset_id": "clinical-intake-006",
+    "principal_id": "group-all-employees",
+    "principal_type": "group",
+    "access_level": "read",
+    "roles": ["viewer"],
+    "inherited": true,
+    "external": false,
+    "ai_tool_access_allowed": true,
+    "source": "analytics_workspace_acl"
+  },
+  {
+    "permission_id": "perm-sales-forecast-company-all-edit",
+    "asset_id": "sales-forecast-008",
+    "principal_id": "group-all-employees",
+    "principal_type": "group",
+    "access_level": "edit",
+    "roles": ["editor"],
+    "inherited": true,
+    "external": false,
+    "ai_tool_access_allowed": true,
+    "source": "collaboration_workspace_acl"
+  }
+]
