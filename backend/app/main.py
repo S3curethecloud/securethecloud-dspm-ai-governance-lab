@@ -7,6 +7,7 @@ from pathlib import Path
 
 from fastapi import FastAPI
 
+from backend.app.access_analyzer import analyze_access_exposure
 from backend.app.classifier import classify_documents, summarize_classification_results
 from backend.app.scoring import score_ai_interaction, score_asset, summarize_posture
 
@@ -16,11 +17,14 @@ ADDITIONAL_ASSETS_PATH = ROOT / "data" / "assets" / "phase2_additional_assets.js
 EVENTS_PATH = ROOT / "data" / "events" / "ai_interactions.json"
 PATTERNS_PATH = ROOT / "data" / "classification_patterns" / "sensitivity_patterns.json"
 DOCUMENTS_PATH = ROOT / "data" / "content_samples" / "synthetic_documents.json"
+IDENTITIES_PATH = ROOT / "data" / "access" / "identities.json"
+GROUPS_PATH = ROOT / "data" / "access" / "groups.json"
+PERMISSIONS_PATH = ROOT / "data" / "access" / "permissions.json"
 
 app = FastAPI(
     title="SecureTheCloud DSPM AI Governance Lab",
-    version="0.2.0",
-    description="Synthetic DSPM posture scoring, classification, and AI data interaction governance API.",
+    version="0.3.0",
+    description="Synthetic DSPM posture scoring, classification, access exposure, and AI data interaction governance API.",
 )
 
 
@@ -70,6 +74,16 @@ def classify_assets() -> dict:
         "summary": summarize_classification_results(results),
         "results": results,
     }
+
+
+@app.get("/access/exposure")
+def access_exposure() -> dict:
+    return analyze_access_exposure(
+        load_all_assets(),
+        load_json(PERMISSIONS_PATH),
+        load_json(IDENTITIES_PATH),
+        load_json(GROUPS_PATH),
+    )
 
 
 @app.get("/risk/assets")
