@@ -10,5 +10,5 @@
 | 5 | Risk scoring and recommendation engine expansion | Planned | Pending |
 | 6 | Evidence package and audit chain | Planned | Pending |
 | 7 | Executive posture dashboard | Planned | Pending |
-| 8 | Microsoft Copilot Governance companion export | Planned | Pending |
+| 8 | Optional AI Governance Companion Evidence Export | Planned | Optional export contract only; no repo merge or codebase dependency |
 | 9 | CI validation and release evidence | Planned | Pending |
