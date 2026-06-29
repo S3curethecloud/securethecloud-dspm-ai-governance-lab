@@ -1,0 +1,38 @@
+[
+  {
+    "event_id": "ai-event-001",
+    "timestamp": "2026-06-29T17:00:00Z",
+    "user": "finance.analyst@example.com",
+    "department": "finance",
+    "ai_app": "copilot_style_assistant",
+    "prompt_category": "summarization",
+    "retrieved_assets": ["hr-payroll-001"],
+    "sensitive_data_detected": true,
+    "destination": "internal",
+    "action": "summarize"
+  },
+  {
+    "event_id": "ai-event-002",
+    "timestamp": "2026-06-29T17:05:00Z",
+    "user": "legal.ops@example.com",
+    "department": "legal",
+    "ai_app": "contract_review_agent",
+    "prompt_category": "legal_analysis",
+    "retrieved_assets": ["legal-mna-002"],
+    "sensitive_data_detected": true,
+    "destination": "external_partner_workspace",
+    "action": "extract_key_terms"
+  },
+  {
+    "event_id": "ai-event-003",
+    "timestamp": "2026-06-29T17:10:00Z",
+    "user": "engineer@example.com",
+    "department": "engineering",
+    "ai_app": "developer_assistant",
+    "prompt_category": "code_help",
+    "retrieved_assets": ["eng-prompts-004", "secrets-runbook-005"],
+    "sensitive_data_detected": true,
+    "destination": "internal",
+    "action": "retrieve_context"
+  }
+]
