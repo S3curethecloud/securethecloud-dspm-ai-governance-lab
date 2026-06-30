@@ -1,0 +1,62 @@
+[
+  {
+    "trace_id": "trace-ai-session-001-001",
+    "session_id": "ai-session-001",
+    "asset_id": "hr-payroll-001",
+    "retrieval_action": "summarize",
+    "retrieval_result": "matched",
+    "content_reference_count": 5,
+    "retrieval_purpose": "executive summary",
+    "policy_decision": "approval_required"
+  },
+  {
+    "trace_id": "trace-ai-session-002-001",
+    "session_id": "ai-session-002",
+    "asset_id": "legal-mna-002",
+    "retrieval_action": "summarize",
+    "retrieval_result": "matched",
+    "content_reference_count": 4,
+    "retrieval_purpose": "external partner review",
+    "policy_decision": "approval_required"
+  },
+  {
+    "trace_id": "trace-ai-session-003-001",
+    "session_id": "ai-session-003",
+    "asset_id": "secrets-runbook-005",
+    "retrieval_action": "read",
+    "retrieval_result": "matched",
+    "content_reference_count": 2,
+    "retrieval_purpose": "legacy integration troubleshooting",
+    "policy_decision": "deny"
+  },
+  {
+    "trace_id": "trace-ai-session-003-002",
+    "session_id": "ai-session-003",
+    "asset_id": "devops-token-notes-009",
+    "retrieval_action": "read",
+    "retrieval_result": "matched",
+    "content_reference_count": 1,
+    "retrieval_purpose": "token lookup",
+    "policy_decision": "deny"
+  },
+  {
+    "trace_id": "trace-ai-session-004-001",
+    "session_id": "ai-session-004",
+    "asset_id": "eng-prompts-004",
+    "retrieval_action": "read",
+    "retrieval_result": "matched",
+    "content_reference_count": 3,
+    "retrieval_purpose": "prompt library lookup",
+    "policy_decision": "monitor"
+  },
+  {
+    "trace_id": "trace-ai-session-005-001",
+    "session_id": "ai-session-005",
+    "asset_id": "customer-records-003",
+    "retrieval_action": "summarize",
+    "retrieval_result": "matched",
+    "content_reference_count": 6,
+    "retrieval_purpose": "support ticket context",
+    "policy_decision": "approval_required"
+  }
+]
