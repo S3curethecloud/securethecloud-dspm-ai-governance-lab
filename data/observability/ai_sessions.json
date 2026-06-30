@@ -1,0 +1,92 @@
+[
+  {
+    "session_id": "ai-session-001",
+    "started_at": "2026-06-29T18:10:00Z",
+    "actor_id": "user-finance-analyst-001",
+    "actor_department": "finance",
+    "agent_id": "agent-finance-copilot-001",
+    "agent_type": "copilot_style_assistant",
+    "use_case": "payroll variance summarization",
+    "prompt_intent": "summarize sensitive payroll changes for executive review",
+    "prompt_risk_signals": ["payroll", "pii", "financial"],
+    "approval_status": "not_requested",
+    "response_destination": {
+      "destination_id": "internal_finance_workspace",
+      "destination_type": "workspace",
+      "scope": "internal",
+      "external": false
+    }
+  },
+  {
+    "session_id": "ai-session-002",
+    "started_at": "2026-06-29T18:20:00Z",
+    "actor_id": "user-legal-counsel-001",
+    "actor_department": "legal",
+    "agent_id": "agent-contract-review-001",
+    "agent_type": "contract_review_agent",
+    "use_case": "acquisition term review",
+    "prompt_intent": "summarize acquisition notes for partner review",
+    "prompt_risk_signals": ["legal", "financial", "external_destination"],
+    "approval_status": "not_requested",
+    "response_destination": {
+      "destination_id": "external_partner_workspace",
+      "destination_type": "workspace",
+      "scope": "external_partner",
+      "external": true
+    }
+  },
+  {
+    "session_id": "ai-session-003",
+    "started_at": "2026-06-29T18:30:00Z",
+    "actor_id": "user-platform-admin-001",
+    "actor_department": "platform_engineering",
+    "agent_id": "agent-dev-assistant-001",
+    "agent_type": "developer_assistant",
+    "use_case": "legacy integration troubleshooting",
+    "prompt_intent": "find runbook guidance for legacy integration issue",
+    "prompt_risk_signals": ["credential", "runbook"],
+    "approval_status": "not_requested",
+    "response_destination": {
+      "destination_id": "internal_engineering_chat",
+      "destination_type": "chat",
+      "scope": "internal",
+      "external": false
+    }
+  },
+  {
+    "session_id": "ai-session-004",
+    "started_at": "2026-06-29T18:40:00Z",
+    "actor_id": "user-platform-admin-001",
+    "actor_department": "platform_engineering",
+    "agent_id": "agent-dev-assistant-001",
+    "agent_type": "developer_assistant",
+    "use_case": "prompt library lookup",
+    "prompt_intent": "retrieve internal prompt library usage examples",
+    "prompt_risk_signals": [],
+    "approval_status": "not_required",
+    "response_destination": {
+      "destination_id": "internal_engineering_chat",
+      "destination_type": "chat",
+      "scope": "internal",
+      "external": false
+    }
+  },
+  {
+    "session_id": "ai-session-005",
+    "started_at": "2026-06-29T18:50:00Z",
+    "actor_id": "svc-ai-retrieval-001",
+    "actor_department": "ai_platform",
+    "agent_id": "agent-support-export-001",
+    "agent_type": "service_agent",
+    "use_case": "customer support export summarization",
+    "prompt_intent": "prepare customer support export summary for ticket creation",
+    "prompt_risk_signals": ["customer_record", "pii", "ticket_export"],
+    "approval_status": "not_requested",
+    "response_destination": {
+      "destination_id": "support_ticket_system",
+      "destination_type": "ticket",
+      "scope": "internal",
+      "external": false
+    }
+  }
+]
