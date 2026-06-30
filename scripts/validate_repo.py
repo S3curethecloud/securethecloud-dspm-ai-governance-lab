@@ -11,6 +11,7 @@ REQUIRED_PATHS = [
     "README.md",
     "AGENTS.md",
     "GOVERNANCE.md",
+    ".github/workflows/ci.yml",
     "backend/__init__.py",
     "backend/app/__init__.py",
     "backend/app/main.py",
@@ -35,6 +36,9 @@ REQUIRED_PATHS = [
     "frontend/index.html",
     "frontend/styles.css",
     "frontend/app.js",
+    "frontend/data/executive_dashboard.json",
+    "frontend/data/evidence_manifest.json",
+    "frontend/data/ai_governance_companion_export_summary.json",
     "data/assets/sample_assets.json",
     "data/assets/phase2_additional_assets.json",
     "data/content_samples/synthetic_documents.json",
@@ -49,6 +53,10 @@ REQUIRED_PATHS = [
     "policies/dspm_policy_rules.yaml",
     "docs/sot/PROJECT_SOURCE_OF_TRUTH.md",
     "docs/architecture/DSPM_AI_GOVERNANCE_ARCHITECTURE.md",
+    "docs/phases/PHASE_9_CI_VALIDATION_RELEASE_EVIDENCE.md",
+    "docs/release/CLOUDFLARE_DASHBOARD_RECORD.md",
+    "docs/release/FINAL_VALIDATION_RECORD.md",
+    "docs/release/RELEASE_READINESS_SUMMARY.md",
 ]
 
 REQUIRED_BOUNDARY_PHRASES = [
@@ -227,6 +235,9 @@ def validate_boundary_claims() -> list[str]:
 def main() -> int:
     errors = []
     errors.extend(validate_required_paths())
+    errors.extend(validate_json("frontend/data/executive_dashboard.json"))
+    errors.extend(validate_json("frontend/data/evidence_manifest.json"))
+    errors.extend(validate_json("frontend/data/ai_governance_companion_export_summary.json"))
     errors.extend(validate_json("data/assets/sample_assets.json"))
     errors.extend(validate_json("data/assets/phase2_additional_assets.json"))
     errors.extend(validate_json("data/content_samples/synthetic_documents.json"))
