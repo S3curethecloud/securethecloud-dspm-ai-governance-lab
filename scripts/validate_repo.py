@@ -18,9 +18,11 @@ REQUIRED_PATHS = [
     "backend/app/scoring.py",
     "backend/app/classifier.py",
     "backend/app/access_analyzer.py",
+    "backend/app/observability.py",
     "backend/tests/test_scoring.py",
     "backend/tests/test_classifier.py",
     "backend/tests/test_access_analyzer.py",
+    "backend/tests/test_observability.py",
     "data/assets/sample_assets.json",
     "data/assets/phase2_additional_assets.json",
     "data/content_samples/synthetic_documents.json",
@@ -28,6 +30,9 @@ REQUIRED_PATHS = [
     "data/access/identities.json",
     "data/access/groups.json",
     "data/access/permissions.json",
+    "data/observability/ai_sessions.json",
+    "data/observability/retrieval_traces.json",
+    "data/observability/tool_calls.json",
     "data/events/ai_interactions.json",
     "policies/dspm_policy_rules.yaml",
     "docs/sot/PROJECT_SOURCE_OF_TRUTH.md",
@@ -143,6 +148,53 @@ def validate_access_fixture_contract() -> list[str]:
     return errors
 
 
+def validate_observability_fixture_contract() -> list[str]:
+    errors = []
+    sessions = read_json("data/observability/ai_sessions.json")
+    retrieval_traces = read_json("data/observability/retrieval_traces.json")
+    tool_calls = read_json("data/observability/tool_calls.json")
+    assets = read_json("data/assets/sample_assets.json") + read_json("data/assets/phase2_additional_assets.json")
+
+    session_ids = {session.get("session_id") for session in sessions}
+    asset_ids = {asset.get("asset_id") for asset in assets}
+
+    required_session_keys = {
+        "session_id",
+        "started_at",
+        "actor_id",
+        "actor_department",
+        "agent_id",
+        "agent_type",
+        "use_case",
+        "prompt_intent",
+        "prompt_risk_signals",
+        "approval_status",
+        "response_destination",
+    }
+    for session in sessions:
+        missing = required_session_keys - set(session)
+        if missing:
+            errors.append(f"AI session {session.get('session_id', '<unknown>')} missing keys: {sorted(missing)}")
+        destination = session.get("response_destination", {})
+        if not {"destination_id", "destination_type", "scope", "external"}.issubset(destination):
+            errors.append(f"AI session {session.get('session_id')} has incomplete response_destination")
+
+    for trace in retrieval_traces:
+        if trace.get("session_id") not in session_ids:
+            errors.append(f"retrieval trace {trace.get('trace_id')} references unknown session: {trace.get('session_id')}")
+        if trace.get("asset_id") not in asset_ids:
+            errors.append(f"retrieval trace {trace.get('trace_id')} references unknown asset: {trace.get('asset_id')}")
+
+    for call in tool_calls:
+        if call.get("session_id") not in session_ids:
+            errors.append(f"tool call {call.get('tool_call_id')} references unknown session: {call.get('session_id')}")
+        target_asset_id = call.get("target_asset_id")
+        if target_asset_id and target_asset_id not in asset_ids:
+            errors.append(f"tool call {call.get('tool_call_id')} references unknown asset: {target_asset_id}")
+
+    return errors
+
+
 def validate_boundary_claims() -> list[str]:
     errors = []
     markdown_content = "\n".join(
@@ -170,9 +222,13 @@ def main() -> int:
     errors.extend(validate_json("data/access/identities.json"))
     errors.extend(validate_json("data/access/groups.json"))
     errors.extend(validate_json("data/access/permissions.json"))
+    errors.extend(validate_json("data/observability/ai_sessions.json"))
+    errors.extend(validate_json("data/observability/retrieval_traces.json"))
+    errors.extend(validate_json("data/observability/tool_calls.json"))
     errors.extend(validate_json("data/events/ai_interactions.json"))
     errors.extend(validate_classifier_fixture_contract())
     errors.extend(validate_access_fixture_contract())
+    errors.extend(validate_observability_fixture_contract())
     errors.extend(validate_boundary_claims())
 
     if errors:
