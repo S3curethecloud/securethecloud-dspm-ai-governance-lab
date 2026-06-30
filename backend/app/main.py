@@ -10,6 +10,7 @@ from fastapi import FastAPI
 
 from backend.app.access_analyzer import analyze_access_exposure
 from backend.app.classifier import classify_documents, summarize_classification_results
+from backend.app.companion_export import build_companion_export
 from backend.app.dashboard import build_executive_dashboard
 from backend.app.evidence_package import build_evidence_package
 from backend.app.observability import analyze_ai_observability
@@ -31,8 +32,8 @@ TOOL_CALLS_PATH = ROOT / "data" / "observability" / "tool_calls.json"
 
 app = FastAPI(
     title="SecureTheCloud DSPM AI Governance Lab",
-    version="0.7.0",
-    description="Synthetic DSPM posture scoring, classification, access exposure, AI observability, unified risk, evidence package, and executive dashboard API.",
+    version="0.8.0",
+    description="Synthetic DSPM posture scoring, classification, access exposure, AI observability, unified risk, evidence package, executive dashboard, and optional companion export API.",
 )
 
 
@@ -115,8 +116,8 @@ def build_evidence_artifacts() -> dict:
     }
 
 
-def build_dashboard_payload() -> dict:
-    generated_at = datetime.now(UTC).replace(microsecond=0).isoformat()
+def build_dashboard_payload(generated_at: str | None = None) -> dict:
+    generated_at = generated_at or datetime.now(UTC).replace(microsecond=0).isoformat()
     context = build_risk_context()
     posture_summary_result = summarize_posture(load_json(ASSETS_PATH), load_json(EVENTS_PATH))
     evidence_validation_summary = build_evidence_package(
@@ -131,6 +132,23 @@ def build_dashboard_payload() -> dict:
         context["observability_summary"],
         context["unified_risk_summary"],
         context["unified_risk_results"],
+        evidence_validation_summary,
+        generated_at,
+    )
+
+
+def build_companion_export_payload() -> dict:
+    generated_at = datetime.now(UTC).replace(microsecond=0).isoformat()
+    context = build_risk_context()
+    evidence_validation_summary = build_evidence_package(
+        build_evidence_artifacts(),
+        generated_at,
+    )["validation_summary"]
+    executive_dashboard = build_dashboard_payload(generated_at)
+    return build_companion_export(
+        executive_dashboard,
+        context["unified_risk_summary"],
+        context["observability_summary"],
         evidence_validation_summary,
         generated_at,
     )
@@ -212,6 +230,11 @@ def evidence_package() -> dict:
 @app.get("/dashboard/executive")
 def executive_dashboard() -> dict:
     return build_dashboard_payload()
+
+
+@app.get("/exports/ai-governance-companion")
+def ai_governance_companion_export() -> dict:
+    return build_companion_export_payload()
 
 
 @app.get("/risk/assets")
