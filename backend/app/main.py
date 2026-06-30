@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import json
+from datetime import UTC, datetime
 from pathlib import Path
 
 from fastapi import FastAPI
 
 from backend.app.access_analyzer import analyze_access_exposure
 from backend.app.classifier import classify_documents, summarize_classification_results
+from backend.app.evidence_package import build_evidence_package
 from backend.app.observability import analyze_ai_observability
 from backend.app.risk_aggregator import aggregate_unified_risk
 from backend.app.scoring import score_ai_interaction, score_asset, summarize_posture
@@ -28,8 +30,8 @@ TOOL_CALLS_PATH = ROOT / "data" / "observability" / "tool_calls.json"
 
 app = FastAPI(
     title="SecureTheCloud DSPM AI Governance Lab",
-    version="0.5.0",
-    description="Synthetic DSPM posture scoring, classification, access exposure, AI observability, and unified executive risk API.",
+    version="0.6.0",
+    description="Synthetic DSPM posture scoring, classification, access exposure, AI observability, unified risk, and evidence package API.",
 )
 
 
@@ -56,25 +58,59 @@ def build_risk_context() -> dict:
     asset_results = [score_asset(asset) for asset in assets]
     ai_event_results = [score_ai_interaction(event, asset_index) for event in events]
     classification_results = classify_documents(documents, patterns)
-    access_results = analyze_access_exposure(
+    classification_summary = summarize_classification_results(classification_results)
+    access_exposure = analyze_access_exposure(
         all_assets,
         load_json(PERMISSIONS_PATH),
         load_json(IDENTITIES_PATH),
         load_json(GROUPS_PATH),
-    )["results"]
-    observability_results = analyze_ai_observability(
+    )
+    observability = analyze_ai_observability(
         load_json(AI_SESSIONS_PATH),
         load_json(RETRIEVAL_TRACES_PATH),
         load_json(TOOL_CALLS_PATH),
         all_assets,
-    )["results"]
+    )
+    unified_risk_result = aggregate_unified_risk(
+        asset_results,
+        ai_event_results,
+        classification_results,
+        access_exposure["results"],
+        observability["results"],
+    )
 
     return {
         "asset_results": asset_results,
         "ai_event_results": ai_event_results,
         "classification_results": classification_results,
-        "access_results": access_results,
-        "observability_results": observability_results,
+        "classification_summary": classification_summary,
+        "access_results": access_exposure["results"],
+        "access_summary": access_exposure["summary"],
+        "observability_results": observability["results"],
+        "observability_summary": observability["summary"],
+        "unified_risk_results": unified_risk_result["results"],
+        "unified_risk_summary": unified_risk_result["summary"],
+    }
+
+
+def build_evidence_artifacts() -> dict:
+    context = build_risk_context()
+    assets = load_json(ASSETS_PATH)
+    events = load_json(EVENTS_PATH)
+    posture_summary_result = summarize_posture(assets, events)
+
+    return {
+        "posture_summary.json": posture_summary_result,
+        "asset_risk_results.json": context["asset_results"],
+        "ai_interaction_risk_results.json": context["ai_event_results"],
+        "classification_results.json": context["classification_results"],
+        "classification_summary.json": context["classification_summary"],
+        "access_exposure_results.json": context["access_results"],
+        "access_exposure_summary.json": context["access_summary"],
+        "ai_observability_results.json": context["observability_results"],
+        "ai_observability_summary.json": context["observability_summary"],
+        "unified_risk_results.json": context["unified_risk_results"],
+        "unified_risk_summary.json": context["unified_risk_summary"],
     }
 
 
@@ -137,12 +173,17 @@ def ai_interaction_observability() -> dict:
 @app.get("/risk/unified")
 def unified_risk() -> dict:
     context = build_risk_context()
-    return aggregate_unified_risk(
-        context["asset_results"],
-        context["ai_event_results"],
-        context["classification_results"],
-        context["access_results"],
-        context["observability_results"],
+    return {
+        "summary": context["unified_risk_summary"],
+        "results": context["unified_risk_results"],
+    }
+
+
+@app.get("/evidence/package")
+def evidence_package() -> dict:
+    return build_evidence_package(
+        build_evidence_artifacts(),
+        datetime.now(UTC).replace(microsecond=0).isoformat(),
     )
 
 
