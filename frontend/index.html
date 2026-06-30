@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SecureTheCloud DSPM AI Governance Dashboard</title>
+    <meta
+      name="description"
+      content="Synthetic advisory-only executive posture dashboard for SecureTheCloud DSPM AI Governance Lab."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">SecureTheCloud Lab</p>
+        <h1>DSPM AI Governance Executive Dashboard</h1>
+        <p class="subtitle">
+          Synthetic posture, data exposure, AI observability, unified risk, and evidence export summary.
+        </p>
+      </div>
+      <div class="status-panel" aria-label="Evidence status">
+        <span class="status-dot"></span>
+        <span id="evidence-status">Loading evidence</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="boundary-banner" aria-label="Lab boundary">
+        <strong>Boundary:</strong>
+        synthetic-only · advisory-only · no live tenant · no production enforcement · no repo merge dependency
+      </section>
+
+      <section class="dashboard-grid kpi-grid" id="kpi-grid" aria-label="Executive KPIs"></section>
+
+      <section class="two-column">
+        <article class="panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Executive priority</p>
+            <h2>Top risk subject</h2>
+          </div>
+          <div id="top-risk-card" class="top-risk-card"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Evidence health</p>
+            <h2>Audit package</h2>
+          </div>
+          <div id="evidence-health" class="metric-list"></div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading split-heading">
+          <div>
+            <p class="eyebrow">Unified risk</p>
+            <h2>Top risk cards</h2>
+          </div>
+          <span class="badge">Ranked by composite score</span>
+        </div>
+        <div id="risk-cards" class="risk-card-list"></div>
+      </section>
+
+      <section class="two-column">
+        <article class="panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Controls</p>
+            <h2>Recommendation register</h2>
+          </div>
+          <div id="recommendations" class="recommendation-list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Optional export</p>
+            <h2>AI governance companion</h2>
+          </div>
+          <div id="companion-export" class="metric-list"></div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <p class="eyebrow">Evidence manifest</p>
+          <h2>Generated artifacts</h2>
+        </div>
+        <div id="artifact-list" class="artifact-list"></div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>SecureTheCloud DSPM AI Governance Lab</span>
+      <span id="generated-at">Generated at: pending</span>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
