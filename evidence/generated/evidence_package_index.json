@@ -78,7 +78,7 @@
     "content_type": "application/json",
     "payload_type": "object",
     "record_count": 9,
-    "sha256": "d07ed975afcc080aea19dd7834b7f232462a56165b992f9b2398cd76f55626d3"
+    "sha256": "77c67ab85d7448261630433135a900b7d7ab3757b0aa0ae8d87eacd43284ed00"
   },
   {
     "artifact_name": "recommendation_register.json",

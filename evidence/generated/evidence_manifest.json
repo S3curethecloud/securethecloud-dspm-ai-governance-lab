@@ -17,12 +17,14 @@
     "evidence_validation_summary.json",
     "executive_dashboard.json",
     "dashboard_summary.json",
+    "ai_governance_companion_export.json",
+    "ai_governance_companion_export_summary.json",
     "evidence_manifest.json",
     "executive_summary.md"
   ],
   "authority": "advisory_only",
   "evidence_mode": "synthetic",
-  "generated_at": "2026-06-30T03:22:57+00:00",
+  "generated_at": "2026-06-30T03:39:34+00:00",
   "lab": "securethecloud-dspm-ai-governance-lab",
-  "package_digest": "9302cdc141b6d91290590920e3df2a79a19b2b7e856aa078b691a2adf6954e20"
+  "package_digest": "91c4c1c8499879b39be57a685ff3ba25bf0292662a2ccbcc8be61924bb30796d"
 }

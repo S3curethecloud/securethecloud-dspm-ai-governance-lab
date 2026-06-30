@@ -1,0 +1,82 @@
+{
+  "boundary": {
+    "advisory_only": true,
+    "no_codebase_dependency": true,
+    "no_live_tenant": true,
+    "no_production_enforcement": true,
+    "no_repo_merge": true,
+    "synthetic_only": true
+  },
+  "export_contract": {
+    "authority": "advisory_only",
+    "codebase_dependency_required": false,
+    "contract_name": "securethecloud-dspm-ai-governance-companion-export",
+    "contract_version": "1.0",
+    "evidence_mode": "synthetic",
+    "export_type": "one_way_summary",
+    "generated_at": "2026-06-30T03:39:34+00:00",
+    "live_tenant_required": false,
+    "repo_merge_required": false,
+    "source_lab": "securethecloud-dspm-ai-governance-lab",
+    "target_context": "optional-ai-governance-companion-evidence"
+  },
+  "findings": {
+    "ai_observability": {
+      "external_destination_sessions": 1,
+      "sensitive_retrieval_sessions": 4,
+      "total_sessions": 5,
+      "write_or_export_sessions": 2
+    },
+    "evidence_health": {
+      "artifact_count": 12,
+      "audit_chain_events": 12,
+      "validation_status": "passed"
+    },
+    "executive_kpis": {
+      "kpi_severity_counts": {
+        "critical": 5,
+        "healthy": 2,
+        "warning": 1
+      },
+      "total_kpis": 8
+    },
+    "top_risk_subject": {
+      "composite_score": 100,
+      "decision": "deny",
+      "priority_level": "critical",
+      "subject_id": "hr-payroll-001",
+      "subject_type": "asset"
+    },
+    "unified_risk": {
+      "decision_counts": {
+        "approval_required": 2,
+        "control_required": 5,
+        "deny": 8,
+        "monitor": 2
+      },
+      "priority_counts": {
+        "critical": 8,
+        "high": 2,
+        "low": 1,
+        "medium": 6
+      },
+      "total_subjects": 17
+    }
+  },
+  "recommended_use": [
+    "Review DSPM risk posture in a companion AI governance evidence walkthrough",
+    "Map top-risk subjects to AI governance controls and approval policy design",
+    "Use as an optional evidence artifact without repository merge or runtime dependency"
+  ],
+  "summary": {
+    "authority": "advisory_only",
+    "codebase_dependency_required": false,
+    "contract_version": "1.0",
+    "evidence_validation_status": "passed",
+    "export_type": "one_way_summary",
+    "repo_merge_required": false,
+    "top_risk_decision": "deny",
+    "top_risk_subject_id": "hr-payroll-001",
+    "total_risk_subjects": 17
+  }
+}
