@@ -11,4 +11,4 @@
 | 6 | Evidence package and audit chain | Complete | Artifact index, SHA-256 digests, audit chain, validation summary, API endpoint, package evidence, pushed commit 115a6d6 |
 | 7 | Executive posture dashboard | Complete | Executive KPIs, top-risk cards, control recommendation feed, dashboard endpoint, dashboard evidence, pushed commit adaddd5 |
 | 8 | Optional AI Governance Companion Evidence Export | Complete | Optional one-way export contract, companion evidence summary, API endpoint, no repo merge or codebase dependency, pushed commit ca8f748 |
-| 9 | CI validation and release evidence | Planned | Pending |
+| 9 | CI validation and release evidence | In progress | GitHub Actions CI workflow, final validation record, Cloudflare dashboard record, release readiness summary |
