@@ -122,6 +122,11 @@ def analyze_permission(
         reasons.append("AI tool access is allowed for a sensitive asset")
         recommendations.append("Require AI access approval before retrieval or summarization")
 
+    if principal.get("is_broad") and permission.get("ai_tool_access_allowed") and sensitive_asset:
+        score += 10
+        reasons.append("broad access and AI access combine on a sensitive asset")
+        recommendations.append("Block AI retrieval until broad access is remediated")
+
     if principal.get("privileged") and sensitive_asset:
         score += 15
         reasons.append("principal has privileged identity characteristics")
