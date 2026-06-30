@@ -1,7 +1,7 @@
 """Generate synthetic DSPM posture evidence artifacts.
 
 This script converts the lab's synthetic asset, AI interaction, classification,
-access, and observability fixtures into reviewable evidence outputs for architecture walkthroughs and phase closure.
+access, observability, and unified risk outputs into reviewable evidence artifacts.
 """
 
 from __future__ import annotations
@@ -19,6 +19,7 @@ if str(ROOT) not in sys.path:
 from backend.app.access_analyzer import analyze_access_exposure
 from backend.app.classifier import classify_documents, summarize_classification_results
 from backend.app.observability import analyze_ai_observability
+from backend.app.risk_aggregator import aggregate_unified_risk
 from backend.app.scoring import score_ai_interaction, score_asset, summarize_posture
 
 ASSETS_PATH = ROOT / "data" / "assets" / "sample_assets.json"
@@ -60,6 +61,7 @@ def write_markdown(
     classification_summary: dict[str, Any],
     access_summary: dict[str, Any],
     observability_summary: dict[str, Any],
+    unified_summary: dict[str, Any],
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     top_risks = summary.get("top_risks", [])
@@ -99,6 +101,14 @@ def write_markdown(
         f"- Write or export sessions: **{observability_summary['write_or_export_sessions']}**",
         f"- Observability level counts: `{observability_summary['level_counts']}`",
         f"- Decision counts: `{observability_summary['decision_counts']}`",
+        "",
+        "## Unified Executive Risk Overview",
+        "",
+        f"- Total risk subjects: **{unified_summary['total_subjects']}**",
+        f"- Subject type counts: `{unified_summary['subject_type_counts']}`",
+        f"- Priority counts: `{unified_summary['priority_counts']}`",
+        f"- Decision counts: `{unified_summary['decision_counts']}`",
+        f"- Top priority subjects: `{unified_summary['top_priority_subjects']}`",
         "",
         "## Risk Counts",
         "",
@@ -154,6 +164,13 @@ def build_evidence() -> dict[str, Any]:
     classification_summary = summarize_classification_results(classification_results)
     access_exposure = analyze_access_exposure(all_assets, permissions, identities, groups)
     ai_observability = analyze_ai_observability(ai_sessions, retrieval_traces, tool_calls, all_assets)
+    unified_risk = aggregate_unified_risk(
+        asset_results,
+        event_results,
+        classification_results,
+        access_exposure["results"],
+        ai_observability["results"],
+    )
     posture_summary = summarize_posture(assets, events)
 
     generated_at = datetime.now(UTC).replace(microsecond=0).isoformat()
@@ -210,6 +227,18 @@ def build_evidence() -> dict[str, Any]:
                 }
             )
 
+    for result in unified_risk["results"]:
+        for recommendation in result.get("recommended_controls", []):
+            recommendation_register.append(
+                {
+                    "subject_id": result["subject_id"],
+                    "risk_level": result["priority_level"],
+                    "decision": result["decision"],
+                    "recommendation": recommendation,
+                    "authority": "advisory_only",
+                }
+            )
+
     manifest = {
         "generated_at": generated_at,
         "lab": "securethecloud-dspm-ai-governance-lab",
@@ -225,6 +254,8 @@ def build_evidence() -> dict[str, Any]:
             "access_exposure_summary.json",
             "ai_observability_results.json",
             "ai_observability_summary.json",
+            "unified_risk_results.json",
+            "unified_risk_summary.json",
             "recommendation_register.json",
             "evidence_manifest.json",
             "executive_summary.md",
@@ -241,6 +272,8 @@ def build_evidence() -> dict[str, Any]:
         "access_exposure_summary": access_exposure["summary"],
         "ai_observability_results": ai_observability["results"],
         "ai_observability_summary": ai_observability["summary"],
+        "unified_risk_results": unified_risk["results"],
+        "unified_risk_summary": unified_risk["summary"],
         "recommendation_register": recommendation_register,
         "manifest": manifest,
     }
@@ -258,6 +291,8 @@ def main() -> int:
     write_json(OUTPUT_DIR / "access_exposure_summary.json", evidence["access_exposure_summary"])
     write_json(OUTPUT_DIR / "ai_observability_results.json", evidence["ai_observability_results"])
     write_json(OUTPUT_DIR / "ai_observability_summary.json", evidence["ai_observability_summary"])
+    write_json(OUTPUT_DIR / "unified_risk_results.json", evidence["unified_risk_results"])
+    write_json(OUTPUT_DIR / "unified_risk_summary.json", evidence["unified_risk_summary"])
     write_json(OUTPUT_DIR / "recommendation_register.json", evidence["recommendation_register"])
     write_json(OUTPUT_DIR / "evidence_manifest.json", evidence["manifest"])
     write_markdown(
@@ -266,6 +301,7 @@ def main() -> int:
         evidence["classification_summary"],
         evidence["access_exposure_summary"],
         evidence["ai_observability_summary"],
+        evidence["unified_risk_summary"],
     )
 
     print(f"Generated synthetic DSPM evidence in {OUTPUT_DIR.relative_to(ROOT)}")
