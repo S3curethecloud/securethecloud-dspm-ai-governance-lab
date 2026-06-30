@@ -1,0 +1,90 @@
+[
+  {
+    "tool_call_id": "tool-ai-session-001-001",
+    "session_id": "ai-session-001",
+    "tool_name": "search_internal_docs",
+    "tool_category": "retrieval",
+    "action": "search",
+    "target_asset_id": "hr-payroll-001",
+    "decision": "allowed_with_review",
+    "write_action": false,
+    "external_call": false
+  },
+  {
+    "tool_call_id": "tool-ai-session-001-002",
+    "session_id": "ai-session-001",
+    "tool_name": "generate_summary",
+    "tool_category": "response_generation",
+    "action": "summarize",
+    "target_asset_id": "hr-payroll-001",
+    "decision": "allowed_with_review",
+    "write_action": false,
+    "external_call": false
+  },
+  {
+    "tool_call_id": "tool-ai-session-002-001",
+    "session_id": "ai-session-002",
+    "tool_name": "search_internal_docs",
+    "tool_category": "retrieval",
+    "action": "search",
+    "target_asset_id": "legal-mna-002",
+    "decision": "allowed_with_review",
+    "write_action": false,
+    "external_call": false
+  },
+  {
+    "tool_call_id": "tool-ai-session-002-002",
+    "session_id": "ai-session-002",
+    "tool_name": "export_response",
+    "tool_category": "egress",
+    "action": "export",
+    "target_asset_id": "legal-mna-002",
+    "decision": "approval_required",
+    "write_action": true,
+    "external_call": true
+  },
+  {
+    "tool_call_id": "tool-ai-session-003-001",
+    "session_id": "ai-session-003",
+    "tool_name": "read_runbook",
+    "tool_category": "retrieval",
+    "action": "read",
+    "target_asset_id": "secrets-runbook-005",
+    "decision": "deny",
+    "write_action": false,
+    "external_call": false
+  },
+  {
+    "tool_call_id": "tool-ai-session-003-002",
+    "session_id": "ai-session-003",
+    "tool_name": "read_secret_notes",
+    "tool_category": "retrieval",
+    "action": "read",
+    "target_asset_id": "devops-token-notes-009",
+    "decision": "deny",
+    "write_action": false,
+    "external_call": false
+  },
+  {
+    "tool_call_id": "tool-ai-session-004-001",
+    "session_id": "ai-session-004",
+    "tool_name": "search_internal_docs",
+    "tool_category": "retrieval",
+    "action": "search",
+    "target_asset_id": "eng-prompts-004",
+    "decision": "monitor",
+    "write_action": false,
+    "external_call": false
+  },
+  {
+    "tool_call_id": "tool-ai-session-005-001",
+    "session_id": "ai-session-005",
+    "tool_name": "create_ticket",
+    "tool_category": "ticketing",
+    "action": "create",
+    "target_asset_id": "customer-records-003",
+    "decision": "approval_required",
+    "write_action": true,
+    "external_call": false
+  }
+]
