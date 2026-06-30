@@ -10,6 +10,7 @@ from fastapi import FastAPI
 from backend.app.access_analyzer import analyze_access_exposure
 from backend.app.classifier import classify_documents, summarize_classification_results
 from backend.app.observability import analyze_ai_observability
+from backend.app.risk_aggregator import aggregate_unified_risk
 from backend.app.scoring import score_ai_interaction, score_asset, summarize_posture
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -27,8 +28,8 @@ TOOL_CALLS_PATH = ROOT / "data" / "observability" / "tool_calls.json"
 
 app = FastAPI(
     title="SecureTheCloud DSPM AI Governance Lab",
-    version="0.4.0",
-    description="Synthetic DSPM posture scoring, classification, access exposure, and AI interaction observability API.",
+    version="0.5.0",
+    description="Synthetic DSPM posture scoring, classification, access exposure, AI observability, and unified executive risk API.",
 )
 
 
@@ -42,6 +43,39 @@ def load_all_assets() -> list[dict]:
     if ADDITIONAL_ASSETS_PATH.exists():
         assets.extend(load_json(ADDITIONAL_ASSETS_PATH))
     return assets
+
+
+def build_risk_context() -> dict:
+    assets = load_json(ASSETS_PATH)
+    all_assets = load_all_assets()
+    events = load_json(EVENTS_PATH)
+    asset_index = {asset["asset_id"]: asset for asset in assets}
+    patterns = load_json(PATTERNS_PATH)
+    documents = load_json(DOCUMENTS_PATH)
+
+    asset_results = [score_asset(asset) for asset in assets]
+    ai_event_results = [score_ai_interaction(event, asset_index) for event in events]
+    classification_results = classify_documents(documents, patterns)
+    access_results = analyze_access_exposure(
+        all_assets,
+        load_json(PERMISSIONS_PATH),
+        load_json(IDENTITIES_PATH),
+        load_json(GROUPS_PATH),
+    )["results"]
+    observability_results = analyze_ai_observability(
+        load_json(AI_SESSIONS_PATH),
+        load_json(RETRIEVAL_TRACES_PATH),
+        load_json(TOOL_CALLS_PATH),
+        all_assets,
+    )["results"]
+
+    return {
+        "asset_results": asset_results,
+        "ai_event_results": ai_event_results,
+        "classification_results": classification_results,
+        "access_results": access_results,
+        "observability_results": observability_results,
+    }
 
 
 @app.get("/health")
@@ -97,6 +131,18 @@ def ai_interaction_observability() -> dict:
         load_json(RETRIEVAL_TRACES_PATH),
         load_json(TOOL_CALLS_PATH),
         load_all_assets(),
+    )
+
+
+@app.get("/risk/unified")
+def unified_risk() -> dict:
+    context = build_risk_context()
+    return aggregate_unified_risk(
+        context["asset_results"],
+        context["ai_event_results"],
+        context["classification_results"],
+        context["access_results"],
+        context["observability_results"],
     )
 
 
