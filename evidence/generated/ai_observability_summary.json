@@ -1,0 +1,19 @@
+{
+  "authority": "advisory_only",
+  "decision_counts": {
+    "approval_required": 1,
+    "deny": 2,
+    "monitor": 1,
+    "redact": 1
+  },
+  "external_destination_sessions": 1,
+  "level_counts": {
+    "critical": 2,
+    "high": 1,
+    "low": 1,
+    "medium": 1
+  },
+  "sensitive_retrieval_sessions": 4,
+  "total_sessions": 5,
+  "write_or_export_sessions": 2
+}

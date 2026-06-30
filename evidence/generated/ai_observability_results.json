@@ -1,0 +1,513 @@
+[
+  {
+    "actor_department": "legal",
+    "actor_id": "user-legal-counsel-001",
+    "agent_id": "agent-contract-review-001",
+    "agent_type": "contract_review_agent",
+    "approval_status": "not_requested",
+    "authority": "advisory_only",
+    "decision": "deny",
+    "observability_level": "critical",
+    "reasons": [
+      "AI interaction session observed",
+      "prompt contains risk signals",
+      "response destination is external or partner-scoped",
+      "session retrieved sensitive or regulated assets",
+      "session included write, export, ticketing, or external tool action",
+      "sensitive retrieval path targets external destination without approval"
+    ],
+    "recommendations": [
+      "Review prompt intent and ensure least-data response generation",
+      "Require destination approval before response release",
+      "Map retrieved assets to label, DLP, and AI access policy requirements",
+      "Require tool-use approval for write or egress actions",
+      "Block response release until approval is granted"
+    ],
+    "response_destination": {
+      "destination_id": "external_partner_workspace",
+      "destination_type": "workspace",
+      "external": true,
+      "scope": "external_partner"
+    },
+    "retrieved_assets": [
+      {
+        "asset_id": "legal-mna-002",
+        "policy_decision": "approval_required",
+        "retrieval_action": "summarize",
+        "sensitive": true,
+        "sensitivity_label": "confidential",
+        "sensitivity_types": [
+          "legal",
+          "financial"
+        ]
+      }
+    ],
+    "score": 100,
+    "session_id": "ai-session-002",
+    "timeline": [
+      {
+        "actor_id": "user-legal-counsel-001",
+        "agent_id": "agent-contract-review-001",
+        "event_type": "session_started",
+        "session_id": "ai-session-002",
+        "started_at": "2026-06-29T18:20:00Z"
+      },
+      {
+        "asset_id": "legal-mna-002",
+        "event_type": "retrieval_trace",
+        "policy_decision": "approval_required",
+        "retrieval_action": "summarize",
+        "trace_id": "trace-ai-session-002-001"
+      },
+      {
+        "action": "search",
+        "decision": "allowed_with_review",
+        "event_type": "tool_call",
+        "target_asset_id": "legal-mna-002",
+        "tool_call_id": "tool-ai-session-002-001",
+        "tool_name": "search_internal_docs"
+      },
+      {
+        "action": "export",
+        "decision": "approval_required",
+        "event_type": "tool_call",
+        "target_asset_id": "legal-mna-002",
+        "tool_call_id": "tool-ai-session-002-002",
+        "tool_name": "export_response"
+      },
+      {
+        "destination": {
+          "destination_id": "external_partner_workspace",
+          "destination_type": "workspace",
+          "external": true,
+          "scope": "external_partner"
+        },
+        "event_type": "response_destination"
+      }
+    ],
+    "tool_calls": [
+      {
+        "action": "search",
+        "decision": "allowed_with_review",
+        "external_call": false,
+        "session_id": "ai-session-002",
+        "target_asset_id": "legal-mna-002",
+        "tool_call_id": "tool-ai-session-002-001",
+        "tool_category": "retrieval",
+        "tool_name": "search_internal_docs",
+        "write_action": false
+      },
+      {
+        "action": "export",
+        "decision": "approval_required",
+        "external_call": true,
+        "session_id": "ai-session-002",
+        "target_asset_id": "legal-mna-002",
+        "tool_call_id": "tool-ai-session-002-002",
+        "tool_category": "egress",
+        "tool_name": "export_response",
+        "write_action": true
+      }
+    ],
+    "use_case": "acquisition term review"
+  },
+  {
+    "actor_department": "ai_platform",
+    "actor_id": "svc-ai-retrieval-001",
+    "agent_id": "agent-support-export-001",
+    "agent_type": "service_agent",
+    "approval_status": "not_requested",
+    "authority": "advisory_only",
+    "decision": "deny",
+    "observability_level": "critical",
+    "reasons": [
+      "AI interaction session observed",
+      "prompt contains risk signals",
+      "session retrieved sensitive or regulated assets",
+      "session included write, export, ticketing, or external tool action",
+      "sensitive retrieval was performed by service or agentic workflow"
+    ],
+    "recommendations": [
+      "Review prompt intent and ensure least-data response generation",
+      "Map retrieved assets to label, DLP, and AI access policy requirements",
+      "Require tool-use approval for write or egress actions",
+      "Require agent identity and tool scope review"
+    ],
+    "response_destination": {
+      "destination_id": "support_ticket_system",
+      "destination_type": "ticket",
+      "external": false,
+      "scope": "internal"
+    },
+    "retrieved_assets": [
+      {
+        "asset_id": "customer-records-003",
+        "policy_decision": "approval_required",
+        "retrieval_action": "summarize",
+        "sensitive": true,
+        "sensitivity_label": "regulated",
+        "sensitivity_types": [
+          "pii",
+          "customer_record"
+        ]
+      }
+    ],
+    "score": 90,
+    "session_id": "ai-session-005",
+    "timeline": [
+      {
+        "actor_id": "svc-ai-retrieval-001",
+        "agent_id": "agent-support-export-001",
+        "event_type": "session_started",
+        "session_id": "ai-session-005",
+        "started_at": "2026-06-29T18:50:00Z"
+      },
+      {
+        "asset_id": "customer-records-003",
+        "event_type": "retrieval_trace",
+        "policy_decision": "approval_required",
+        "retrieval_action": "summarize",
+        "trace_id": "trace-ai-session-005-001"
+      },
+      {
+        "action": "create",
+        "decision": "approval_required",
+        "event_type": "tool_call",
+        "target_asset_id": "customer-records-003",
+        "tool_call_id": "tool-ai-session-005-001",
+        "tool_name": "create_ticket"
+      },
+      {
+        "destination": {
+          "destination_id": "support_ticket_system",
+          "destination_type": "ticket",
+          "external": false,
+          "scope": "internal"
+        },
+        "event_type": "response_destination"
+      }
+    ],
+    "tool_calls": [
+      {
+        "action": "create",
+        "decision": "approval_required",
+        "external_call": false,
+        "session_id": "ai-session-005",
+        "target_asset_id": "customer-records-003",
+        "tool_call_id": "tool-ai-session-005-001",
+        "tool_category": "ticketing",
+        "tool_name": "create_ticket",
+        "write_action": true
+      }
+    ],
+    "use_case": "customer support export summarization"
+  },
+  {
+    "actor_department": "platform_engineering",
+    "actor_id": "user-platform-admin-001",
+    "agent_id": "agent-dev-assistant-001",
+    "agent_type": "developer_assistant",
+    "approval_status": "not_requested",
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "observability_level": "high",
+    "reasons": [
+      "AI interaction session observed",
+      "prompt contains risk signals",
+      "session retrieved sensitive or regulated assets",
+      "one or more tool calls were denied by policy"
+    ],
+    "recommendations": [
+      "Review prompt intent and ensure least-data response generation",
+      "Map retrieved assets to label, DLP, and AI access policy requirements",
+      "Investigate denied tool calls and preserve evidence trail"
+    ],
+    "response_destination": {
+      "destination_id": "internal_engineering_chat",
+      "destination_type": "chat",
+      "external": false,
+      "scope": "internal"
+    },
+    "retrieved_assets": [
+      {
+        "asset_id": "secrets-runbook-005",
+        "policy_decision": "deny",
+        "retrieval_action": "read",
+        "sensitive": true,
+        "sensitivity_label": "highly_confidential",
+        "sensitivity_types": [
+          "credential"
+        ]
+      },
+      {
+        "asset_id": "devops-token-notes-009",
+        "policy_decision": "deny",
+        "retrieval_action": "read",
+        "sensitive": false,
+        "sensitivity_label": "unlabeled",
+        "sensitivity_types": []
+      }
+    ],
+    "score": 75,
+    "session_id": "ai-session-003",
+    "timeline": [
+      {
+        "actor_id": "user-platform-admin-001",
+        "agent_id": "agent-dev-assistant-001",
+        "event_type": "session_started",
+        "session_id": "ai-session-003",
+        "started_at": "2026-06-29T18:30:00Z"
+      },
+      {
+        "asset_id": "secrets-runbook-005",
+        "event_type": "retrieval_trace",
+        "policy_decision": "deny",
+        "retrieval_action": "read",
+        "trace_id": "trace-ai-session-003-001"
+      },
+      {
+        "asset_id": "devops-token-notes-009",
+        "event_type": "retrieval_trace",
+        "policy_decision": "deny",
+        "retrieval_action": "read",
+        "trace_id": "trace-ai-session-003-002"
+      },
+      {
+        "action": "read",
+        "decision": "deny",
+        "event_type": "tool_call",
+        "target_asset_id": "secrets-runbook-005",
+        "tool_call_id": "tool-ai-session-003-001",
+        "tool_name": "read_runbook"
+      },
+      {
+        "action": "read",
+        "decision": "deny",
+        "event_type": "tool_call",
+        "target_asset_id": "devops-token-notes-009",
+        "tool_call_id": "tool-ai-session-003-002",
+        "tool_name": "read_secret_notes"
+      },
+      {
+        "destination": {
+          "destination_id": "internal_engineering_chat",
+          "destination_type": "chat",
+          "external": false,
+          "scope": "internal"
+        },
+        "event_type": "response_destination"
+      }
+    ],
+    "tool_calls": [
+      {
+        "action": "read",
+        "decision": "deny",
+        "external_call": false,
+        "session_id": "ai-session-003",
+        "target_asset_id": "secrets-runbook-005",
+        "tool_call_id": "tool-ai-session-003-001",
+        "tool_category": "retrieval",
+        "tool_name": "read_runbook",
+        "write_action": false
+      },
+      {
+        "action": "read",
+        "decision": "deny",
+        "external_call": false,
+        "session_id": "ai-session-003",
+        "target_asset_id": "devops-token-notes-009",
+        "tool_call_id": "tool-ai-session-003-002",
+        "tool_category": "retrieval",
+        "tool_name": "read_secret_notes",
+        "write_action": false
+      }
+    ],
+    "use_case": "legacy integration troubleshooting"
+  },
+  {
+    "actor_department": "finance",
+    "actor_id": "user-finance-analyst-001",
+    "agent_id": "agent-finance-copilot-001",
+    "agent_type": "copilot_style_assistant",
+    "approval_status": "not_requested",
+    "authority": "advisory_only",
+    "decision": "redact",
+    "observability_level": "medium",
+    "reasons": [
+      "AI interaction session observed",
+      "prompt contains risk signals",
+      "session retrieved sensitive or regulated assets"
+    ],
+    "recommendations": [
+      "Review prompt intent and ensure least-data response generation",
+      "Map retrieved assets to label, DLP, and AI access policy requirements"
+    ],
+    "response_destination": {
+      "destination_id": "internal_finance_workspace",
+      "destination_type": "workspace",
+      "external": false,
+      "scope": "internal"
+    },
+    "retrieved_assets": [
+      {
+        "asset_id": "hr-payroll-001",
+        "policy_decision": "approval_required",
+        "retrieval_action": "summarize",
+        "sensitive": true,
+        "sensitivity_label": "highly_confidential",
+        "sensitivity_types": [
+          "pii",
+          "payroll",
+          "financial"
+        ]
+      }
+    ],
+    "score": 55,
+    "session_id": "ai-session-001",
+    "timeline": [
+      {
+        "actor_id": "user-finance-analyst-001",
+        "agent_id": "agent-finance-copilot-001",
+        "event_type": "session_started",
+        "session_id": "ai-session-001",
+        "started_at": "2026-06-29T18:10:00Z"
+      },
+      {
+        "asset_id": "hr-payroll-001",
+        "event_type": "retrieval_trace",
+        "policy_decision": "approval_required",
+        "retrieval_action": "summarize",
+        "trace_id": "trace-ai-session-001-001"
+      },
+      {
+        "action": "search",
+        "decision": "allowed_with_review",
+        "event_type": "tool_call",
+        "target_asset_id": "hr-payroll-001",
+        "tool_call_id": "tool-ai-session-001-001",
+        "tool_name": "search_internal_docs"
+      },
+      {
+        "action": "summarize",
+        "decision": "allowed_with_review",
+        "event_type": "tool_call",
+        "target_asset_id": "hr-payroll-001",
+        "tool_call_id": "tool-ai-session-001-002",
+        "tool_name": "generate_summary"
+      },
+      {
+        "destination": {
+          "destination_id": "internal_finance_workspace",
+          "destination_type": "workspace",
+          "external": false,
+          "scope": "internal"
+        },
+        "event_type": "response_destination"
+      }
+    ],
+    "tool_calls": [
+      {
+        "action": "search",
+        "decision": "allowed_with_review",
+        "external_call": false,
+        "session_id": "ai-session-001",
+        "target_asset_id": "hr-payroll-001",
+        "tool_call_id": "tool-ai-session-001-001",
+        "tool_category": "retrieval",
+        "tool_name": "search_internal_docs",
+        "write_action": false
+      },
+      {
+        "action": "summarize",
+        "decision": "allowed_with_review",
+        "external_call": false,
+        "session_id": "ai-session-001",
+        "target_asset_id": "hr-payroll-001",
+        "tool_call_id": "tool-ai-session-001-002",
+        "tool_category": "response_generation",
+        "tool_name": "generate_summary",
+        "write_action": false
+      }
+    ],
+    "use_case": "payroll variance summarization"
+  },
+  {
+    "actor_department": "platform_engineering",
+    "actor_id": "user-platform-admin-001",
+    "agent_id": "agent-dev-assistant-001",
+    "agent_type": "developer_assistant",
+    "approval_status": "not_required",
+    "authority": "advisory_only",
+    "decision": "monitor",
+    "observability_level": "low",
+    "reasons": [
+      "AI interaction session observed"
+    ],
+    "recommendations": [],
+    "response_destination": {
+      "destination_id": "internal_engineering_chat",
+      "destination_type": "chat",
+      "external": false,
+      "scope": "internal"
+    },
+    "retrieved_assets": [
+      {
+        "asset_id": "eng-prompts-004",
+        "policy_decision": "monitor",
+        "retrieval_action": "read",
+        "sensitive": false,
+        "sensitivity_label": "internal",
+        "sensitivity_types": []
+      }
+    ],
+    "score": 10,
+    "session_id": "ai-session-004",
+    "timeline": [
+      {
+        "actor_id": "user-platform-admin-001",
+        "agent_id": "agent-dev-assistant-001",
+        "event_type": "session_started",
+        "session_id": "ai-session-004",
+        "started_at": "2026-06-29T18:40:00Z"
+      },
+      {
+        "asset_id": "eng-prompts-004",
+        "event_type": "retrieval_trace",
+        "policy_decision": "monitor",
+        "retrieval_action": "read",
+        "trace_id": "trace-ai-session-004-001"
+      },
+      {
+        "action": "search",
+        "decision": "monitor",
+        "event_type": "tool_call",
+        "target_asset_id": "eng-prompts-004",
+        "tool_call_id": "tool-ai-session-004-001",
+        "tool_name": "search_internal_docs"
+      },
+      {
+        "destination": {
+          "destination_id": "internal_engineering_chat",
+          "destination_type": "chat",
+          "external": false,
+          "scope": "internal"
+        },
+        "event_type": "response_destination"
+      }
+    ],
+    "tool_calls": [
+      {
+        "action": "search",
+        "decision": "monitor",
+        "external_call": false,
+        "session_id": "ai-session-004",
+        "target_asset_id": "eng-prompts-004",
+        "tool_call_id": "tool-ai-session-004-001",
+        "tool_category": "retrieval",
+        "tool_name": "search_internal_docs",
+        "write_action": false
+      }
+    ],
+    "use_case": "prompt library lookup"
+  }
+]

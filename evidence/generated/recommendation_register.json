@@ -313,5 +313,103 @@
     "recommendation": "Downgrade privileged access unless explicit owner approval exists",
     "risk_level": "low",
     "subject_id": "devops-token-notes-009"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review prompt intent and ensure least-data response generation",
+    "risk_level": "critical",
+    "subject_id": "ai-session-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require destination approval before response release",
+    "risk_level": "critical",
+    "subject_id": "ai-session-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Map retrieved assets to label, DLP, and AI access policy requirements",
+    "risk_level": "critical",
+    "subject_id": "ai-session-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require tool-use approval for write or egress actions",
+    "risk_level": "critical",
+    "subject_id": "ai-session-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Block response release until approval is granted",
+    "risk_level": "critical",
+    "subject_id": "ai-session-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review prompt intent and ensure least-data response generation",
+    "risk_level": "critical",
+    "subject_id": "ai-session-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Map retrieved assets to label, DLP, and AI access policy requirements",
+    "risk_level": "critical",
+    "subject_id": "ai-session-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require tool-use approval for write or egress actions",
+    "risk_level": "critical",
+    "subject_id": "ai-session-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require agent identity and tool scope review",
+    "risk_level": "critical",
+    "subject_id": "ai-session-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Review prompt intent and ensure least-data response generation",
+    "risk_level": "high",
+    "subject_id": "ai-session-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Map retrieved assets to label, DLP, and AI access policy requirements",
+    "risk_level": "high",
+    "subject_id": "ai-session-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Investigate denied tool calls and preserve evidence trail",
+    "risk_level": "high",
+    "subject_id": "ai-session-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "redact",
+    "recommendation": "Review prompt intent and ensure least-data response generation",
+    "risk_level": "medium",
+    "subject_id": "ai-session-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "redact",
+    "recommendation": "Map retrieved assets to label, DLP, and AI access policy requirements",
+    "risk_level": "medium",
+    "subject_id": "ai-session-001"
   }
 ]

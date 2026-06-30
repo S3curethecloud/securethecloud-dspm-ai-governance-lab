@@ -1,6 +1,6 @@
 # DSPM Synthetic Evidence Summary
 
-Generated at: `2026-06-30T00:44:00+00:00`
+Generated at: `2026-06-30T02:45:44+00:00`
 
 ## Posture Overview
 
@@ -24,6 +24,15 @@ Generated at: `2026-06-30T00:44:00+00:00`
 - External exposures: **1**
 - Broad group exposures: **4**
 - AI access exposures: **6**
+
+## AI Interaction Observability Overview
+
+- Total observed sessions: **5**
+- Sensitive retrieval sessions: **4**
+- External destination sessions: **1**
+- Write or export sessions: **2**
+- Observability level counts: `{'medium': 1, 'critical': 2, 'high': 1, 'low': 1}`
+- Decision counts: `{'redact': 1, 'deny': 2, 'approval_required': 1, 'monitor': 1}`
 
 ## Risk Counts
 
