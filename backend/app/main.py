@@ -9,6 +9,7 @@ from fastapi import FastAPI
 
 from backend.app.access_analyzer import analyze_access_exposure
 from backend.app.classifier import classify_documents, summarize_classification_results
+from backend.app.observability import analyze_ai_observability
 from backend.app.scoring import score_ai_interaction, score_asset, summarize_posture
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -20,11 +21,14 @@ DOCUMENTS_PATH = ROOT / "data" / "content_samples" / "synthetic_documents.json"
 IDENTITIES_PATH = ROOT / "data" / "access" / "identities.json"
 GROUPS_PATH = ROOT / "data" / "access" / "groups.json"
 PERMISSIONS_PATH = ROOT / "data" / "access" / "permissions.json"
+AI_SESSIONS_PATH = ROOT / "data" / "observability" / "ai_sessions.json"
+RETRIEVAL_TRACES_PATH = ROOT / "data" / "observability" / "retrieval_traces.json"
+TOOL_CALLS_PATH = ROOT / "data" / "observability" / "tool_calls.json"
 
 app = FastAPI(
     title="SecureTheCloud DSPM AI Governance Lab",
-    version="0.3.0",
-    description="Synthetic DSPM posture scoring, classification, access exposure, and AI data interaction governance API.",
+    version="0.4.0",
+    description="Synthetic DSPM posture scoring, classification, access exposure, and AI interaction observability API.",
 )
 
 
@@ -83,6 +87,16 @@ def access_exposure() -> dict:
         load_json(PERMISSIONS_PATH),
         load_json(IDENTITIES_PATH),
         load_json(GROUPS_PATH),
+    )
+
+
+@app.get("/observability/ai-interactions")
+def ai_interaction_observability() -> dict:
+    return analyze_ai_observability(
+        load_json(AI_SESSIONS_PATH),
+        load_json(RETRIEVAL_TRACES_PATH),
+        load_json(TOOL_CALLS_PATH),
+        load_all_assets(),
     )
 
 
