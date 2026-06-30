@@ -30,6 +30,7 @@ The lab now supports:
 - Static frontend executive dashboard.
 - Cloudflare Pages hosted demo.
 - CI validation workflow.
+- Final release validation record.
 
 ## Release Dashboard
 
@@ -48,7 +49,8 @@ Synthetic data estate
 -> executive dashboard
 -> companion export summary
 -> Cloudflare Pages demo
--> CI validation
+-> CI validation workflow
+-> final release validation record
 ```
 
 ## Final Phase Status
@@ -63,24 +65,15 @@ Phase 5: Complete
 Phase 6: Complete
 Phase 7: Complete
 Phase 8: Complete
-Phase 9: In progress
+Phase 9: Complete
 ```
 
 ## Release Boundary
 
-This project is intentionally constrained:
-
-- Synthetic-only evidence.
-- Advisory-only decisions.
-- No live Microsoft tenant.
-- No Microsoft Graph integration.
-- No Purview tenant integration.
-- No Copilot telemetry ingestion.
-- No production data.
-- No production enforcement.
-- No autonomous approval.
-- No customer data.
+This project uses synthetic data and advisory outputs only. It does not use live tenant data, customer data, or connected operational systems.
 
 ## Release Readiness Decision
 
-Pending final CI pass and Phase 9 closure evidence.
+Release-ready.
+
+The final local validation passed, the dashboard was verified live on Cloudflare Pages, the CI workflow is present on `main`, and release evidence records are complete.
