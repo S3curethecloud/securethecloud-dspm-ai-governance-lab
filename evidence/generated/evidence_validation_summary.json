@@ -1,0 +1,9 @@
+{
+  "artifact_count": 12,
+  "audit_chain_complete": true,
+  "audit_chain_events": 12,
+  "audit_chain_hashes_present": true,
+  "authority": "advisory_only",
+  "unique_artifact_hashes": 12,
+  "validation_status": "passed"
+}

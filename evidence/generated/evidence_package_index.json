@@ -1,0 +1,110 @@
+[
+  {
+    "artifact_name": "access_exposure_results.json",
+    "authority": "advisory_only",
+    "byte_size": 7448,
+    "content_type": "application/json",
+    "payload_type": "list",
+    "record_count": 8,
+    "sha256": "02c7a37e5feef0c20affcb583303b8c1763eaf39eea8d9f7a4acadb18f5359fd"
+  },
+  {
+    "artifact_name": "access_exposure_summary.json",
+    "authority": "advisory_only",
+    "byte_size": 263,
+    "content_type": "application/json",
+    "payload_type": "object",
+    "record_count": 7,
+    "sha256": "39c42f2833289e5984d9145dc9c72b423b4da38142dcb54271a5b9d26bdbd43d"
+  },
+  {
+    "artifact_name": "ai_interaction_risk_results.json",
+    "authority": "advisory_only",
+    "byte_size": 2853,
+    "content_type": "application/json",
+    "payload_type": "list",
+    "record_count": 3,
+    "sha256": "a79dcb02727f6f4e643c44827cc6b80b21f49c4a36ff530a63533980f38b3f09"
+  },
+  {
+    "artifact_name": "ai_observability_results.json",
+    "authority": "advisory_only",
+    "byte_size": 11839,
+    "content_type": "application/json",
+    "payload_type": "list",
+    "record_count": 5,
+    "sha256": "b738bbd07ed1b3b54d28e72353d692f6e820817c1cb0ad756c449037158a7215"
+  },
+  {
+    "artifact_name": "ai_observability_summary.json",
+    "authority": "advisory_only",
+    "byte_size": 276,
+    "content_type": "application/json",
+    "payload_type": "object",
+    "record_count": 7,
+    "sha256": "54100ef4f910e76403f36a3101ddad03e3cdd5fba66af2f4a104aba854360b66"
+  },
+  {
+    "artifact_name": "asset_risk_results.json",
+    "authority": "advisory_only",
+    "byte_size": 2181,
+    "content_type": "application/json",
+    "payload_type": "list",
+    "record_count": 5,
+    "sha256": "fbf5d902f140c1953ab17e643b4e3657fa353413e81f896ac919d96236774fda"
+  },
+  {
+    "artifact_name": "classification_results.json",
+    "authority": "advisory_only",
+    "byte_size": 4385,
+    "content_type": "application/json",
+    "payload_type": "list",
+    "record_count": 9,
+    "sha256": "0be533a341a5ac2f3f291b521e67f8c1eb0752a3d402871d10ba722f499f7946"
+  },
+  {
+    "artifact_name": "classification_summary.json",
+    "authority": "advisory_only",
+    "byte_size": 4516,
+    "content_type": "application/json",
+    "payload_type": "object",
+    "record_count": 6,
+    "sha256": "4a1352a91a1bfe77cf5b72bc4096fe753bf1662c35ddfc5925079acfabe52ee1"
+  },
+  {
+    "artifact_name": "posture_summary.json",
+    "authority": "advisory_only",
+    "byte_size": 3016,
+    "content_type": "application/json",
+    "payload_type": "object",
+    "record_count": 9,
+    "sha256": "92fb7ed75c058539f273105b05cbf6ea12d5f8957d443a6410013677d44fd626"
+  },
+  {
+    "artifact_name": "recommendation_register.json",
+    "authority": "advisory_only",
+    "byte_size": 25744,
+    "content_type": "application/json",
+    "payload_type": "list",
+    "record_count": 135,
+    "sha256": "cd6f197df1135d90f61b40f64cd28217e370377e3082984c8e78941f030314c1"
+  },
+  {
+    "artifact_name": "unified_risk_results.json",
+    "authority": "advisory_only",
+    "byte_size": 32501,
+    "content_type": "application/json",
+    "payload_type": "list",
+    "record_count": 17,
+    "sha256": "affd41dcf089c351541dc31884293ecf8cfefd25b8818a3b07a515a42638271b"
+  },
+  {
+    "artifact_name": "unified_risk_summary.json",
+    "authority": "advisory_only",
+    "byte_size": 912,
+    "content_type": "application/json",
+    "payload_type": "object",
+    "record_count": 6,
+    "sha256": "a22197272db62510a429faa5ef6eea9c558cfd0c8784531261dc1994f90fa0ba"
+  }
+]

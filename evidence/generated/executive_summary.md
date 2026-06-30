@@ -1,6 +1,6 @@
 # DSPM Synthetic Evidence Summary
 
-Generated at: `2026-06-30T02:57:31+00:00`
+Generated at: `2026-06-30T03:09:15+00:00`
 
 ## Posture Overview
 
@@ -41,6 +41,12 @@ Generated at: `2026-06-30T02:57:31+00:00`
 - Priority counts: `{'critical': 8, 'high': 2, 'medium': 6, 'low': 1}`
 - Decision counts: `{'deny': 8, 'approval_required': 2, 'control_required': 5, 'monitor': 2}`
 - Top priority subjects: `[{'subject_id': 'hr-payroll-001', 'subject_type': 'asset', 'composite_score': 100, 'priority_level': 'critical', 'decision': 'deny'}, {'subject_id': 'legal-mna-002', 'subject_type': 'asset', 'composite_score': 100, 'priority_level': 'critical', 'decision': 'deny'}, {'subject_id': 'customer-records-003', 'subject_type': 'asset', 'composite_score': 100, 'priority_level': 'critical', 'decision': 'deny'}, {'subject_id': 'secrets-runbook-005', 'subject_type': 'asset', 'composite_score': 100, 'priority_level': 'critical', 'decision': 'deny'}, {'subject_id': 'ai-session-002', 'subject_type': 'ai_session', 'composite_score': 100, 'priority_level': 'critical', 'decision': 'deny'}]`
+
+## Evidence Package Overview
+
+- Artifact count: **12**
+- Audit chain events: **12**
+- Validation status: **passed**
 
 ## Risk Counts
 
