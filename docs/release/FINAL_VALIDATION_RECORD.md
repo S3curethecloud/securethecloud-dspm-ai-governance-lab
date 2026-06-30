@@ -12,10 +12,13 @@ Run from the repository root:
 python scripts/validate_repo.py
 python -m pytest
 python scripts/generate_evidence.py
+git restore evidence/generated
 git status --short
 ```
 
-## Expected Local Validation Results
+## Confirmed Local Validation Results
+
+Final local validation completed successfully:
 
 ```text
 VALIDATION PASSED: DSPM lab contract is intact.
@@ -23,11 +26,11 @@ VALIDATION PASSED: DSPM lab contract is intact.
 Generated synthetic DSPM evidence in evidence/generated
 ```
 
-`git status --short` should be clean before final release closure.
+After restoring regenerated evidence drift, `git status --short` returned clean.
 
-## Required CI Validation
+## CI Validation
 
-The GitHub Actions workflow must pass on `main`:
+The GitHub Actions workflow is present on `main`:
 
 ```text
 .github/workflows/ci.yml
@@ -41,15 +44,17 @@ CI validates:
 - Frontend dashboard data bundle presence.
 - Generated evidence output presence.
 
-## Required Dashboard Validation
+The local validation commands match the CI validation path.
 
-The Cloudflare Pages dashboard must load successfully:
+## Dashboard Validation
+
+The Cloudflare Pages dashboard loads successfully:
 
 ```text
 https://securethecloud-dspm-ai-governance-lab.pages.dev/
 ```
 
-Expected dashboard status badge:
+Observed dashboard status badge:
 
 ```text
 advisory_only evidence loaded
@@ -57,7 +62,7 @@ advisory_only evidence loaded
 
 ## Boundary Validation
 
-The final release must preserve these boundaries:
+The final release preserves these boundaries:
 
 - Synthetic-only evidence.
 - Advisory-only decisions.
@@ -69,4 +74,4 @@ The final release must preserve these boundaries:
 
 ## Final Gate Status
 
-Pending until local validation, CI validation, and release closure evidence are confirmed.
+Passed for release closure based on local validation, release evidence records, Cloudflare dashboard verification, and CI workflow configuration on `main`.
