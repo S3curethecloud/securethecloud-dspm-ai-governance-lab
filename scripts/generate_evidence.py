@@ -1,7 +1,7 @@
 """Generate synthetic DSPM posture evidence artifacts.
 
 This script converts the lab's synthetic asset, AI interaction, classification,
-access, observability, and unified risk outputs into reviewable evidence artifacts.
+access, observability, unified risk, and evidence package outputs into reviewable evidence artifacts.
 """
 
 from __future__ import annotations
@@ -18,6 +18,7 @@ if str(ROOT) not in sys.path:
 
 from backend.app.access_analyzer import analyze_access_exposure
 from backend.app.classifier import classify_documents, summarize_classification_results
+from backend.app.evidence_package import build_evidence_package
 from backend.app.observability import analyze_ai_observability
 from backend.app.risk_aggregator import aggregate_unified_risk
 from backend.app.scoring import score_ai_interaction, score_asset, summarize_posture
@@ -62,6 +63,7 @@ def write_markdown(
     access_summary: dict[str, Any],
     observability_summary: dict[str, Any],
     unified_summary: dict[str, Any],
+    evidence_validation_summary: dict[str, Any],
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     top_risks = summary.get("top_risks", [])
@@ -109,6 +111,12 @@ def write_markdown(
         f"- Priority counts: `{unified_summary['priority_counts']}`",
         f"- Decision counts: `{unified_summary['decision_counts']}`",
         f"- Top priority subjects: `{unified_summary['top_priority_subjects']}`",
+        "",
+        "## Evidence Package Overview",
+        "",
+        f"- Artifact count: **{evidence_validation_summary['artifact_count']}**",
+        f"- Audit chain events: **{evidence_validation_summary['audit_chain_events']}**",
+        f"- Validation status: **{evidence_validation_summary['validation_status']}**",
         "",
         "## Risk Counts",
         "",
@@ -239,11 +247,28 @@ def build_evidence() -> dict[str, Any]:
                 }
             )
 
+    evidence_artifacts = {
+        "posture_summary.json": posture_summary,
+        "asset_risk_results.json": asset_results,
+        "ai_interaction_risk_results.json": event_results,
+        "classification_results.json": classification_results,
+        "classification_summary.json": classification_summary,
+        "access_exposure_results.json": access_exposure["results"],
+        "access_exposure_summary.json": access_exposure["summary"],
+        "ai_observability_results.json": ai_observability["results"],
+        "ai_observability_summary.json": ai_observability["summary"],
+        "unified_risk_results.json": unified_risk["results"],
+        "unified_risk_summary.json": unified_risk["summary"],
+        "recommendation_register.json": recommendation_register,
+    }
+    evidence_package = build_evidence_package(evidence_artifacts, generated_at)
+
     manifest = {
         "generated_at": generated_at,
         "lab": "securethecloud-dspm-ai-governance-lab",
         "evidence_mode": "synthetic",
         "authority": "advisory_only",
+        "package_digest": evidence_package["package"]["package_digest"],
         "artifacts": [
             "posture_summary.json",
             "asset_risk_results.json",
@@ -257,6 +282,9 @@ def build_evidence() -> dict[str, Any]:
             "unified_risk_results.json",
             "unified_risk_summary.json",
             "recommendation_register.json",
+            "evidence_package_index.json",
+            "evidence_audit_chain.json",
+            "evidence_validation_summary.json",
             "evidence_manifest.json",
             "executive_summary.md",
         ],
@@ -275,6 +303,9 @@ def build_evidence() -> dict[str, Any]:
         "unified_risk_results": unified_risk["results"],
         "unified_risk_summary": unified_risk["summary"],
         "recommendation_register": recommendation_register,
+        "evidence_package_index": evidence_package["artifact_index"],
+        "evidence_audit_chain": evidence_package["audit_chain"],
+        "evidence_validation_summary": evidence_package["validation_summary"],
         "manifest": manifest,
     }
 
@@ -294,6 +325,9 @@ def main() -> int:
     write_json(OUTPUT_DIR / "unified_risk_results.json", evidence["unified_risk_results"])
     write_json(OUTPUT_DIR / "unified_risk_summary.json", evidence["unified_risk_summary"])
     write_json(OUTPUT_DIR / "recommendation_register.json", evidence["recommendation_register"])
+    write_json(OUTPUT_DIR / "evidence_package_index.json", evidence["evidence_package_index"])
+    write_json(OUTPUT_DIR / "evidence_audit_chain.json", evidence["evidence_audit_chain"])
+    write_json(OUTPUT_DIR / "evidence_validation_summary.json", evidence["evidence_validation_summary"])
     write_json(OUTPUT_DIR / "evidence_manifest.json", evidence["manifest"])
     write_markdown(
         OUTPUT_DIR / "executive_summary.md",
@@ -302,6 +336,7 @@ def main() -> int:
         evidence["access_exposure_summary"],
         evidence["ai_observability_summary"],
         evidence["unified_risk_summary"],
+        evidence["evidence_validation_summary"],
     )
 
     print(f"Generated synthetic DSPM evidence in {OUTPUT_DIR.relative_to(ROOT)}")
