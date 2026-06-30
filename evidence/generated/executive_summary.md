@@ -1,6 +1,6 @@
 # DSPM Synthetic Evidence Summary
 
-Generated at: `2026-06-29T18:54:55+00:00`
+Generated at: `2026-06-30T00:44:00+00:00`
 
 ## Posture Overview
 
@@ -15,6 +15,15 @@ Generated at: `2026-06-29T18:54:55+00:00`
 - Label counts: `{'highly_confidential': 3, 'confidential': 2, 'regulated': 3, 'public': 1}`
 - Type counts: `{'payroll': 1, 'pii': 3, 'financial': 2, 'legal': 1, 'customer_record': 2, 'credential': 2, 'phi': 1, 'pci': 1}`
 - Decision counts: `{'approval_required': 8, 'monitor': 1}`
+
+## Access Exposure Overview
+
+- Total permissions: **8**
+- Exposure level counts: `{'critical': 2, 'medium': 2, 'high': 3, 'low': 1}`
+- Decision counts: `{'deny': 2, 'access_review': 2, 'approval_required': 3, 'monitor': 1}`
+- External exposures: **1**
+- Broad group exposures: **4**
+- AI access exposures: **6**
 
 ## Risk Counts
 

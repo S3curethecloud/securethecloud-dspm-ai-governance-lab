@@ -173,5 +173,145 @@
     "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
     "risk_level": "highly_confidential",
     "subject_id": "devops-token-notes-009"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Remove broad group access and replace with least-privilege group access",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review inheritance path and break inheritance for sensitive assets when needed",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require AI access approval before retrieval or summarization",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Block AI retrieval until broad access is remediated",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Remove broad group access and replace with least-privilege group access",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review inheritance path and break inheritance for sensitive assets when needed",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require AI access approval before retrieval or summarization",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Block AI retrieval until broad access is remediated",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Require external sharing approval and expiration review",
+    "risk_level": "high",
+    "subject_id": "legal-mna-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Downgrade privileged access unless explicit owner approval exists",
+    "risk_level": "high",
+    "subject_id": "legal-mna-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Require AI access approval before retrieval or summarization",
+    "risk_level": "high",
+    "subject_id": "customer-records-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Require privileged access review for sensitive data access",
+    "risk_level": "high",
+    "subject_id": "customer-records-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Require high-risk principal review before data access is retained",
+    "risk_level": "high",
+    "subject_id": "customer-records-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Remove broad group access and replace with least-privilege group access",
+    "risk_level": "high",
+    "subject_id": "sales-forecast-008"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Downgrade privileged access unless explicit owner approval exists",
+    "risk_level": "high",
+    "subject_id": "sales-forecast-008"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Review inheritance path and break inheritance for sensitive assets when needed",
+    "risk_level": "high",
+    "subject_id": "sales-forecast-008"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "access_review",
+    "recommendation": "Downgrade privileged access unless explicit owner approval exists",
+    "risk_level": "medium",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "access_review",
+    "recommendation": "Remove broad group access and replace with least-privilege group access",
+    "risk_level": "medium",
+    "subject_id": "clinical-intake-006"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "access_review",
+    "recommendation": "Review inheritance path and break inheritance for sensitive assets when needed",
+    "risk_level": "medium",
+    "subject_id": "clinical-intake-006"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "monitor",
+    "recommendation": "Downgrade privileged access unless explicit owner approval exists",
+    "risk_level": "low",
+    "subject_id": "devops-token-notes-009"
   }
 ]

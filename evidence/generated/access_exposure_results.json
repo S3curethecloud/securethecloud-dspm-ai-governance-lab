@@ -1,0 +1,290 @@
+[
+  {
+    "access_level": "read",
+    "ai_tool_access_allowed": true,
+    "asset_id": "hr-payroll-001",
+    "asset_name": "Executive Payroll Adjustments",
+    "authority": "advisory_only",
+    "decision": "deny",
+    "exposure_level": "critical",
+    "inherited": true,
+    "permission_id": "perm-hr-payroll-all-employees-read",
+    "principal": {
+      "display_name": "All Employees",
+      "external": false,
+      "is_broad": true,
+      "member_count": 4,
+      "principal_id": "group-all-employees",
+      "principal_type": "group",
+      "privileged": false
+    },
+    "reasons": [
+      "access permission observed",
+      "asset is sensitive or contains high-risk data types",
+      "principal is a broad access group",
+      "permission is inherited and may be difficult to govern directly",
+      "AI tool access is allowed for a sensitive asset",
+      "broad access and AI access combine on a sensitive asset"
+    ],
+    "recommendations": [
+      "Remove broad group access and replace with least-privilege group access",
+      "Review inheritance path and break inheritance for sensitive assets when needed",
+      "Require AI access approval before retrieval or summarization",
+      "Block AI retrieval until broad access is remediated"
+    ],
+    "roles": [
+      "viewer"
+    ],
+    "score": 90,
+    "source": "sharepoint_like_acl"
+  },
+  {
+    "access_level": "read",
+    "ai_tool_access_allowed": true,
+    "asset_id": "secrets-runbook-005",
+    "asset_name": "Legacy Integration Secret Notes",
+    "authority": "advisory_only",
+    "decision": "deny",
+    "exposure_level": "critical",
+    "inherited": true,
+    "permission_id": "perm-secrets-domain-users-read",
+    "principal": {
+      "display_name": "Domain Users",
+      "external": false,
+      "is_broad": true,
+      "member_count": 5,
+      "principal_id": "group-domain-users",
+      "principal_type": "group",
+      "privileged": false
+    },
+    "reasons": [
+      "access permission observed",
+      "asset is sensitive or contains high-risk data types",
+      "principal is a broad access group",
+      "permission is inherited and may be difficult to govern directly",
+      "AI tool access is allowed for a sensitive asset",
+      "broad access and AI access combine on a sensitive asset"
+    ],
+    "recommendations": [
+      "Remove broad group access and replace with least-privilege group access",
+      "Review inheritance path and break inheritance for sensitive assets when needed",
+      "Require AI access approval before retrieval or summarization",
+      "Block AI retrieval until broad access is remediated"
+    ],
+    "roles": [
+      "viewer"
+    ],
+    "score": 90,
+    "source": "repository_inherited_acl"
+  },
+  {
+    "access_level": "edit",
+    "ai_tool_access_allowed": false,
+    "asset_id": "legal-mna-002",
+    "asset_name": "Confidential Acquisition Notes",
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "exposure_level": "high",
+    "inherited": false,
+    "permission_id": "perm-legal-external-review-edit",
+    "principal": {
+      "display_name": "External Partner Reviewers",
+      "external": true,
+      "is_broad": false,
+      "member_count": 1,
+      "principal_id": "group-external-partners",
+      "principal_type": "group",
+      "privileged": false
+    },
+    "reasons": [
+      "access permission observed",
+      "asset is sensitive or contains high-risk data types",
+      "access includes external or guest principal",
+      "permission grants privileged or write-capable access"
+    ],
+    "recommendations": [
+      "Require external sharing approval and expiration review",
+      "Downgrade privileged access unless explicit owner approval exists"
+    ],
+    "roles": [
+      "editor"
+    ],
+    "score": 80,
+    "source": "external_workspace_share"
+  },
+  {
+    "access_level": "read",
+    "ai_tool_access_allowed": true,
+    "asset_id": "customer-records-003",
+    "asset_name": "Customer Support Export",
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "exposure_level": "high",
+    "inherited": false,
+    "permission_id": "perm-customer-records-ai-service-read",
+    "principal": {
+      "department": "ai_platform",
+      "display_name": "Synthetic AI Retrieval Service Principal",
+      "external": false,
+      "is_broad": false,
+      "principal_id": "svc-ai-retrieval-001",
+      "principal_type": "service_principal",
+      "privileged": true,
+      "risk_tier": "high"
+    },
+    "reasons": [
+      "access permission observed",
+      "asset is sensitive or contains high-risk data types",
+      "AI tool access is allowed for a sensitive asset",
+      "principal has privileged identity characteristics",
+      "principal risk tier is high"
+    ],
+    "recommendations": [
+      "Require AI access approval before retrieval or summarization",
+      "Require privileged access review for sensitive data access",
+      "Require high-risk principal review before data access is retained"
+    ],
+    "roles": [
+      "reader"
+    ],
+    "score": 65,
+    "source": "ai_retrieval_acl"
+  },
+  {
+    "access_level": "edit",
+    "ai_tool_access_allowed": true,
+    "asset_id": "sales-forecast-008",
+    "asset_name": "Synthetic Revenue Forecast Workbook",
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "exposure_level": "high",
+    "inherited": true,
+    "permission_id": "perm-sales-forecast-company-all-edit",
+    "principal": {
+      "display_name": "All Employees",
+      "external": false,
+      "is_broad": true,
+      "member_count": 4,
+      "principal_id": "group-all-employees",
+      "principal_type": "group",
+      "privileged": false
+    },
+    "reasons": [
+      "access permission observed",
+      "principal is a broad access group",
+      "permission grants privileged or write-capable access",
+      "permission is inherited and may be difficult to govern directly"
+    ],
+    "recommendations": [
+      "Remove broad group access and replace with least-privilege group access",
+      "Downgrade privileged access unless explicit owner approval exists",
+      "Review inheritance path and break inheritance for sensitive assets when needed"
+    ],
+    "roles": [
+      "editor"
+    ],
+    "score": 65,
+    "source": "collaboration_workspace_acl"
+  },
+  {
+    "access_level": "owner",
+    "ai_tool_access_allowed": false,
+    "asset_id": "hr-payroll-001",
+    "asset_name": "Executive Payroll Adjustments",
+    "authority": "advisory_only",
+    "decision": "access_review",
+    "exposure_level": "medium",
+    "inherited": false,
+    "permission_id": "perm-hr-payroll-hr-partner-owner",
+    "principal": {
+      "department": "human_resources",
+      "display_name": "Synthetic HR Partner",
+      "external": false,
+      "is_broad": false,
+      "principal_id": "user-hr-partner-001",
+      "principal_type": "user",
+      "privileged": false,
+      "risk_tier": "medium"
+    },
+    "reasons": [
+      "access permission observed",
+      "asset is sensitive or contains high-risk data types",
+      "permission grants privileged or write-capable access"
+    ],
+    "recommendations": [
+      "Downgrade privileged access unless explicit owner approval exists"
+    ],
+    "roles": [
+      "owner"
+    ],
+    "score": 45,
+    "source": "direct_acl"
+  },
+  {
+    "access_level": "read",
+    "ai_tool_access_allowed": true,
+    "asset_id": "clinical-intake-006",
+    "asset_name": "Synthetic Clinical Intake Export",
+    "authority": "advisory_only",
+    "decision": "access_review",
+    "exposure_level": "medium",
+    "inherited": true,
+    "permission_id": "perm-clinical-intake-analytics-read",
+    "principal": {
+      "display_name": "All Employees",
+      "external": false,
+      "is_broad": true,
+      "member_count": 4,
+      "principal_id": "group-all-employees",
+      "principal_type": "group",
+      "privileged": false
+    },
+    "reasons": [
+      "access permission observed",
+      "principal is a broad access group",
+      "permission is inherited and may be difficult to govern directly"
+    ],
+    "recommendations": [
+      "Remove broad group access and replace with least-privilege group access",
+      "Review inheritance path and break inheritance for sensitive assets when needed"
+    ],
+    "roles": [
+      "viewer"
+    ],
+    "score": 40,
+    "source": "analytics_workspace_acl"
+  },
+  {
+    "access_level": "owner",
+    "ai_tool_access_allowed": true,
+    "asset_id": "devops-token-notes-009",
+    "asset_name": "Synthetic DevOps Token Notes",
+    "authority": "advisory_only",
+    "decision": "monitor",
+    "exposure_level": "low",
+    "inherited": false,
+    "permission_id": "perm-devops-token-admins-owner",
+    "principal": {
+      "display_name": "Platform Administrators",
+      "external": false,
+      "is_broad": false,
+      "member_count": 2,
+      "principal_id": "group-platform-admins",
+      "principal_type": "group",
+      "privileged": true
+    },
+    "reasons": [
+      "access permission observed",
+      "permission grants privileged or write-capable access"
+    ],
+    "recommendations": [
+      "Downgrade privileged access unless explicit owner approval exists"
+    ],
+    "roles": [
+      "owner",
+      "admin"
+    ],
+    "score": 25,
+    "source": "repository_admin_acl"
+  }
+]

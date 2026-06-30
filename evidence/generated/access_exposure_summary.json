@@ -1,0 +1,19 @@
+{
+  "ai_access_exposures": 6,
+  "authority": "advisory_only",
+  "broad_group_exposures": 4,
+  "decision_counts": {
+    "access_review": 2,
+    "approval_required": 3,
+    "deny": 2,
+    "monitor": 1
+  },
+  "external_exposures": 1,
+  "level_counts": {
+    "critical": 2,
+    "high": 3,
+    "low": 1,
+    "medium": 2
+  },
+  "total_permissions": 8
+}
