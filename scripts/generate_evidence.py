@@ -1,7 +1,7 @@
 """Generate synthetic DSPM posture evidence artifacts.
 
 This script converts the lab's synthetic asset, AI interaction, classification,
-access, observability, unified risk, and evidence package outputs into reviewable evidence artifacts.
+access, observability, unified risk, evidence package, and executive dashboard outputs into reviewable evidence artifacts.
 """
 
 from __future__ import annotations
@@ -18,6 +18,7 @@ if str(ROOT) not in sys.path:
 
 from backend.app.access_analyzer import analyze_access_exposure
 from backend.app.classifier import classify_documents, summarize_classification_results
+from backend.app.dashboard import build_executive_dashboard
 from backend.app.evidence_package import build_evidence_package
 from backend.app.observability import analyze_ai_observability
 from backend.app.risk_aggregator import aggregate_unified_risk
@@ -64,6 +65,7 @@ def write_markdown(
     observability_summary: dict[str, Any],
     unified_summary: dict[str, Any],
     evidence_validation_summary: dict[str, Any],
+    dashboard_summary: dict[str, Any],
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     top_risks = summary.get("top_risks", [])
@@ -117,6 +119,12 @@ def write_markdown(
         f"- Artifact count: **{evidence_validation_summary['artifact_count']}**",
         f"- Audit chain events: **{evidence_validation_summary['audit_chain_events']}**",
         f"- Validation status: **{evidence_validation_summary['validation_status']}**",
+        "",
+        "## Executive Dashboard Overview",
+        "",
+        f"- Total KPIs: **{dashboard_summary['total_kpis']}**",
+        f"- KPI severity counts: `{dashboard_summary['kpi_severity_counts']}`",
+        f"- Top risk subject: `{dashboard_summary['top_risk_subject']}`",
         "",
         "## Risk Counts",
         "",
@@ -262,6 +270,16 @@ def build_evidence() -> dict[str, Any]:
         "recommendation_register.json": recommendation_register,
     }
     evidence_package = build_evidence_package(evidence_artifacts, generated_at)
+    executive_dashboard = build_executive_dashboard(
+        posture_summary,
+        classification_summary,
+        access_exposure["summary"],
+        ai_observability["summary"],
+        unified_risk["summary"],
+        unified_risk["results"],
+        evidence_package["validation_summary"],
+        generated_at,
+    )
 
     manifest = {
         "generated_at": generated_at,
@@ -285,6 +303,8 @@ def build_evidence() -> dict[str, Any]:
             "evidence_package_index.json",
             "evidence_audit_chain.json",
             "evidence_validation_summary.json",
+            "executive_dashboard.json",
+            "dashboard_summary.json",
             "evidence_manifest.json",
             "executive_summary.md",
         ],
@@ -306,6 +326,8 @@ def build_evidence() -> dict[str, Any]:
         "evidence_package_index": evidence_package["artifact_index"],
         "evidence_audit_chain": evidence_package["audit_chain"],
         "evidence_validation_summary": evidence_package["validation_summary"],
+        "executive_dashboard": executive_dashboard,
+        "dashboard_summary": executive_dashboard["summary"],
         "manifest": manifest,
     }
 
@@ -328,6 +350,8 @@ def main() -> int:
     write_json(OUTPUT_DIR / "evidence_package_index.json", evidence["evidence_package_index"])
     write_json(OUTPUT_DIR / "evidence_audit_chain.json", evidence["evidence_audit_chain"])
     write_json(OUTPUT_DIR / "evidence_validation_summary.json", evidence["evidence_validation_summary"])
+    write_json(OUTPUT_DIR / "executive_dashboard.json", evidence["executive_dashboard"])
+    write_json(OUTPUT_DIR / "dashboard_summary.json", evidence["dashboard_summary"])
     write_json(OUTPUT_DIR / "evidence_manifest.json", evidence["manifest"])
     write_markdown(
         OUTPUT_DIR / "executive_summary.md",
@@ -337,6 +361,7 @@ def main() -> int:
         evidence["ai_observability_summary"],
         evidence["unified_risk_summary"],
         evidence["evidence_validation_summary"],
+        evidence["dashboard_summary"],
     )
 
     print(f"Generated synthetic DSPM evidence in {OUTPUT_DIR.relative_to(ROOT)}")
