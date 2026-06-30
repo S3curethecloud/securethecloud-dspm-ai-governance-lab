@@ -10,6 +10,7 @@ from fastapi import FastAPI
 
 from backend.app.access_analyzer import analyze_access_exposure
 from backend.app.classifier import classify_documents, summarize_classification_results
+from backend.app.dashboard import build_executive_dashboard
 from backend.app.evidence_package import build_evidence_package
 from backend.app.observability import analyze_ai_observability
 from backend.app.risk_aggregator import aggregate_unified_risk
@@ -30,8 +31,8 @@ TOOL_CALLS_PATH = ROOT / "data" / "observability" / "tool_calls.json"
 
 app = FastAPI(
     title="SecureTheCloud DSPM AI Governance Lab",
-    version="0.6.0",
-    description="Synthetic DSPM posture scoring, classification, access exposure, AI observability, unified risk, and evidence package API.",
+    version="0.7.0",
+    description="Synthetic DSPM posture scoring, classification, access exposure, AI observability, unified risk, evidence package, and executive dashboard API.",
 )
 
 
@@ -114,6 +115,27 @@ def build_evidence_artifacts() -> dict:
     }
 
 
+def build_dashboard_payload() -> dict:
+    generated_at = datetime.now(UTC).replace(microsecond=0).isoformat()
+    context = build_risk_context()
+    posture_summary_result = summarize_posture(load_json(ASSETS_PATH), load_json(EVENTS_PATH))
+    evidence_validation_summary = build_evidence_package(
+        build_evidence_artifacts(),
+        generated_at,
+    )["validation_summary"]
+
+    return build_executive_dashboard(
+        posture_summary_result,
+        context["classification_summary"],
+        context["access_summary"],
+        context["observability_summary"],
+        context["unified_risk_summary"],
+        context["unified_risk_results"],
+        evidence_validation_summary,
+        generated_at,
+    )
+
+
 @app.get("/health")
 def health() -> dict[str, str]:
     return {
@@ -185,6 +207,11 @@ def evidence_package() -> dict:
         build_evidence_artifacts(),
         datetime.now(UTC).replace(microsecond=0).isoformat(),
     )
+
+
+@app.get("/dashboard/executive")
+def executive_dashboard() -> dict:
+    return build_dashboard_payload()
 
 
 @app.get("/risk/assets")
