@@ -1,7 +1,7 @@
 """Generate synthetic DSPM posture evidence artifacts.
 
 This script converts the lab's synthetic asset, AI interaction, classification,
-access, observability, unified risk, evidence package, and executive dashboard outputs into reviewable evidence artifacts.
+access, observability, unified risk, evidence package, executive dashboard, and optional companion export outputs into reviewable evidence artifacts.
 """
 
 from __future__ import annotations
@@ -18,6 +18,7 @@ if str(ROOT) not in sys.path:
 
 from backend.app.access_analyzer import analyze_access_exposure
 from backend.app.classifier import classify_documents, summarize_classification_results
+from backend.app.companion_export import build_companion_export
 from backend.app.dashboard import build_executive_dashboard
 from backend.app.evidence_package import build_evidence_package
 from backend.app.observability import analyze_ai_observability
@@ -66,6 +67,7 @@ def write_markdown(
     unified_summary: dict[str, Any],
     evidence_validation_summary: dict[str, Any],
     dashboard_summary: dict[str, Any],
+    companion_export_summary: dict[str, Any],
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     top_risks = summary.get("top_risks", [])
@@ -125,6 +127,15 @@ def write_markdown(
         f"- Total KPIs: **{dashboard_summary['total_kpis']}**",
         f"- KPI severity counts: `{dashboard_summary['kpi_severity_counts']}`",
         f"- Top risk subject: `{dashboard_summary['top_risk_subject']}`",
+        "",
+        "## Optional Companion Export Overview",
+        "",
+        f"- Contract version: **{companion_export_summary['contract_version']}**",
+        f"- Export type: **{companion_export_summary['export_type']}**",
+        f"- Top risk subject: **{companion_export_summary['top_risk_subject_id']}**",
+        f"- Repo merge required: **{companion_export_summary['repo_merge_required']}**",
+        f"- Codebase dependency required: **{companion_export_summary['codebase_dependency_required']}**",
+        f"- Evidence validation status: **{companion_export_summary['evidence_validation_status']}**",
         "",
         "## Risk Counts",
         "",
@@ -280,6 +291,13 @@ def build_evidence() -> dict[str, Any]:
         evidence_package["validation_summary"],
         generated_at,
     )
+    companion_export = build_companion_export(
+        executive_dashboard,
+        unified_risk["summary"],
+        ai_observability["summary"],
+        evidence_package["validation_summary"],
+        generated_at,
+    )
 
     manifest = {
         "generated_at": generated_at,
@@ -305,6 +323,8 @@ def build_evidence() -> dict[str, Any]:
             "evidence_validation_summary.json",
             "executive_dashboard.json",
             "dashboard_summary.json",
+            "ai_governance_companion_export.json",
+            "ai_governance_companion_export_summary.json",
             "evidence_manifest.json",
             "executive_summary.md",
         ],
@@ -328,6 +348,8 @@ def build_evidence() -> dict[str, Any]:
         "evidence_validation_summary": evidence_package["validation_summary"],
         "executive_dashboard": executive_dashboard,
         "dashboard_summary": executive_dashboard["summary"],
+        "companion_export": companion_export,
+        "companion_export_summary": companion_export["summary"],
         "manifest": manifest,
     }
 
@@ -352,6 +374,8 @@ def main() -> int:
     write_json(OUTPUT_DIR / "evidence_validation_summary.json", evidence["evidence_validation_summary"])
     write_json(OUTPUT_DIR / "executive_dashboard.json", evidence["executive_dashboard"])
     write_json(OUTPUT_DIR / "dashboard_summary.json", evidence["dashboard_summary"])
+    write_json(OUTPUT_DIR / "ai_governance_companion_export.json", evidence["companion_export"])
+    write_json(OUTPUT_DIR / "ai_governance_companion_export_summary.json", evidence["companion_export_summary"])
     write_json(OUTPUT_DIR / "evidence_manifest.json", evidence["manifest"])
     write_markdown(
         OUTPUT_DIR / "executive_summary.md",
@@ -362,6 +386,7 @@ def main() -> int:
         evidence["unified_risk_summary"],
         evidence["evidence_validation_summary"],
         evidence["dashboard_summary"],
+        evidence["companion_export_summary"],
     )
 
     print(f"Generated synthetic DSPM evidence in {OUTPUT_DIR.relative_to(ROOT)}")
