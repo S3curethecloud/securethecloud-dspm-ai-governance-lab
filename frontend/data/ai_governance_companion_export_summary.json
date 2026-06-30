@@ -1,0 +1,11 @@
+{
+  "authority": "advisory_only",
+  "codebase_dependency_required": false,
+  "contract_version": "1.0",
+  "evidence_validation_status": "passed",
+  "export_type": "one_way_summary",
+  "repo_merge_required": false,
+  "top_risk_decision": "deny",
+  "top_risk_subject_id": "hr-payroll-001",
+  "total_risk_subjects": 17
+}

@@ -1,0 +1,332 @@
+{
+  "authority": "advisory_only",
+  "control_recommendations": [
+    {
+      "decision": "deny",
+      "priority_level": "critical",
+      "recommended_control": "Run access review and remove broad group access",
+      "subject_id": "hr-payroll-001",
+      "subject_type": "asset"
+    },
+    {
+      "decision": "deny",
+      "priority_level": "critical",
+      "recommended_control": "Require AI access policy review before retrieval or summarization",
+      "subject_id": "hr-payroll-001",
+      "subject_type": "asset"
+    },
+    {
+      "decision": "deny",
+      "priority_level": "critical",
+      "recommended_control": "Create or update DLP policy for detected sensitivity types",
+      "subject_id": "hr-payroll-001",
+      "subject_type": "asset"
+    },
+    {
+      "decision": "deny",
+      "priority_level": "critical",
+      "recommended_control": "Map asset to Insider Risk review workflow",
+      "subject_id": "hr-payroll-001",
+      "subject_type": "asset"
+    },
+    {
+      "decision": "deny",
+      "priority_level": "critical",
+      "recommended_control": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+      "subject_id": "hr-payroll-001",
+      "subject_type": "asset"
+    },
+    {
+      "decision": "deny",
+      "priority_level": "critical",
+      "recommended_control": "Remove broad group access and replace with least-privilege group access",
+      "subject_id": "hr-payroll-001",
+      "subject_type": "asset"
+    },
+    {
+      "decision": "deny",
+      "priority_level": "critical",
+      "recommended_control": "Review inheritance path and break inheritance for sensitive assets when needed",
+      "subject_id": "hr-payroll-001",
+      "subject_type": "asset"
+    },
+    {
+      "decision": "deny",
+      "priority_level": "critical",
+      "recommended_control": "Require AI access approval before retrieval or summarization",
+      "subject_id": "hr-payroll-001",
+      "subject_type": "asset"
+    },
+    {
+      "decision": "deny",
+      "priority_level": "critical",
+      "recommended_control": "Block AI retrieval until broad access is remediated",
+      "subject_id": "hr-payroll-001",
+      "subject_type": "asset"
+    },
+    {
+      "decision": "deny",
+      "priority_level": "critical",
+      "recommended_control": "Downgrade privileged access unless explicit owner approval exists",
+      "subject_id": "hr-payroll-001",
+      "subject_type": "asset"
+    }
+  ],
+  "dashboard_title": "SecureTheCloud DSPM AI Governance Executive Dashboard",
+  "decision_breakdown": {
+    "approval_required": 2,
+    "control_required": 5,
+    "deny": 8,
+    "monitor": 2
+  },
+  "evidence_health": {
+    "artifact_count": 12,
+    "audit_chain_complete": true,
+    "audit_chain_events": 12,
+    "audit_chain_hashes_present": true,
+    "authority": "advisory_only",
+    "unique_artifact_hashes": 12,
+    "validation_status": "passed"
+  },
+  "generated_at": "2026-06-30T03:58:33+00:00",
+  "kpis": [
+    {
+      "description": "Overall synthetic DSPM posture score. Lower scores indicate higher governance concern.",
+      "kpi_id": "posture_score",
+      "label": "DSPM posture score",
+      "severity": "critical",
+      "value": 21.25
+    },
+    {
+      "description": "Assets, AI sessions, or AI events prioritized as critical by the unified risk model.",
+      "kpi_id": "critical_subjects",
+      "label": "Critical risk subjects",
+      "severity": "critical",
+      "value": 8
+    },
+    {
+      "description": "Unified executive decisions requiring block or no-go handling in a real control workflow.",
+      "kpi_id": "deny_decisions",
+      "label": "Deny decisions",
+      "severity": "critical",
+      "value": 8
+    },
+    {
+      "description": "Risk subjects requiring human review before release, retrieval, or action.",
+      "kpi_id": "approval_required",
+      "label": "Approval-required decisions",
+      "severity": "warning",
+      "value": 2
+    },
+    {
+      "description": "Observed AI sessions that retrieved sensitive or regulated synthetic assets.",
+      "kpi_id": "sensitive_retrieval_sessions",
+      "label": "Sensitive AI retrieval sessions",
+      "severity": "critical",
+      "value": 4
+    },
+    {
+      "description": "Permission paths where AI access is allowed to synthetic assets.",
+      "kpi_id": "ai_access_exposures",
+      "label": "AI access exposures",
+      "severity": "critical",
+      "value": 6
+    },
+    {
+      "description": "Synthetic documents classified by the deterministic sensitivity classifier.",
+      "kpi_id": "classified_documents",
+      "label": "Classified documents",
+      "severity": "healthy",
+      "value": 9
+    },
+    {
+      "description": "Evidence package validation status from the audit-chain package summary.",
+      "kpi_id": "evidence_validation",
+      "label": "Evidence validation status",
+      "severity": "healthy",
+      "value": "passed"
+    }
+  ],
+  "priority_breakdown": {
+    "critical": 8,
+    "high": 2,
+    "low": 1,
+    "medium": 6
+  },
+  "summary": {
+    "authority": "advisory_only",
+    "kpi_severity_counts": {
+      "critical": 5,
+      "healthy": 2,
+      "warning": 1
+    },
+    "top_risk_subject": {
+      "composite_score": 100,
+      "decision": "deny",
+      "executive_reasons": [
+        "sensitivity label is highly_confidential",
+        "sensitive data types detected: financial, payroll, pii",
+        "asset is broadly shared",
+        "AI access is allowed for this asset",
+        "DLP policy coverage is missing"
+      ],
+      "priority_level": "critical",
+      "recommended_controls": [
+        "Run access review and remove broad group access",
+        "Require AI access policy review before retrieval or summarization",
+        "Create or update DLP policy for detected sensitivity types",
+        "Map asset to Insider Risk review workflow",
+        "Review inferred sensitivity classification and map to label, DLP, or approval workflow"
+      ],
+      "signal_count": 5,
+      "signal_types": [
+        "access_exposure",
+        "ai_observability",
+        "classification",
+        "posture"
+      ],
+      "subject_id": "hr-payroll-001",
+      "subject_type": "asset"
+    },
+    "total_kpis": 8
+  },
+  "top_risk_cards": [
+    {
+      "composite_score": 100,
+      "decision": "deny",
+      "executive_reasons": [
+        "sensitivity label is highly_confidential",
+        "sensitive data types detected: financial, payroll, pii",
+        "asset is broadly shared",
+        "AI access is allowed for this asset",
+        "DLP policy coverage is missing"
+      ],
+      "priority_level": "critical",
+      "recommended_controls": [
+        "Run access review and remove broad group access",
+        "Require AI access policy review before retrieval or summarization",
+        "Create or update DLP policy for detected sensitivity types",
+        "Map asset to Insider Risk review workflow",
+        "Review inferred sensitivity classification and map to label, DLP, or approval workflow"
+      ],
+      "signal_count": 5,
+      "signal_types": [
+        "access_exposure",
+        "ai_observability",
+        "classification",
+        "posture"
+      ],
+      "subject_id": "hr-payroll-001",
+      "subject_type": "asset"
+    },
+    {
+      "composite_score": 100,
+      "decision": "deny",
+      "executive_reasons": [
+        "sensitivity label is confidential",
+        "sensitive data types detected: financial, legal",
+        "external sharing is enabled",
+        "Insider Risk policy coverage is missing",
+        "inferred sensitivity label is confidential"
+      ],
+      "priority_level": "critical",
+      "recommended_controls": [
+        "Block external sharing for sensitive assets or require approval",
+        "Map asset to Insider Risk review workflow",
+        "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+        "Require external sharing approval and expiration review",
+        "Downgrade privileged access unless explicit owner approval exists"
+      ],
+      "signal_count": 4,
+      "signal_types": [
+        "access_exposure",
+        "ai_observability",
+        "classification",
+        "posture"
+      ],
+      "subject_id": "legal-mna-002",
+      "subject_type": "asset"
+    },
+    {
+      "composite_score": 100,
+      "decision": "deny",
+      "executive_reasons": [
+        "sensitivity label is regulated",
+        "sensitive data types detected: customer_record, pii",
+        "AI access is allowed for this asset",
+        "DLP policy coverage is missing",
+        "inferred sensitivity label is regulated"
+      ],
+      "priority_level": "critical",
+      "recommended_controls": [
+        "Require AI access policy review before retrieval or summarization",
+        "Create or update DLP policy for detected sensitivity types",
+        "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+        "Require AI access approval before retrieval or summarization",
+        "Require privileged access review for sensitive data access"
+      ],
+      "signal_count": 4,
+      "signal_types": [
+        "access_exposure",
+        "ai_observability",
+        "classification",
+        "posture"
+      ],
+      "subject_id": "customer-records-003",
+      "subject_type": "asset"
+    },
+    {
+      "composite_score": 100,
+      "decision": "deny",
+      "executive_reasons": [
+        "sensitivity label is highly_confidential",
+        "sensitive data types detected: credential",
+        "asset is broadly shared",
+        "AI access is allowed for this asset",
+        "DLP policy coverage is missing"
+      ],
+      "priority_level": "critical",
+      "recommended_controls": [
+        "Run access review and remove broad group access",
+        "Require AI access policy review before retrieval or summarization",
+        "Create or update DLP policy for detected sensitivity types",
+        "Map asset to Insider Risk review workflow",
+        "Review inferred sensitivity classification and map to label, DLP, or approval workflow"
+      ],
+      "signal_count": 4,
+      "signal_types": [
+        "access_exposure",
+        "ai_observability",
+        "classification",
+        "posture"
+      ],
+      "subject_id": "secrets-runbook-005",
+      "subject_type": "asset"
+    },
+    {
+      "composite_score": 100,
+      "decision": "deny",
+      "executive_reasons": [
+        "AI interaction session observed",
+        "prompt contains risk signals",
+        "response destination is external or partner-scoped",
+        "session retrieved sensitive or regulated assets",
+        "session included write, export, ticketing, or external tool action"
+      ],
+      "priority_level": "critical",
+      "recommended_controls": [
+        "Review prompt intent and ensure least-data response generation",
+        "Require destination approval before response release",
+        "Map retrieved assets to label, DLP, and AI access policy requirements",
+        "Require tool-use approval for write or egress actions",
+        "Block response release until approval is granted"
+      ],
+      "signal_count": 1,
+      "signal_types": [
+        "ai_observability"
+      ],
+      "subject_id": "ai-session-002",
+      "subject_type": "ai_session"
+    }
+  ]
+}
