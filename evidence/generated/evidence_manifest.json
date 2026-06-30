@@ -15,12 +15,14 @@
     "evidence_package_index.json",
     "evidence_audit_chain.json",
     "evidence_validation_summary.json",
+    "executive_dashboard.json",
+    "dashboard_summary.json",
     "evidence_manifest.json",
     "executive_summary.md"
   ],
   "authority": "advisory_only",
   "evidence_mode": "synthetic",
-  "generated_at": "2026-06-30T03:09:15+00:00",
+  "generated_at": "2026-06-30T03:22:57+00:00",
   "lab": "securethecloud-dspm-ai-governance-lab",
-  "package_digest": "ad0e6a1f89b10e7daeeaa9cf5040fa0a2e7ac1a7f3afd079d81d96fa77dd753e"
+  "package_digest": "9302cdc141b6d91290590920e3df2a79a19b2b7e856aa078b691a2adf6954e20"
 }

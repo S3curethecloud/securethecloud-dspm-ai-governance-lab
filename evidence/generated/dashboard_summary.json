@@ -1,0 +1,37 @@
+{
+  "authority": "advisory_only",
+  "kpi_severity_counts": {
+    "critical": 5,
+    "healthy": 2,
+    "warning": 1
+  },
+  "top_risk_subject": {
+    "composite_score": 100,
+    "decision": "deny",
+    "executive_reasons": [
+      "sensitivity label is highly_confidential",
+      "sensitive data types detected: financial, payroll, pii",
+      "asset is broadly shared",
+      "AI access is allowed for this asset",
+      "DLP policy coverage is missing"
+    ],
+    "priority_level": "critical",
+    "recommended_controls": [
+      "Run access review and remove broad group access",
+      "Require AI access policy review before retrieval or summarization",
+      "Create or update DLP policy for detected sensitivity types",
+      "Map asset to Insider Risk review workflow",
+      "Review inferred sensitivity classification and map to label, DLP, or approval workflow"
+    ],
+    "signal_count": 5,
+    "signal_types": [
+      "access_exposure",
+      "ai_observability",
+      "classification",
+      "posture"
+    ],
+    "subject_id": "hr-payroll-001",
+    "subject_type": "asset"
+  },
+  "total_kpis": 8
+}

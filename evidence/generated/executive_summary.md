@@ -1,6 +1,6 @@
 # DSPM Synthetic Evidence Summary
 
-Generated at: `2026-06-30T03:09:15+00:00`
+Generated at: `2026-06-30T03:22:57+00:00`
 
 ## Posture Overview
 
@@ -47,6 +47,12 @@ Generated at: `2026-06-30T03:09:15+00:00`
 - Artifact count: **12**
 - Audit chain events: **12**
 - Validation status: **passed**
+
+## Executive Dashboard Overview
+
+- Total KPIs: **8**
+- KPI severity counts: `{'critical': 5, 'warning': 1, 'healthy': 2}`
+- Top risk subject: `{'subject_id': 'hr-payroll-001', 'subject_type': 'asset', 'composite_score': 100, 'priority_level': 'critical', 'decision': 'deny', 'signal_count': 5, 'signal_types': ['access_exposure', 'ai_observability', 'classification', 'posture'], 'executive_reasons': ['sensitivity label is highly_confidential', 'sensitive data types detected: financial, payroll, pii', 'asset is broadly shared', 'AI access is allowed for this asset', 'DLP policy coverage is missing'], 'recommended_controls': ['Run access review and remove broad group access', 'Require AI access policy review before retrieval or summarization', 'Create or update DLP policy for detected sensitivity types', 'Map asset to Insider Risk review workflow', 'Review inferred sensitivity classification and map to label, DLP, or approval workflow']}`
 
 ## Risk Counts
 
