@@ -9,12 +9,14 @@
     "access_exposure_summary.json",
     "ai_observability_results.json",
     "ai_observability_summary.json",
+    "unified_risk_results.json",
+    "unified_risk_summary.json",
     "recommendation_register.json",
     "evidence_manifest.json",
     "executive_summary.md"
   ],
   "authority": "advisory_only",
   "evidence_mode": "synthetic",
-  "generated_at": "2026-06-30T02:45:44+00:00",
+  "generated_at": "2026-06-30T02:57:31+00:00",
   "lab": "securethecloud-dspm-ai-governance-lab"
 }

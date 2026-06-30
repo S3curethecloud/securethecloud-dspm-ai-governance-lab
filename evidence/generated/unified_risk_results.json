@@ -1,0 +1,1146 @@
+[
+  {
+    "authority": "advisory_only",
+    "composite_score": 100,
+    "contributing_signals": [
+      {
+        "decision": "deny",
+        "level": "critical",
+        "reasons": [
+          "sensitivity label is highly_confidential",
+          "sensitive data types detected: financial, payroll, pii",
+          "asset is broadly shared",
+          "AI access is allowed for this asset",
+          "DLP policy coverage is missing",
+          "Insider Risk policy coverage is missing"
+        ],
+        "recommendations": [
+          "Run access review and remove broad group access",
+          "Require AI access policy review before retrieval or summarization",
+          "Create or update DLP policy for detected sensitivity types",
+          "Map asset to Insider Risk review workflow"
+        ],
+        "score": 100,
+        "signal_type": "posture",
+        "source_id": "hr-payroll-001"
+      },
+      {
+        "decision": "approval_required",
+        "level": "critical",
+        "reasons": [
+          "inferred sensitivity label is highly_confidential",
+          "detected sensitivity types: payroll, pii"
+        ],
+        "recommendations": [
+          "Review inferred sensitivity classification and map to label, DLP, or approval workflow"
+        ],
+        "score": 100,
+        "signal_type": "classification",
+        "source_id": "hr-payroll-001"
+      },
+      {
+        "decision": "deny",
+        "level": "critical",
+        "principal_id": "group-all-employees",
+        "reasons": [
+          "access permission observed",
+          "asset is sensitive or contains high-risk data types",
+          "principal is a broad access group",
+          "permission is inherited and may be difficult to govern directly",
+          "AI tool access is allowed for a sensitive asset",
+          "broad access and AI access combine on a sensitive asset"
+        ],
+        "recommendations": [
+          "Remove broad group access and replace with least-privilege group access",
+          "Review inheritance path and break inheritance for sensitive assets when needed",
+          "Require AI access approval before retrieval or summarization",
+          "Block AI retrieval until broad access is remediated"
+        ],
+        "score": 90,
+        "signal_type": "access_exposure",
+        "source_id": "perm-hr-payroll-all-employees-read"
+      },
+      {
+        "actor_id": "user-finance-analyst-001",
+        "agent_id": "agent-finance-copilot-001",
+        "decision": "redact",
+        "level": "medium",
+        "reasons": [
+          "AI interaction session observed",
+          "prompt contains risk signals",
+          "session retrieved sensitive or regulated assets"
+        ],
+        "recommendations": [
+          "Review prompt intent and ensure least-data response generation",
+          "Map retrieved assets to label, DLP, and AI access policy requirements"
+        ],
+        "score": 55,
+        "signal_type": "ai_observability",
+        "source_id": "ai-session-001"
+      },
+      {
+        "decision": "access_review",
+        "level": "medium",
+        "principal_id": "user-hr-partner-001",
+        "reasons": [
+          "access permission observed",
+          "asset is sensitive or contains high-risk data types",
+          "permission grants privileged or write-capable access"
+        ],
+        "recommendations": [
+          "Downgrade privileged access unless explicit owner approval exists"
+        ],
+        "score": 45,
+        "signal_type": "access_exposure",
+        "source_id": "perm-hr-payroll-hr-partner-owner"
+      }
+    ],
+    "decision": "deny",
+    "executive_reasons": [
+      "sensitivity label is highly_confidential",
+      "sensitive data types detected: financial, payroll, pii",
+      "asset is broadly shared",
+      "AI access is allowed for this asset",
+      "DLP policy coverage is missing",
+      "Insider Risk policy coverage is missing",
+      "inferred sensitivity label is highly_confidential",
+      "detected sensitivity types: payroll, pii",
+      "access permission observed",
+      "asset is sensitive or contains high-risk data types",
+      "principal is a broad access group",
+      "permission is inherited and may be difficult to govern directly",
+      "AI tool access is allowed for a sensitive asset",
+      "broad access and AI access combine on a sensitive asset",
+      "permission grants privileged or write-capable access",
+      "AI interaction session observed",
+      "prompt contains risk signals",
+      "session retrieved sensitive or regulated assets"
+    ],
+    "priority_level": "critical",
+    "recommended_controls": [
+      "Run access review and remove broad group access",
+      "Require AI access policy review before retrieval or summarization",
+      "Create or update DLP policy for detected sensitivity types",
+      "Map asset to Insider Risk review workflow",
+      "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+      "Remove broad group access and replace with least-privilege group access",
+      "Review inheritance path and break inheritance for sensitive assets when needed",
+      "Require AI access approval before retrieval or summarization",
+      "Block AI retrieval until broad access is remediated",
+      "Downgrade privileged access unless explicit owner approval exists",
+      "Review prompt intent and ensure least-data response generation",
+      "Map retrieved assets to label, DLP, and AI access policy requirements"
+    ],
+    "signal_count": 5,
+    "signal_types": [
+      "access_exposure",
+      "ai_observability",
+      "classification",
+      "posture"
+    ],
+    "subject_id": "hr-payroll-001",
+    "subject_type": "asset"
+  },
+  {
+    "authority": "advisory_only",
+    "composite_score": 100,
+    "contributing_signals": [
+      {
+        "decision": "deny",
+        "level": "critical",
+        "reasons": [
+          "sensitivity label is confidential",
+          "sensitive data types detected: financial, legal",
+          "external sharing is enabled",
+          "Insider Risk policy coverage is missing"
+        ],
+        "recommendations": [
+          "Block external sharing for sensitive assets or require approval",
+          "Map asset to Insider Risk review workflow"
+        ],
+        "score": 100,
+        "signal_type": "posture",
+        "source_id": "legal-mna-002"
+      },
+      {
+        "decision": "approval_required",
+        "level": "critical",
+        "reasons": [
+          "inferred sensitivity label is confidential",
+          "detected sensitivity types: financial, legal"
+        ],
+        "recommendations": [
+          "Review inferred sensitivity classification and map to label, DLP, or approval workflow"
+        ],
+        "score": 100,
+        "signal_type": "classification",
+        "source_id": "legal-mna-002"
+      },
+      {
+        "actor_id": "user-legal-counsel-001",
+        "agent_id": "agent-contract-review-001",
+        "decision": "deny",
+        "level": "critical",
+        "reasons": [
+          "AI interaction session observed",
+          "prompt contains risk signals",
+          "response destination is external or partner-scoped",
+          "session retrieved sensitive or regulated assets",
+          "session included write, export, ticketing, or external tool action",
+          "sensitive retrieval path targets external destination without approval"
+        ],
+        "recommendations": [
+          "Review prompt intent and ensure least-data response generation",
+          "Require destination approval before response release",
+          "Map retrieved assets to label, DLP, and AI access policy requirements",
+          "Require tool-use approval for write or egress actions",
+          "Block response release until approval is granted"
+        ],
+        "score": 100,
+        "signal_type": "ai_observability",
+        "source_id": "ai-session-002"
+      },
+      {
+        "decision": "approval_required",
+        "level": "high",
+        "principal_id": "group-external-partners",
+        "reasons": [
+          "access permission observed",
+          "asset is sensitive or contains high-risk data types",
+          "access includes external or guest principal",
+          "permission grants privileged or write-capable access"
+        ],
+        "recommendations": [
+          "Require external sharing approval and expiration review",
+          "Downgrade privileged access unless explicit owner approval exists"
+        ],
+        "score": 80,
+        "signal_type": "access_exposure",
+        "source_id": "perm-legal-external-review-edit"
+      }
+    ],
+    "decision": "deny",
+    "executive_reasons": [
+      "sensitivity label is confidential",
+      "sensitive data types detected: financial, legal",
+      "external sharing is enabled",
+      "Insider Risk policy coverage is missing",
+      "inferred sensitivity label is confidential",
+      "detected sensitivity types: financial, legal",
+      "access permission observed",
+      "asset is sensitive or contains high-risk data types",
+      "access includes external or guest principal",
+      "permission grants privileged or write-capable access",
+      "AI interaction session observed",
+      "prompt contains risk signals",
+      "response destination is external or partner-scoped",
+      "session retrieved sensitive or regulated assets",
+      "session included write, export, ticketing, or external tool action",
+      "sensitive retrieval path targets external destination without approval"
+    ],
+    "priority_level": "critical",
+    "recommended_controls": [
+      "Block external sharing for sensitive assets or require approval",
+      "Map asset to Insider Risk review workflow",
+      "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+      "Require external sharing approval and expiration review",
+      "Downgrade privileged access unless explicit owner approval exists",
+      "Review prompt intent and ensure least-data response generation",
+      "Require destination approval before response release",
+      "Map retrieved assets to label, DLP, and AI access policy requirements",
+      "Require tool-use approval for write or egress actions",
+      "Block response release until approval is granted"
+    ],
+    "signal_count": 4,
+    "signal_types": [
+      "access_exposure",
+      "ai_observability",
+      "classification",
+      "posture"
+    ],
+    "subject_id": "legal-mna-002",
+    "subject_type": "asset"
+  },
+  {
+    "authority": "advisory_only",
+    "composite_score": 100,
+    "contributing_signals": [
+      {
+        "decision": "deny",
+        "level": "critical",
+        "reasons": [
+          "sensitivity label is regulated",
+          "sensitive data types detected: customer_record, pii",
+          "AI access is allowed for this asset",
+          "DLP policy coverage is missing"
+        ],
+        "recommendations": [
+          "Require AI access policy review before retrieval or summarization",
+          "Create or update DLP policy for detected sensitivity types"
+        ],
+        "score": 100,
+        "signal_type": "posture",
+        "source_id": "customer-records-003"
+      },
+      {
+        "decision": "approval_required",
+        "level": "critical",
+        "reasons": [
+          "inferred sensitivity label is regulated",
+          "detected sensitivity types: customer_record, pii"
+        ],
+        "recommendations": [
+          "Review inferred sensitivity classification and map to label, DLP, or approval workflow"
+        ],
+        "score": 100,
+        "signal_type": "classification",
+        "source_id": "customer-records-003"
+      },
+      {
+        "actor_id": "svc-ai-retrieval-001",
+        "agent_id": "agent-support-export-001",
+        "decision": "deny",
+        "level": "critical",
+        "reasons": [
+          "AI interaction session observed",
+          "prompt contains risk signals",
+          "session retrieved sensitive or regulated assets",
+          "session included write, export, ticketing, or external tool action",
+          "sensitive retrieval was performed by service or agentic workflow"
+        ],
+        "recommendations": [
+          "Review prompt intent and ensure least-data response generation",
+          "Map retrieved assets to label, DLP, and AI access policy requirements",
+          "Require tool-use approval for write or egress actions",
+          "Require agent identity and tool scope review"
+        ],
+        "score": 90,
+        "signal_type": "ai_observability",
+        "source_id": "ai-session-005"
+      },
+      {
+        "decision": "approval_required",
+        "level": "high",
+        "principal_id": "svc-ai-retrieval-001",
+        "reasons": [
+          "access permission observed",
+          "asset is sensitive or contains high-risk data types",
+          "AI tool access is allowed for a sensitive asset",
+          "principal has privileged identity characteristics",
+          "principal risk tier is high"
+        ],
+        "recommendations": [
+          "Require AI access approval before retrieval or summarization",
+          "Require privileged access review for sensitive data access",
+          "Require high-risk principal review before data access is retained"
+        ],
+        "score": 65,
+        "signal_type": "access_exposure",
+        "source_id": "perm-customer-records-ai-service-read"
+      }
+    ],
+    "decision": "deny",
+    "executive_reasons": [
+      "sensitivity label is regulated",
+      "sensitive data types detected: customer_record, pii",
+      "AI access is allowed for this asset",
+      "DLP policy coverage is missing",
+      "inferred sensitivity label is regulated",
+      "detected sensitivity types: customer_record, pii",
+      "access permission observed",
+      "asset is sensitive or contains high-risk data types",
+      "AI tool access is allowed for a sensitive asset",
+      "principal has privileged identity characteristics",
+      "principal risk tier is high",
+      "AI interaction session observed",
+      "prompt contains risk signals",
+      "session retrieved sensitive or regulated assets",
+      "session included write, export, ticketing, or external tool action",
+      "sensitive retrieval was performed by service or agentic workflow"
+    ],
+    "priority_level": "critical",
+    "recommended_controls": [
+      "Require AI access policy review before retrieval or summarization",
+      "Create or update DLP policy for detected sensitivity types",
+      "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+      "Require AI access approval before retrieval or summarization",
+      "Require privileged access review for sensitive data access",
+      "Require high-risk principal review before data access is retained",
+      "Review prompt intent and ensure least-data response generation",
+      "Map retrieved assets to label, DLP, and AI access policy requirements",
+      "Require tool-use approval for write or egress actions",
+      "Require agent identity and tool scope review"
+    ],
+    "signal_count": 4,
+    "signal_types": [
+      "access_exposure",
+      "ai_observability",
+      "classification",
+      "posture"
+    ],
+    "subject_id": "customer-records-003",
+    "subject_type": "asset"
+  },
+  {
+    "authority": "advisory_only",
+    "composite_score": 100,
+    "contributing_signals": [
+      {
+        "decision": "deny",
+        "level": "critical",
+        "reasons": [
+          "sensitivity label is highly_confidential",
+          "sensitive data types detected: credential",
+          "asset is broadly shared",
+          "AI access is allowed for this asset",
+          "DLP policy coverage is missing",
+          "Insider Risk policy coverage is missing"
+        ],
+        "recommendations": [
+          "Run access review and remove broad group access",
+          "Require AI access policy review before retrieval or summarization",
+          "Create or update DLP policy for detected sensitivity types",
+          "Map asset to Insider Risk review workflow"
+        ],
+        "score": 100,
+        "signal_type": "posture",
+        "source_id": "secrets-runbook-005"
+      },
+      {
+        "decision": "deny",
+        "level": "critical",
+        "principal_id": "group-domain-users",
+        "reasons": [
+          "access permission observed",
+          "asset is sensitive or contains high-risk data types",
+          "principal is a broad access group",
+          "permission is inherited and may be difficult to govern directly",
+          "AI tool access is allowed for a sensitive asset",
+          "broad access and AI access combine on a sensitive asset"
+        ],
+        "recommendations": [
+          "Remove broad group access and replace with least-privilege group access",
+          "Review inheritance path and break inheritance for sensitive assets when needed",
+          "Require AI access approval before retrieval or summarization",
+          "Block AI retrieval until broad access is remediated"
+        ],
+        "score": 90,
+        "signal_type": "access_exposure",
+        "source_id": "perm-secrets-domain-users-read"
+      },
+      {
+        "actor_id": "user-platform-admin-001",
+        "agent_id": "agent-dev-assistant-001",
+        "decision": "approval_required",
+        "level": "high",
+        "reasons": [
+          "AI interaction session observed",
+          "prompt contains risk signals",
+          "session retrieved sensitive or regulated assets",
+          "one or more tool calls were denied by policy"
+        ],
+        "recommendations": [
+          "Review prompt intent and ensure least-data response generation",
+          "Map retrieved assets to label, DLP, and AI access policy requirements",
+          "Investigate denied tool calls and preserve evidence trail"
+        ],
+        "score": 75,
+        "signal_type": "ai_observability",
+        "source_id": "ai-session-003"
+      },
+      {
+        "decision": "approval_required",
+        "level": "medium",
+        "reasons": [
+          "inferred sensitivity label is highly_confidential",
+          "detected sensitivity types: credential"
+        ],
+        "recommendations": [
+          "Review inferred sensitivity classification and map to label, DLP, or approval workflow"
+        ],
+        "score": 40,
+        "signal_type": "classification",
+        "source_id": "secrets-runbook-005"
+      }
+    ],
+    "decision": "deny",
+    "executive_reasons": [
+      "sensitivity label is highly_confidential",
+      "sensitive data types detected: credential",
+      "asset is broadly shared",
+      "AI access is allowed for this asset",
+      "DLP policy coverage is missing",
+      "Insider Risk policy coverage is missing",
+      "inferred sensitivity label is highly_confidential",
+      "detected sensitivity types: credential",
+      "access permission observed",
+      "asset is sensitive or contains high-risk data types",
+      "principal is a broad access group",
+      "permission is inherited and may be difficult to govern directly",
+      "AI tool access is allowed for a sensitive asset",
+      "broad access and AI access combine on a sensitive asset",
+      "AI interaction session observed",
+      "prompt contains risk signals",
+      "session retrieved sensitive or regulated assets",
+      "one or more tool calls were denied by policy"
+    ],
+    "priority_level": "critical",
+    "recommended_controls": [
+      "Run access review and remove broad group access",
+      "Require AI access policy review before retrieval or summarization",
+      "Create or update DLP policy for detected sensitivity types",
+      "Map asset to Insider Risk review workflow",
+      "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+      "Remove broad group access and replace with least-privilege group access",
+      "Review inheritance path and break inheritance for sensitive assets when needed",
+      "Require AI access approval before retrieval or summarization",
+      "Block AI retrieval until broad access is remediated",
+      "Review prompt intent and ensure least-data response generation",
+      "Map retrieved assets to label, DLP, and AI access policy requirements",
+      "Investigate denied tool calls and preserve evidence trail"
+    ],
+    "signal_count": 4,
+    "signal_types": [
+      "access_exposure",
+      "ai_observability",
+      "classification",
+      "posture"
+    ],
+    "subject_id": "secrets-runbook-005",
+    "subject_type": "asset"
+  },
+  {
+    "authority": "advisory_only",
+    "composite_score": 100,
+    "contributing_signals": [
+      {
+        "actor_id": "user-legal-counsel-001",
+        "agent_id": "agent-contract-review-001",
+        "decision": "deny",
+        "level": "critical",
+        "reasons": [
+          "AI interaction session observed",
+          "prompt contains risk signals",
+          "response destination is external or partner-scoped",
+          "session retrieved sensitive or regulated assets",
+          "session included write, export, ticketing, or external tool action",
+          "sensitive retrieval path targets external destination without approval"
+        ],
+        "recommendations": [
+          "Review prompt intent and ensure least-data response generation",
+          "Require destination approval before response release",
+          "Map retrieved assets to label, DLP, and AI access policy requirements",
+          "Require tool-use approval for write or egress actions",
+          "Block response release until approval is granted"
+        ],
+        "score": 100,
+        "signal_type": "ai_observability",
+        "source_id": "ai-session-002"
+      }
+    ],
+    "decision": "deny",
+    "executive_reasons": [
+      "AI interaction session observed",
+      "prompt contains risk signals",
+      "response destination is external or partner-scoped",
+      "session retrieved sensitive or regulated assets",
+      "session included write, export, ticketing, or external tool action",
+      "sensitive retrieval path targets external destination without approval"
+    ],
+    "priority_level": "critical",
+    "recommended_controls": [
+      "Review prompt intent and ensure least-data response generation",
+      "Require destination approval before response release",
+      "Map retrieved assets to label, DLP, and AI access policy requirements",
+      "Require tool-use approval for write or egress actions",
+      "Block response release until approval is granted"
+    ],
+    "signal_count": 1,
+    "signal_types": [
+      "ai_observability"
+    ],
+    "subject_id": "ai-session-002",
+    "subject_type": "ai_session"
+  },
+  {
+    "authority": "advisory_only",
+    "composite_score": 90,
+    "contributing_signals": [
+      {
+        "decision": "approval_required",
+        "level": "high",
+        "reasons": [
+          "inferred sensitivity label is confidential",
+          "detected sensitivity types: financial"
+        ],
+        "recommendations": [
+          "Review inferred sensitivity classification and map to label, DLP, or approval workflow"
+        ],
+        "score": 80,
+        "signal_type": "classification",
+        "source_id": "sales-forecast-008"
+      },
+      {
+        "decision": "approval_required",
+        "level": "high",
+        "principal_id": "group-all-employees",
+        "reasons": [
+          "access permission observed",
+          "principal is a broad access group",
+          "permission grants privileged or write-capable access",
+          "permission is inherited and may be difficult to govern directly"
+        ],
+        "recommendations": [
+          "Remove broad group access and replace with least-privilege group access",
+          "Downgrade privileged access unless explicit owner approval exists",
+          "Review inheritance path and break inheritance for sensitive assets when needed"
+        ],
+        "score": 65,
+        "signal_type": "access_exposure",
+        "source_id": "perm-sales-forecast-company-all-edit"
+      }
+    ],
+    "decision": "deny",
+    "executive_reasons": [
+      "inferred sensitivity label is confidential",
+      "detected sensitivity types: financial",
+      "access permission observed",
+      "principal is a broad access group",
+      "permission grants privileged or write-capable access",
+      "permission is inherited and may be difficult to govern directly"
+    ],
+    "priority_level": "critical",
+    "recommended_controls": [
+      "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+      "Remove broad group access and replace with least-privilege group access",
+      "Downgrade privileged access unless explicit owner approval exists",
+      "Review inheritance path and break inheritance for sensitive assets when needed"
+    ],
+    "signal_count": 2,
+    "signal_types": [
+      "access_exposure",
+      "classification"
+    ],
+    "subject_id": "sales-forecast-008",
+    "subject_type": "asset"
+  },
+  {
+    "authority": "advisory_only",
+    "composite_score": 90,
+    "contributing_signals": [
+      {
+        "actor_id": "user-platform-admin-001",
+        "agent_id": "agent-dev-assistant-001",
+        "decision": "approval_required",
+        "level": "high",
+        "reasons": [
+          "AI interaction session observed",
+          "prompt contains risk signals",
+          "session retrieved sensitive or regulated assets",
+          "one or more tool calls were denied by policy"
+        ],
+        "recommendations": [
+          "Review prompt intent and ensure least-data response generation",
+          "Map retrieved assets to label, DLP, and AI access policy requirements",
+          "Investigate denied tool calls and preserve evidence trail"
+        ],
+        "score": 75,
+        "signal_type": "ai_observability",
+        "source_id": "ai-session-003"
+      },
+      {
+        "decision": "approval_required",
+        "level": "medium",
+        "reasons": [
+          "inferred sensitivity label is highly_confidential",
+          "detected sensitivity types: credential"
+        ],
+        "recommendations": [
+          "Review inferred sensitivity classification and map to label, DLP, or approval workflow"
+        ],
+        "score": 40,
+        "signal_type": "classification",
+        "source_id": "devops-token-notes-009"
+      },
+      {
+        "decision": "monitor",
+        "level": "low",
+        "principal_id": "group-platform-admins",
+        "reasons": [
+          "access permission observed",
+          "permission grants privileged or write-capable access"
+        ],
+        "recommendations": [
+          "Downgrade privileged access unless explicit owner approval exists"
+        ],
+        "score": 25,
+        "signal_type": "access_exposure",
+        "source_id": "perm-devops-token-admins-owner"
+      }
+    ],
+    "decision": "deny",
+    "executive_reasons": [
+      "inferred sensitivity label is highly_confidential",
+      "detected sensitivity types: credential",
+      "access permission observed",
+      "permission grants privileged or write-capable access",
+      "AI interaction session observed",
+      "prompt contains risk signals",
+      "session retrieved sensitive or regulated assets",
+      "one or more tool calls were denied by policy"
+    ],
+    "priority_level": "critical",
+    "recommended_controls": [
+      "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+      "Downgrade privileged access unless explicit owner approval exists",
+      "Review prompt intent and ensure least-data response generation",
+      "Map retrieved assets to label, DLP, and AI access policy requirements",
+      "Investigate denied tool calls and preserve evidence trail"
+    ],
+    "signal_count": 3,
+    "signal_types": [
+      "access_exposure",
+      "ai_observability",
+      "classification"
+    ],
+    "subject_id": "devops-token-notes-009",
+    "subject_type": "asset"
+  },
+  {
+    "authority": "advisory_only",
+    "composite_score": 90,
+    "contributing_signals": [
+      {
+        "actor_id": "svc-ai-retrieval-001",
+        "agent_id": "agent-support-export-001",
+        "decision": "deny",
+        "level": "critical",
+        "reasons": [
+          "AI interaction session observed",
+          "prompt contains risk signals",
+          "session retrieved sensitive or regulated assets",
+          "session included write, export, ticketing, or external tool action",
+          "sensitive retrieval was performed by service or agentic workflow"
+        ],
+        "recommendations": [
+          "Review prompt intent and ensure least-data response generation",
+          "Map retrieved assets to label, DLP, and AI access policy requirements",
+          "Require tool-use approval for write or egress actions",
+          "Require agent identity and tool scope review"
+        ],
+        "score": 90,
+        "signal_type": "ai_observability",
+        "source_id": "ai-session-005"
+      }
+    ],
+    "decision": "deny",
+    "executive_reasons": [
+      "AI interaction session observed",
+      "prompt contains risk signals",
+      "session retrieved sensitive or regulated assets",
+      "session included write, export, ticketing, or external tool action",
+      "sensitive retrieval was performed by service or agentic workflow"
+    ],
+    "priority_level": "critical",
+    "recommended_controls": [
+      "Review prompt intent and ensure least-data response generation",
+      "Map retrieved assets to label, DLP, and AI access policy requirements",
+      "Require tool-use approval for write or egress actions",
+      "Require agent identity and tool scope review"
+    ],
+    "signal_count": 1,
+    "signal_types": [
+      "ai_observability"
+    ],
+    "subject_id": "ai-session-005",
+    "subject_type": "ai_session"
+  },
+  {
+    "authority": "advisory_only",
+    "composite_score": 85,
+    "contributing_signals": [
+      {
+        "decision": "approval_required",
+        "level": "high",
+        "reasons": [
+          "AI interaction observed",
+          "prompt or response path includes sensitive data",
+          "AI interaction targets a non-internal destination",
+          "retrieved high-risk asset legal-mna-002"
+        ],
+        "recommendations": [
+          "Inspect prompt, retrieved content, and response handling",
+          "Apply DLP control for risky destination"
+        ],
+        "score": 85,
+        "signal_type": "posture",
+        "source_id": "ai-event-002"
+      }
+    ],
+    "decision": "approval_required",
+    "executive_reasons": [
+      "AI interaction observed",
+      "prompt or response path includes sensitive data",
+      "AI interaction targets a non-internal destination",
+      "retrieved high-risk asset legal-mna-002"
+    ],
+    "priority_level": "high",
+    "recommended_controls": [
+      "Inspect prompt, retrieved content, and response handling",
+      "Apply DLP control for risky destination"
+    ],
+    "signal_count": 1,
+    "signal_types": [
+      "posture"
+    ],
+    "subject_id": "ai-event-002",
+    "subject_type": "ai_event"
+  },
+  {
+    "authority": "advisory_only",
+    "composite_score": 75,
+    "contributing_signals": [
+      {
+        "actor_id": "user-platform-admin-001",
+        "agent_id": "agent-dev-assistant-001",
+        "decision": "approval_required",
+        "level": "high",
+        "reasons": [
+          "AI interaction session observed",
+          "prompt contains risk signals",
+          "session retrieved sensitive or regulated assets",
+          "one or more tool calls were denied by policy"
+        ],
+        "recommendations": [
+          "Review prompt intent and ensure least-data response generation",
+          "Map retrieved assets to label, DLP, and AI access policy requirements",
+          "Investigate denied tool calls and preserve evidence trail"
+        ],
+        "score": 75,
+        "signal_type": "ai_observability",
+        "source_id": "ai-session-003"
+      }
+    ],
+    "decision": "approval_required",
+    "executive_reasons": [
+      "AI interaction session observed",
+      "prompt contains risk signals",
+      "session retrieved sensitive or regulated assets",
+      "one or more tool calls were denied by policy"
+    ],
+    "priority_level": "high",
+    "recommended_controls": [
+      "Review prompt intent and ensure least-data response generation",
+      "Map retrieved assets to label, DLP, and AI access policy requirements",
+      "Investigate denied tool calls and preserve evidence trail"
+    ],
+    "signal_count": 1,
+    "signal_types": [
+      "ai_observability"
+    ],
+    "subject_id": "ai-session-003",
+    "subject_type": "ai_session"
+  },
+  {
+    "authority": "advisory_only",
+    "composite_score": 60,
+    "contributing_signals": [
+      {
+        "decision": "approval_required",
+        "level": "medium",
+        "reasons": [
+          "inferred sensitivity label is regulated",
+          "detected sensitivity types: customer_record, pci"
+        ],
+        "recommendations": [
+          "Review inferred sensitivity classification and map to label, DLP, or approval workflow"
+        ],
+        "score": 60,
+        "signal_type": "classification",
+        "source_id": "payment-disputes-007"
+      }
+    ],
+    "decision": "control_required",
+    "executive_reasons": [
+      "inferred sensitivity label is regulated",
+      "detected sensitivity types: customer_record, pci"
+    ],
+    "priority_level": "medium",
+    "recommended_controls": [
+      "Review inferred sensitivity classification and map to label, DLP, or approval workflow"
+    ],
+    "signal_count": 1,
+    "signal_types": [
+      "classification"
+    ],
+    "subject_id": "payment-disputes-007",
+    "subject_type": "asset"
+  },
+  {
+    "authority": "advisory_only",
+    "composite_score": 55,
+    "contributing_signals": [
+      {
+        "decision": "approval_required",
+        "level": "medium",
+        "reasons": [
+          "AI interaction observed",
+          "prompt or response path includes sensitive data",
+          "retrieved high-risk asset hr-payroll-001"
+        ],
+        "recommendations": [
+          "Inspect prompt, retrieved content, and response handling"
+        ],
+        "score": 55,
+        "signal_type": "posture",
+        "source_id": "ai-event-001"
+      }
+    ],
+    "decision": "control_required",
+    "executive_reasons": [
+      "AI interaction observed",
+      "prompt or response path includes sensitive data",
+      "retrieved high-risk asset hr-payroll-001"
+    ],
+    "priority_level": "medium",
+    "recommended_controls": [
+      "Inspect prompt, retrieved content, and response handling"
+    ],
+    "signal_count": 1,
+    "signal_types": [
+      "posture"
+    ],
+    "subject_id": "ai-event-001",
+    "subject_type": "ai_event"
+  },
+  {
+    "authority": "advisory_only",
+    "composite_score": 55,
+    "contributing_signals": [
+      {
+        "decision": "approval_required",
+        "level": "medium",
+        "reasons": [
+          "AI interaction observed",
+          "prompt or response path includes sensitive data",
+          "retrieved high-risk asset secrets-runbook-005"
+        ],
+        "recommendations": [
+          "Inspect prompt, retrieved content, and response handling"
+        ],
+        "score": 55,
+        "signal_type": "posture",
+        "source_id": "ai-event-003"
+      }
+    ],
+    "decision": "control_required",
+    "executive_reasons": [
+      "AI interaction observed",
+      "prompt or response path includes sensitive data",
+      "retrieved high-risk asset secrets-runbook-005"
+    ],
+    "priority_level": "medium",
+    "recommended_controls": [
+      "Inspect prompt, retrieved content, and response handling"
+    ],
+    "signal_count": 1,
+    "signal_types": [
+      "posture"
+    ],
+    "subject_id": "ai-event-003",
+    "subject_type": "ai_event"
+  },
+  {
+    "authority": "advisory_only",
+    "composite_score": 55,
+    "contributing_signals": [
+      {
+        "actor_id": "user-finance-analyst-001",
+        "agent_id": "agent-finance-copilot-001",
+        "decision": "redact",
+        "level": "medium",
+        "reasons": [
+          "AI interaction session observed",
+          "prompt contains risk signals",
+          "session retrieved sensitive or regulated assets"
+        ],
+        "recommendations": [
+          "Review prompt intent and ensure least-data response generation",
+          "Map retrieved assets to label, DLP, and AI access policy requirements"
+        ],
+        "score": 55,
+        "signal_type": "ai_observability",
+        "source_id": "ai-session-001"
+      }
+    ],
+    "decision": "control_required",
+    "executive_reasons": [
+      "AI interaction session observed",
+      "prompt contains risk signals",
+      "session retrieved sensitive or regulated assets"
+    ],
+    "priority_level": "medium",
+    "recommended_controls": [
+      "Review prompt intent and ensure least-data response generation",
+      "Map retrieved assets to label, DLP, and AI access policy requirements"
+    ],
+    "signal_count": 1,
+    "signal_types": [
+      "ai_observability"
+    ],
+    "subject_id": "ai-session-001",
+    "subject_type": "ai_session"
+  },
+  {
+    "authority": "advisory_only",
+    "composite_score": 50,
+    "contributing_signals": [
+      {
+        "decision": "approval_required",
+        "level": "medium",
+        "reasons": [
+          "inferred sensitivity label is regulated",
+          "detected sensitivity types: phi, pii"
+        ],
+        "recommendations": [
+          "Review inferred sensitivity classification and map to label, DLP, or approval workflow"
+        ],
+        "score": 45,
+        "signal_type": "classification",
+        "source_id": "clinical-intake-006"
+      },
+      {
+        "decision": "access_review",
+        "level": "medium",
+        "principal_id": "group-all-employees",
+        "reasons": [
+          "access permission observed",
+          "principal is a broad access group",
+          "permission is inherited and may be difficult to govern directly"
+        ],
+        "recommendations": [
+          "Remove broad group access and replace with least-privilege group access",
+          "Review inheritance path and break inheritance for sensitive assets when needed"
+        ],
+        "score": 40,
+        "signal_type": "access_exposure",
+        "source_id": "perm-clinical-intake-analytics-read"
+      }
+    ],
+    "decision": "control_required",
+    "executive_reasons": [
+      "inferred sensitivity label is regulated",
+      "detected sensitivity types: phi, pii",
+      "access permission observed",
+      "principal is a broad access group",
+      "permission is inherited and may be difficult to govern directly"
+    ],
+    "priority_level": "medium",
+    "recommended_controls": [
+      "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+      "Remove broad group access and replace with least-privilege group access",
+      "Review inheritance path and break inheritance for sensitive assets when needed"
+    ],
+    "signal_count": 2,
+    "signal_types": [
+      "access_exposure",
+      "classification"
+    ],
+    "subject_id": "clinical-intake-006",
+    "subject_type": "asset"
+  },
+  {
+    "authority": "advisory_only",
+    "composite_score": 45,
+    "contributing_signals": [
+      {
+        "decision": "approval_required",
+        "level": "low",
+        "reasons": [
+          "AI access is allowed for this asset"
+        ],
+        "recommendations": [
+          "Require AI access policy review before retrieval or summarization"
+        ],
+        "score": 35,
+        "signal_type": "posture",
+        "source_id": "eng-prompts-004"
+      },
+      {
+        "actor_id": "user-platform-admin-001",
+        "agent_id": "agent-dev-assistant-001",
+        "decision": "monitor",
+        "level": "low",
+        "reasons": [
+          "AI interaction session observed"
+        ],
+        "recommendations": [],
+        "score": 10,
+        "signal_type": "ai_observability",
+        "source_id": "ai-session-004"
+      },
+      {
+        "decision": "monitor",
+        "level": "low",
+        "reasons": [
+          "inferred sensitivity label is public",
+          "detected sensitivity types: none"
+        ],
+        "recommendations": [],
+        "score": 0,
+        "signal_type": "classification",
+        "source_id": "eng-prompts-004"
+      }
+    ],
+    "decision": "monitor",
+    "executive_reasons": [
+      "AI access is allowed for this asset",
+      "inferred sensitivity label is public",
+      "detected sensitivity types: none",
+      "AI interaction session observed"
+    ],
+    "priority_level": "medium",
+    "recommended_controls": [
+      "Require AI access policy review before retrieval or summarization"
+    ],
+    "signal_count": 3,
+    "signal_types": [
+      "ai_observability",
+      "classification",
+      "posture"
+    ],
+    "subject_id": "eng-prompts-004",
+    "subject_type": "asset"
+  },
+  {
+    "authority": "advisory_only",
+    "composite_score": 10,
+    "contributing_signals": [
+      {
+        "actor_id": "user-platform-admin-001",
+        "agent_id": "agent-dev-assistant-001",
+        "decision": "monitor",
+        "level": "low",
+        "reasons": [
+          "AI interaction session observed"
+        ],
+        "recommendations": [],
+        "score": 10,
+        "signal_type": "ai_observability",
+        "source_id": "ai-session-004"
+      }
+    ],
+    "decision": "monitor",
+    "executive_reasons": [
+      "AI interaction session observed"
+    ],
+    "priority_level": "low",
+    "recommended_controls": [],
+    "signal_count": 1,
+    "signal_types": [
+      "ai_observability"
+    ],
+    "subject_id": "ai-session-004",
+    "subject_type": "ai_session"
+  }
+]

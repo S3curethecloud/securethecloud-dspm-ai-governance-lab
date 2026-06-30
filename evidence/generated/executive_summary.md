@@ -1,6 +1,6 @@
 # DSPM Synthetic Evidence Summary
 
-Generated at: `2026-06-30T02:45:44+00:00`
+Generated at: `2026-06-30T02:57:31+00:00`
 
 ## Posture Overview
 
@@ -33,6 +33,14 @@ Generated at: `2026-06-30T02:45:44+00:00`
 - Write or export sessions: **2**
 - Observability level counts: `{'medium': 1, 'critical': 2, 'high': 1, 'low': 1}`
 - Decision counts: `{'redact': 1, 'deny': 2, 'approval_required': 1, 'monitor': 1}`
+
+## Unified Executive Risk Overview
+
+- Total risk subjects: **17**
+- Subject type counts: `{'asset': 9, 'ai_session': 5, 'ai_event': 3}`
+- Priority counts: `{'critical': 8, 'high': 2, 'medium': 6, 'low': 1}`
+- Decision counts: `{'deny': 8, 'approval_required': 2, 'control_required': 5, 'monitor': 2}`
+- Top priority subjects: `[{'subject_id': 'hr-payroll-001', 'subject_type': 'asset', 'composite_score': 100, 'priority_level': 'critical', 'decision': 'deny'}, {'subject_id': 'legal-mna-002', 'subject_type': 'asset', 'composite_score': 100, 'priority_level': 'critical', 'decision': 'deny'}, {'subject_id': 'customer-records-003', 'subject_type': 'asset', 'composite_score': 100, 'priority_level': 'critical', 'decision': 'deny'}, {'subject_id': 'secrets-runbook-005', 'subject_type': 'asset', 'composite_score': 100, 'priority_level': 'critical', 'decision': 'deny'}, {'subject_id': 'ai-session-002', 'subject_type': 'ai_session', 'composite_score': 100, 'priority_level': 'critical', 'decision': 'deny'}]`
 
 ## Risk Counts
 

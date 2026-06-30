@@ -411,5 +411,537 @@
     "recommendation": "Map retrieved assets to label, DLP, and AI access policy requirements",
     "risk_level": "medium",
     "subject_id": "ai-session-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Run access review and remove broad group access",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require AI access policy review before retrieval or summarization",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Create or update DLP policy for detected sensitivity types",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Map asset to Insider Risk review workflow",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Remove broad group access and replace with least-privilege group access",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review inheritance path and break inheritance for sensitive assets when needed",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require AI access approval before retrieval or summarization",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Block AI retrieval until broad access is remediated",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Downgrade privileged access unless explicit owner approval exists",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review prompt intent and ensure least-data response generation",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Map retrieved assets to label, DLP, and AI access policy requirements",
+    "risk_level": "critical",
+    "subject_id": "hr-payroll-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Block external sharing for sensitive assets or require approval",
+    "risk_level": "critical",
+    "subject_id": "legal-mna-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Map asset to Insider Risk review workflow",
+    "risk_level": "critical",
+    "subject_id": "legal-mna-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+    "risk_level": "critical",
+    "subject_id": "legal-mna-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require external sharing approval and expiration review",
+    "risk_level": "critical",
+    "subject_id": "legal-mna-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Downgrade privileged access unless explicit owner approval exists",
+    "risk_level": "critical",
+    "subject_id": "legal-mna-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review prompt intent and ensure least-data response generation",
+    "risk_level": "critical",
+    "subject_id": "legal-mna-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require destination approval before response release",
+    "risk_level": "critical",
+    "subject_id": "legal-mna-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Map retrieved assets to label, DLP, and AI access policy requirements",
+    "risk_level": "critical",
+    "subject_id": "legal-mna-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require tool-use approval for write or egress actions",
+    "risk_level": "critical",
+    "subject_id": "legal-mna-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Block response release until approval is granted",
+    "risk_level": "critical",
+    "subject_id": "legal-mna-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require AI access policy review before retrieval or summarization",
+    "risk_level": "critical",
+    "subject_id": "customer-records-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Create or update DLP policy for detected sensitivity types",
+    "risk_level": "critical",
+    "subject_id": "customer-records-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+    "risk_level": "critical",
+    "subject_id": "customer-records-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require AI access approval before retrieval or summarization",
+    "risk_level": "critical",
+    "subject_id": "customer-records-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require privileged access review for sensitive data access",
+    "risk_level": "critical",
+    "subject_id": "customer-records-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require high-risk principal review before data access is retained",
+    "risk_level": "critical",
+    "subject_id": "customer-records-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review prompt intent and ensure least-data response generation",
+    "risk_level": "critical",
+    "subject_id": "customer-records-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Map retrieved assets to label, DLP, and AI access policy requirements",
+    "risk_level": "critical",
+    "subject_id": "customer-records-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require tool-use approval for write or egress actions",
+    "risk_level": "critical",
+    "subject_id": "customer-records-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require agent identity and tool scope review",
+    "risk_level": "critical",
+    "subject_id": "customer-records-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Run access review and remove broad group access",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require AI access policy review before retrieval or summarization",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Create or update DLP policy for detected sensitivity types",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Map asset to Insider Risk review workflow",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Remove broad group access and replace with least-privilege group access",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review inheritance path and break inheritance for sensitive assets when needed",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require AI access approval before retrieval or summarization",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Block AI retrieval until broad access is remediated",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review prompt intent and ensure least-data response generation",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Map retrieved assets to label, DLP, and AI access policy requirements",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Investigate denied tool calls and preserve evidence trail",
+    "risk_level": "critical",
+    "subject_id": "secrets-runbook-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review prompt intent and ensure least-data response generation",
+    "risk_level": "critical",
+    "subject_id": "ai-session-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require destination approval before response release",
+    "risk_level": "critical",
+    "subject_id": "ai-session-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Map retrieved assets to label, DLP, and AI access policy requirements",
+    "risk_level": "critical",
+    "subject_id": "ai-session-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require tool-use approval for write or egress actions",
+    "risk_level": "critical",
+    "subject_id": "ai-session-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Block response release until approval is granted",
+    "risk_level": "critical",
+    "subject_id": "ai-session-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+    "risk_level": "critical",
+    "subject_id": "sales-forecast-008"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Remove broad group access and replace with least-privilege group access",
+    "risk_level": "critical",
+    "subject_id": "sales-forecast-008"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Downgrade privileged access unless explicit owner approval exists",
+    "risk_level": "critical",
+    "subject_id": "sales-forecast-008"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review inheritance path and break inheritance for sensitive assets when needed",
+    "risk_level": "critical",
+    "subject_id": "sales-forecast-008"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+    "risk_level": "critical",
+    "subject_id": "devops-token-notes-009"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Downgrade privileged access unless explicit owner approval exists",
+    "risk_level": "critical",
+    "subject_id": "devops-token-notes-009"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review prompt intent and ensure least-data response generation",
+    "risk_level": "critical",
+    "subject_id": "devops-token-notes-009"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Map retrieved assets to label, DLP, and AI access policy requirements",
+    "risk_level": "critical",
+    "subject_id": "devops-token-notes-009"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Investigate denied tool calls and preserve evidence trail",
+    "risk_level": "critical",
+    "subject_id": "devops-token-notes-009"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Review prompt intent and ensure least-data response generation",
+    "risk_level": "critical",
+    "subject_id": "ai-session-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Map retrieved assets to label, DLP, and AI access policy requirements",
+    "risk_level": "critical",
+    "subject_id": "ai-session-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require tool-use approval for write or egress actions",
+    "risk_level": "critical",
+    "subject_id": "ai-session-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "deny",
+    "recommendation": "Require agent identity and tool scope review",
+    "risk_level": "critical",
+    "subject_id": "ai-session-005"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Inspect prompt, retrieved content, and response handling",
+    "risk_level": "high",
+    "subject_id": "ai-event-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Apply DLP control for risky destination",
+    "risk_level": "high",
+    "subject_id": "ai-event-002"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Review prompt intent and ensure least-data response generation",
+    "risk_level": "high",
+    "subject_id": "ai-session-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Map retrieved assets to label, DLP, and AI access policy requirements",
+    "risk_level": "high",
+    "subject_id": "ai-session-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "approval_required",
+    "recommendation": "Investigate denied tool calls and preserve evidence trail",
+    "risk_level": "high",
+    "subject_id": "ai-session-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "control_required",
+    "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+    "risk_level": "medium",
+    "subject_id": "payment-disputes-007"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "control_required",
+    "recommendation": "Inspect prompt, retrieved content, and response handling",
+    "risk_level": "medium",
+    "subject_id": "ai-event-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "control_required",
+    "recommendation": "Inspect prompt, retrieved content, and response handling",
+    "risk_level": "medium",
+    "subject_id": "ai-event-003"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "control_required",
+    "recommendation": "Review prompt intent and ensure least-data response generation",
+    "risk_level": "medium",
+    "subject_id": "ai-session-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "control_required",
+    "recommendation": "Map retrieved assets to label, DLP, and AI access policy requirements",
+    "risk_level": "medium",
+    "subject_id": "ai-session-001"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "control_required",
+    "recommendation": "Review inferred sensitivity classification and map to label, DLP, or approval workflow",
+    "risk_level": "medium",
+    "subject_id": "clinical-intake-006"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "control_required",
+    "recommendation": "Remove broad group access and replace with least-privilege group access",
+    "risk_level": "medium",
+    "subject_id": "clinical-intake-006"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "control_required",
+    "recommendation": "Review inheritance path and break inheritance for sensitive assets when needed",
+    "risk_level": "medium",
+    "subject_id": "clinical-intake-006"
+  },
+  {
+    "authority": "advisory_only",
+    "decision": "monitor",
+    "recommendation": "Require AI access policy review before retrieval or summarization",
+    "risk_level": "medium",
+    "subject_id": "eng-prompts-004"
   }
 ]

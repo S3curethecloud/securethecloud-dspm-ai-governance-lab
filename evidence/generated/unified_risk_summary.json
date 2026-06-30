@@ -1,0 +1,58 @@
+{
+  "authority": "advisory_only",
+  "decision_counts": {
+    "approval_required": 2,
+    "control_required": 5,
+    "deny": 8,
+    "monitor": 2
+  },
+  "priority_counts": {
+    "critical": 8,
+    "high": 2,
+    "low": 1,
+    "medium": 6
+  },
+  "subject_type_counts": {
+    "ai_event": 3,
+    "ai_session": 5,
+    "asset": 9
+  },
+  "top_priority_subjects": [
+    {
+      "composite_score": 100,
+      "decision": "deny",
+      "priority_level": "critical",
+      "subject_id": "hr-payroll-001",
+      "subject_type": "asset"
+    },
+    {
+      "composite_score": 100,
+      "decision": "deny",
+      "priority_level": "critical",
+      "subject_id": "legal-mna-002",
+      "subject_type": "asset"
+    },
+    {
+      "composite_score": 100,
+      "decision": "deny",
+      "priority_level": "critical",
+      "subject_id": "customer-records-003",
+      "subject_type": "asset"
+    },
+    {
+      "composite_score": 100,
+      "decision": "deny",
+      "priority_level": "critical",
+      "subject_id": "secrets-runbook-005",
+      "subject_type": "asset"
+    },
+    {
+      "composite_score": 100,
+      "decision": "deny",
+      "priority_level": "critical",
+      "subject_id": "ai-session-002",
+      "subject_type": "ai_session"
+    }
+  ],
+  "total_subjects": 17
+}
