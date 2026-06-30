@@ -1,18 +1,18 @@
 const DATA_SOURCES = {
   dashboard: [
+    './data/executive_dashboard.json',
     '../evidence/generated/executive_dashboard.json',
     '/evidence/generated/executive_dashboard.json',
-    './data/executive_dashboard.json',
   ],
   manifest: [
+    './data/evidence_manifest.json',
     '../evidence/generated/evidence_manifest.json',
     '/evidence/generated/evidence_manifest.json',
-    './data/evidence_manifest.json',
   ],
   companion: [
+    './data/ai_governance_companion_export_summary.json',
     '../evidence/generated/ai_governance_companion_export_summary.json',
     '/evidence/generated/ai_governance_companion_export_summary.json',
-    './data/ai_governance_companion_export_summary.json',
   ],
 };
 
@@ -25,7 +25,13 @@ async function fetchFirstAvailable(paths) {
         errors.push(`${path}: ${response.status}`);
         continue;
       }
-      return response.json();
+      const contentType = response.headers.get('content-type') || '';
+      const payload = await response.text();
+      if (contentType.includes('text/html') || payload.trim().startsWith('<')) {
+        errors.push(`${path}: returned HTML instead of JSON`);
+        continue;
+      }
+      return JSON.parse(payload);
     } catch (error) {
       errors.push(`${path}: ${error.message}`);
     }
