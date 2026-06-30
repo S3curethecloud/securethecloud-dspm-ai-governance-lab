@@ -17,12 +17,17 @@ REQUIRED_PATHS = [
     "backend/app/models.py",
     "backend/app/scoring.py",
     "backend/app/classifier.py",
+    "backend/app/access_analyzer.py",
     "backend/tests/test_scoring.py",
     "backend/tests/test_classifier.py",
+    "backend/tests/test_access_analyzer.py",
     "data/assets/sample_assets.json",
     "data/assets/phase2_additional_assets.json",
     "data/content_samples/synthetic_documents.json",
     "data/classification_patterns/sensitivity_patterns.json",
+    "data/access/identities.json",
+    "data/access/groups.json",
+    "data/access/permissions.json",
     "data/events/ai_interactions.json",
     "policies/dspm_policy_rules.yaml",
     "docs/sot/PROJECT_SOURCE_OF_TRUTH.md",
@@ -48,6 +53,10 @@ def read_text(relative_path: str) -> str:
     return (ROOT / relative_path).read_text(encoding="utf-8")
 
 
+def read_json(relative_path: str):
+    return json.loads(read_text(relative_path))
+
+
 def validate_required_paths() -> list[str]:
     errors = []
     for relative_path in REQUIRED_PATHS:
@@ -58,7 +67,7 @@ def validate_required_paths() -> list[str]:
 
 def validate_json(relative_path: str) -> list[str]:
     try:
-        json.loads(read_text(relative_path))
+        read_json(relative_path)
     except Exception as exc:  # pragma: no cover - diagnostic path
         return [f"invalid json in {relative_path}: {exc}"]
     return []
@@ -66,8 +75,8 @@ def validate_json(relative_path: str) -> list[str]:
 
 def validate_classifier_fixture_contract() -> list[str]:
     errors = []
-    patterns = json.loads(read_text("data/classification_patterns/sensitivity_patterns.json"))
-    documents = json.loads(read_text("data/content_samples/synthetic_documents.json"))
+    patterns = read_json("data/classification_patterns/sensitivity_patterns.json")
+    documents = read_json("data/content_samples/synthetic_documents.json")
 
     required_pattern_keys = {
         "pattern_id",
@@ -86,6 +95,50 @@ def validate_classifier_fixture_contract() -> list[str]:
     for document in documents:
         if not document.get("asset_id") or not document.get("content"):
             errors.append("classification document fixture requires asset_id and content")
+
+    return errors
+
+
+def validate_access_fixture_contract() -> list[str]:
+    errors = []
+    identities = read_json("data/access/identities.json")
+    groups = read_json("data/access/groups.json")
+    permissions = read_json("data/access/permissions.json")
+    assets = read_json("data/assets/sample_assets.json") + read_json("data/assets/phase2_additional_assets.json")
+
+    identity_ids = {identity.get("identity_id") for identity in identities}
+    group_ids = {group.get("group_id") for group in groups}
+    asset_ids = {asset.get("asset_id") for asset in assets}
+
+    for group in groups:
+        for member in group.get("members", []):
+            if member not in identity_ids:
+                errors.append(f"group {group.get('group_id')} references unknown identity member: {member}")
+
+    required_permission_keys = {
+        "permission_id",
+        "asset_id",
+        "principal_id",
+        "principal_type",
+        "access_level",
+        "roles",
+        "inherited",
+        "external",
+        "ai_tool_access_allowed",
+        "source",
+    }
+    for permission in permissions:
+        missing = required_permission_keys - set(permission)
+        if missing:
+            errors.append(f"permission {permission.get('permission_id', '<unknown>')} missing keys: {sorted(missing)}")
+        if permission.get("asset_id") not in asset_ids:
+            errors.append(f"permission {permission.get('permission_id')} references unknown asset: {permission.get('asset_id')}")
+        principal_id = permission.get("principal_id")
+        principal_type = permission.get("principal_type")
+        if principal_type == "group" and principal_id not in group_ids:
+            errors.append(f"permission {permission.get('permission_id')} references unknown group: {principal_id}")
+        if principal_type in {"user", "guest", "service_principal"} and principal_id not in identity_ids:
+            errors.append(f"permission {permission.get('permission_id')} references unknown identity: {principal_id}")
 
     return errors
 
@@ -114,8 +167,12 @@ def main() -> int:
     errors.extend(validate_json("data/assets/phase2_additional_assets.json"))
     errors.extend(validate_json("data/content_samples/synthetic_documents.json"))
     errors.extend(validate_json("data/classification_patterns/sensitivity_patterns.json"))
+    errors.extend(validate_json("data/access/identities.json"))
+    errors.extend(validate_json("data/access/groups.json"))
+    errors.extend(validate_json("data/access/permissions.json"))
     errors.extend(validate_json("data/events/ai_interactions.json"))
     errors.extend(validate_classifier_fixture_contract())
+    errors.extend(validate_access_fixture_contract())
     errors.extend(validate_boundary_claims())
 
     if errors:
